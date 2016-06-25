@@ -1,0 +1,53 @@
+{
+  "name": "react-project-template",
+  "version": "0.0.1",
+  "description": "A starter template for building a front-end web application with React",
+  "main": "./src/index.js",
+  "scripts": {
+    "start": "npm run init && node_modules/.bin/webpack-dev-server -d --inline --hot",
+    "build": "npm run init && node_modules/.bin/webpack -p --optimize-minimize --optimize-occurence-order --optimize-dedupe && gzip -k9 ./public/assets/*",
+    "clean": "rm -rf ./public",
+    "init": "npm run clean && mkdir -p ./public && cp ./src/index.html ./public/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chaucerbao/react-project-template.git"
+  },
+  "author": "Alvin Chan <no@email.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/chaucerbao/react-project-template/issues"
+  },
+  "homepage": "https://github.com/chaucerbao/react-project-template#readme",
+  "devDependencies": {
+    "babel-core": "*",
+    "babel-loader": "*",
+    "babel-preset-es2015": "*",
+    "babel-preset-react": "*",
+    "css-loader": "*",
+    "eslint": "*",
+    "eslint-config-airbnb": "*",
+    "eslint-import-resolver-webpack": "*",
+    "eslint-loader": "*",
+    "eslint-plugin-import": "*",
+    "eslint-plugin-jsx-a11y": "*",
+    "eslint-plugin-react": "*",
+    "extract-text-webpack-plugin": "*",
+    "postcss-import": "*",
+    "postcss-loader": "*",
+    "postcss-mixins": "*",
+    "postcss-nested": "*",
+    "postcss-simple-vars": "*",
+    "style-loader": "*",
+    "stylelint-config-standard": "*",
+    "stylelint-webpack-plugin": "*",
+    "webpack": "*",
+    "webpack-dev-server": "*"
+  },
+  "dependencies": {
+    "normalize.css": "*",
+    "react": "*",
+    "react-dom": "*",
+    "react-router": "*"
+  }
+}
