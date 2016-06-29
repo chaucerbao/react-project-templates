@@ -8,7 +8,7 @@ const dest = path.join(__dirname, 'public');
 
 // Plugins and extensions
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const styleLintPlugin = require('stylelint-webpack-plugin');
+const StyleLintPlugin = require('stylelint-webpack-plugin');
 const postcssImport = require('postcss-import');
 const postcssMixins = require('postcss-mixins');
 const postcssSimpleVars = require('postcss-simple-vars');
@@ -64,7 +64,7 @@ module.exports = {
     new webpack.ProvidePlugin({
       React: 'react',
     }),
-    new styleLintPlugin({
+    new StyleLintPlugin({
       files: '**/*.css',
     }),
     new ExtractTextPlugin('[name].css'),
