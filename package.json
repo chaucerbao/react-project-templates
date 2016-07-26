@@ -20,6 +20,7 @@
   },
   "homepage": "https://github.com/chaucerbao/react-project-template#readme",
   "devDependencies": {
+    "autoprefixer": "*",
     "babel-core": "*",
     "babel-loader": "*",
     "babel-preset-es2015": "*",

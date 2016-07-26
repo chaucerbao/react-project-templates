@@ -3,7 +3,7 @@ import style from './style';
 
 // Component
 const Application = ({ children }) => (
-  <div className={style.application}>
+  <div className={style.tag}>
     <header className={style.header}>
     </header>
 

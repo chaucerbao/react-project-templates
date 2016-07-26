@@ -13,6 +13,7 @@ const postcssImport = require('postcss-import');
 const postcssMixins = require('postcss-mixins');
 const postcssSimpleVars = require('postcss-simple-vars');
 const postcssNested = require('postcss-nested');
+const autoprefixer = require('autoprefixer');
 
 module.exports = {
   context: src,
@@ -43,7 +44,7 @@ module.exports = {
       test: /\.jsx?$/,
       include: src,
     }, {
-      loader: ExtractTextPlugin.extract('style', 'css?sourceMap&minimize&modules&localIdentName=[folder]__[local]&importLoaders=1!postcss'),
+      loader: ExtractTextPlugin.extract('style?singleton', 'css?minimize&-autoprefixer&modules&localIdentName=[folder]__[local]&importLoaders=1!postcss'),
       test: /\.css$/,
     }],
   },
@@ -57,15 +58,18 @@ module.exports = {
       postcssMixins,
       postcssSimpleVars,
       postcssNested,
+      autoprefixer({
+        remove: false,
+      }),
     ];
   },
 
   plugins: [
-    new webpack.ProvidePlugin({
-      React: 'react',
-    }),
     new StyleLintPlugin({
       files: '**/*.css',
+    }),
+    new webpack.ProvidePlugin({
+      React: 'react',
     }),
     new ExtractTextPlugin('[name].css'),
   ],

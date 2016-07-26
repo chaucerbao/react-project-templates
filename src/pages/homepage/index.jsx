@@ -3,7 +3,7 @@ import style from './style';
 
 // Component
 const Homepage = () => (
-  <div className={style.homepage}>
+  <div className={style.tag}>
     <h1>Homepage</h1>
   </div>
 );
