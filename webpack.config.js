@@ -43,7 +43,7 @@ module.exports = {
       test: /\.jsx?$/,
       include: src,
     }, {
-      loader: ExtractTextPlugin.extract('style', 'css?sourceMap&minimize!postcss'),
+      loader: ExtractTextPlugin.extract('style', 'css?sourceMap&minimize&modules&localIdentName=[folder]__[local]&importLoaders=1!postcss'),
       test: /\.css$/,
     }],
   },
@@ -52,7 +52,7 @@ module.exports = {
     return [
       postcssImport({
         addDependencyTo: webpackObject,
-        path: path.join(src, 'application', 'style'),
+        path: path.join(src, 'application'),
       }),
       postcssMixins,
       postcssSimpleVars,

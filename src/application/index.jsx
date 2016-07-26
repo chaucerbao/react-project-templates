@@ -1,12 +1,18 @@
 // Styles
-import './style';
+import style from './style';
 
 // Component
 const Application = ({ children }) => (
-  <div className="site">
-    <header className="site__header"></header>
-    <main className="site__body">{children}</main>
-    <footer className="site__footer"></footer>
+  <div className={style.application}>
+    <header className={style.header}>
+    </header>
+
+    <main className={style.body}>
+      {children}
+    </main>
+
+    <footer className={style.footer}>
+    </footer>
   </div>
 );
 
