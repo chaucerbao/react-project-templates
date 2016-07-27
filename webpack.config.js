@@ -37,7 +37,7 @@ module.exports = {
     }],
 
     loaders: [{
-      loader: 'babel',
+      loader: 'babel?cacheDirectory',
       test: /\.jsx?$/,
       include: src,
     }, {
