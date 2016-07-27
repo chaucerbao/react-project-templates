@@ -62,11 +62,11 @@ module.exports = {
   },
 
   plugins: [
-    new StyleLintPlugin({
-      files: '**/*.css',
-    }),
     new webpack.ProvidePlugin({
       React: 'react',
+    }),
+    new StyleLintPlugin({
+      files: '**/*.css',
     }),
     new ExtractTextPlugin('[name].css'),
   ],
