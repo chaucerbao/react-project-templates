@@ -6,7 +6,6 @@ const libraryManifest = require('./.library-manifest.json');
 // Directory paths
 const src = path.join(__dirname, 'src');
 const dest = path.join(__dirname, 'public');
-const assets = path.join(dest, 'assets');
 
 // Plugins and extensions
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
@@ -25,7 +24,7 @@ module.exports = {
   },
 
   output: {
-    path: assets,
+    path: path.join(dest, 'assets'),
     publicPath: '/assets/',
     filename: '[name].js',
     chunkFilename: '[chunkhash].js',
@@ -65,7 +64,7 @@ module.exports = {
 
   plugins: [
     new webpack.DllReferencePlugin({
-      context: assets,
+      context: path.join(src, 'library'),
       manifest: libraryManifest,
     }),
     new webpack.ProvidePlugin({
