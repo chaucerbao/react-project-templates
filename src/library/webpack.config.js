@@ -21,6 +21,11 @@ module.exports = {
   },
 
   plugins: [
+    new webpack.DefinePlugin({
+      'process.env': {
+        NODE_ENV: JSON.stringify('production'),
+      }
+    }),
     new webpack.DllPlugin({
       name: '[name]',
       path: path.join(projectRoot, '.[name]-manifest.json'),
