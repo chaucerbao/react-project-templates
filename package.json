@@ -6,8 +6,9 @@
   "scripts": {
     "start": "npm run init && node_modules/.bin/webpack-dev-server -d --inline --hot",
     "build": "npm run init && node_modules/.bin/webpack -p --optimize-minimize --optimize-occurence-order --optimize-dedupe && gzip -k9 ./public/assets/*",
+    "build:library": "node_modules/.bin/webpack --config=./src/library/webpack.config.js -p --optimize-minimize --optimize-occurence-order --optimize-dedupe",
     "clean": "rm -rf ./public",
-    "init": "npm run clean && mkdir -p ./public && cp ./src/index.html ./public/"
+    "init": "npm run clean && mkdir -p ./public && cp ./src/index.html ./public/ && npm run build:library"
   },
   "repository": {
     "type": "git",

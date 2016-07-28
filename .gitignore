@@ -1,6 +1,7 @@
 /node_modules/
 /public/
 
+.*-manifest.json
 .DS_Store
 Thumbs.db
 npm-debug.log
