@@ -4,11 +4,11 @@
   "description": "A starter template for building a front-end web application with React",
   "main": "./src/index.js",
   "scripts": {
-    "start": "npm run init && node_modules/.bin/webpack-dev-server -d --inline --hot",
-    "build": "npm run init && node_modules/.bin/webpack -p --optimize-minimize --optimize-occurence-order --optimize-dedupe && gzip -k9 ./public/assets/*",
-    "build:library": "node_modules/.bin/webpack --config=./src/library/webpack.config.js -p --optimize-minimize --optimize-occurence-order --optimize-dedupe",
+    "start": "npm run init && npm run build:library && node_modules/.bin/webpack-dev-server -d --inline --hot",
+    "build": "npm run init && NODE_ENV=production npm run build:library && node_modules/.bin/webpack -p --optimize-occurence-order --optimize-dedupe && gzip -k9 ./public/assets/*",
+    "build:library": "node_modules/.bin/webpack --config=./src/library/webpack.config.js -p --optimize-occurence-order --optimize-dedupe",
     "clean": "rm -rf ./public",
-    "init": "npm run clean && mkdir -p ./public && cp ./src/index.html ./public/ && npm run build:library"
+    "init": "npm run clean && mkdir -p ./public && cp ./src/index.html ./public/"
   },
   "repository": {
     "type": "git",
