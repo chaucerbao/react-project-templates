@@ -1,7 +1,7 @@
 // Dependencies
 const path = require('path');
 const webpack = require('webpack');
-const libraryManifest = require('./.library-manifest.json');
+const dllManifest = require('./.dll-manifest.json');
 
 // Directory paths
 const src = path.join(__dirname, 'src');
@@ -65,7 +65,7 @@ module.exports = {
   plugins: [
     new webpack.DllReferencePlugin({
       context: path.join(src, 'library'),
-      manifest: libraryManifest,
+      manifest: dllManifest,
     }),
     new webpack.ProvidePlugin({
       React: 'react',

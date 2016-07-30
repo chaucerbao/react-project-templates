@@ -11,7 +11,7 @@ module.exports = {
   context: src,
 
   entry: {
-    library: ['./index.js'],
+    dll: ['./index.js'],
   },
 
   output: {
