@@ -5,8 +5,8 @@
   "main": "./src/index.js",
   "scripts": {
     "start": "npm run init && npm run build:library && node_modules/.bin/webpack-dev-server -d --inline --hot",
-    "build": "npm run init && NODE_ENV=production npm run build:library && node_modules/.bin/webpack -p --optimize-occurence-order --optimize-dedupe && gzip -k9 ./public/assets/*",
-    "build:library": "node_modules/.bin/webpack --config=./src/library/webpack.config.js -p --optimize-occurence-order --optimize-dedupe",
+    "build": "npm run init && NODE_ENV=production npm run build:library -- -p && node_modules/.bin/webpack -p --optimize-occurence-order --optimize-dedupe && gzip -k9 ./public/assets/*",
+    "build:library": "node_modules/.bin/webpack --config=./src/library/webpack.config.js --optimize-occurence-order --optimize-dedupe",
     "clean": "rm -rf ./public",
     "init": "npm run clean && mkdir -p ./public && cp ./src/index.html ./public/"
   },
