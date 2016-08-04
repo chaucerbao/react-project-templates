@@ -13,5 +13,8 @@ module.exports = {
   },
   "globals": {
     "React": true
+  },
+  "env": {
+    "browser": true
   }
 };

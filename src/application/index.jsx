@@ -5,6 +5,7 @@ import style from './style';
 const Application = ({ children }) => (
   <div className={style.tag}>
     <header className={style.header}>
+      Site Header
     </header>
 
     <main className={style.body}>
@@ -12,6 +13,7 @@ const Application = ({ children }) => (
     </main>
 
     <footer className={style.footer}>
+      Site Footer
     </footer>
   </div>
 );
