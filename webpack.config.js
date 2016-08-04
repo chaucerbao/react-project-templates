@@ -64,7 +64,7 @@ module.exports = {
 
   plugins: [
     new webpack.DllReferencePlugin({
-      context: path.join(src, 'library'),
+      context: path.join(src, 'dll'),
       manifest: dllManifest,
     }),
     new webpack.ProvidePlugin({
