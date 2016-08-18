@@ -1,5 +1,5 @@
 // Dependencies
 import { render } from 'react-dom';
-import router from './router';
+import Router from './Router';
 
-render(router(), document.getElementById('application'));
+render(Router, document.getElementById('application'));

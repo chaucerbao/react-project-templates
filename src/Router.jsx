@@ -1,11 +1,11 @@
 // Dependencies
-import Router from 'react-router/lib/Router';
+import ReactRouter from 'react-router/lib/Router';
 import Route from 'react-router/lib/Route';
 import IndexRoute from 'react-router/lib/IndexRoute';
 import browserHistory from 'react-router/lib/browserHistory';
 
 // Layout
-import Application from './application';
+import Application from './Application';
 
 // Code-split the routes
 function load(page, nextState, callback) {
@@ -13,13 +13,13 @@ function load(page, nextState, callback) {
 }
 
 // Router
-const router = () => (
-  <Router history={browserHistory}>
+const Router = (
+  <ReactRouter history={browserHistory}>
     <Route path="/" component={Application}>
-      <IndexRoute getComponent={(...args) => load('homepage', ...args)} />
-      <Route path="*" getComponent={(...args) => load('not-found-404', ...args)} />
+      <IndexRoute getComponent={(...args) => load('Homepage', ...args)} />
+      <Route path="*" getComponent={(...args) => load('NotFound404', ...args)} />
     </Route>
-  </Router>
+  </ReactRouter>
 );
 
-export default router;
+export default Router;
