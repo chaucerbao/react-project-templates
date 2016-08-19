@@ -1,8 +1,15 @@
+// @flow
+
 // Styles
 import style from './style';
 
+// Property types
+type Props = {
+  children?: any,
+};
+
 // Component
-const Application = ({ children }) => (
+const Application = ({ children }: Props) => (
   <div className={style.tag}>
     <header className={style.header}>
       Site Header
@@ -17,11 +24,5 @@ const Application = ({ children }) => (
     </footer>
   </div>
 );
-
-// Property types
-const { PropTypes } = React;
-Application.propTypes = {
-  children: PropTypes.element.isRequired,
-};
 
 export default Application;

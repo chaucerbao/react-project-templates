@@ -1,0 +1,13 @@
+[ignore]
+
+[include]
+
+[libs]
+node_modules/fbjs/flow/lib/
+
+[options]
+module.file_ext=.js
+module.file_ext=.jsx
+module.file_ext=.css
+
+suppress_type=$FlowIssue
