@@ -67,9 +67,6 @@ module.exports = {
       context: path.join(src, 'dll'),
       manifest: dllManifest,
     }),
-    new webpack.ProvidePlugin({
-      React: 'react',
-    }),
     new StyleLintPlugin({
       files: '**/*.css',
     }),

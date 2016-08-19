@@ -1,5 +1,8 @@
 // @flow
 
+// Dependencies
+import React from 'react';
+
 // Styles
 import style from './style';
 

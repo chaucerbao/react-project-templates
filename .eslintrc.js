@@ -9,12 +9,6 @@ module.exports = {
       "webpack": true
     }
   },
-  "rules": {
-    "react/react-in-jsx-scope": "off"
-  },
-  "globals": {
-    "React": true
-  },
   "env": {
     "browser": true
   }
