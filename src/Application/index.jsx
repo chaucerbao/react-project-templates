@@ -4,7 +4,7 @@
 import React from 'react';
 
 // Styles
-import style from './style';
+import style from './style.css';
 
 // Property types
 type Props = {
