@@ -1,14 +1,14 @@
 // @flow
 
 // Dependencies
-import React from 'react';
+import React from 'react'
 
 // Styles
-import style from './style.css';
+import style from './style.css'
 
 // Property types
 type Props = {
-  children?: any,
+  children?: any
 };
 
 // Component
@@ -26,6 +26,6 @@ const Application = ({ children }: Props) => (
       Site Footer
     </footer>
   </div>
-);
+)
 
-export default Application;
+export default Application
