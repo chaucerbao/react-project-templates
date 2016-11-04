@@ -68,6 +68,7 @@ module.exports = {
       manifest: dllManifest
     }),
     new StyleLintPlugin({
+      context: src,
       files: '**/*.css'
     }),
     new ExtractTextPlugin('[name].css')
@@ -75,7 +76,7 @@ module.exports = {
 
   resolve: {
     root: path.resolve(src),
-    extensions: ['', '.js', '.jsx', '.css']
+    extensions: ['', '.js', '.jsx']
   },
 
   devServer: {
