@@ -1,6 +1,7 @@
 // Dependencies
 const path = require('path')
 const webpack = require('webpack')
+const nodeExternals = require('webpack-node-externals')
 const dllManifest = require('./.dll-manifest.json')
 
 // Directory paths
@@ -16,7 +17,8 @@ const postcssSimpleVars = require('postcss-simple-vars')
 const postcssNested = require('postcss-nested')
 const autoprefixer = require('autoprefixer')
 
-module.exports = {
+// Configuration
+const webpackConfig = {
   context: src,
 
   entry: {
@@ -85,3 +87,13 @@ module.exports = {
     noInfo: true
   }
 }
+
+// Configuration for testing
+if (process.env.NODE_ENV === 'test') {
+  Object.assign(webpackConfig, {
+    target: 'node',
+    externals: [nodeExternals()]
+  })
+}
+
+module.exports = webpackConfig

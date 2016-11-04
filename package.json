@@ -8,7 +8,9 @@
     "build": "npm run init && NODE_ENV=production npm run build:dll -- -p && node_modules/.bin/webpack -p --optimize-occurence-order --optimize-dedupe && gzip -k9 public/assets/*",
     "build:dll": "node_modules/.bin/webpack --config=src/dll/webpack.config.js --optimize-occurence-order --optimize-dedupe",
     "clean": "rm -rf public/",
-    "init": "npm run clean && mkdir -p public/ && cp src/index.html public/"
+    "init": "npm run clean && mkdir -p public/ && cp src/index.html public/",
+    "test": "NODE_ENV=test node_modules/.bin/mocha-webpack --webpack-config webpack.config.js --recursive --glob '*.test.js' src/",
+    "test:watch": "npm run test -- --watch"
   },
   "repository": {
     "type": "git",
@@ -32,13 +34,17 @@
     "babel-preset-es2015": "*",
     "babel-preset-react": "*",
     "css-loader": "*",
+    "enzyme": "*",
     "extract-text-webpack-plugin": "*",
     "flow-bin": "*",
+    "mocha": "*",
+    "mocha-webpack": "*",
     "postcss-import": "*",
     "postcss-loader": "*",
     "postcss-mixins": "*",
     "postcss-nested": "*",
     "postcss-simple-vars": "*",
+    "react-addons-test-utils": "*",
     "standard": "*",
     "standard-loader": "*",
     "style-loader": "*",
@@ -46,7 +52,8 @@
     "stylelint-config-standard": "*",
     "stylelint-webpack-plugin": "*",
     "webpack": "*",
-    "webpack-dev-server": "*"
+    "webpack-dev-server": "*",
+    "webpack-node-externals": "*"
   },
   "dependencies": {
     "normalize.css": "*",
