@@ -11,7 +11,8 @@ linters, code formatters, and a test suite already in place.
 - `start` compiles the source, starts a development server, and waits for changes
 - `build` compiles the source with production optimizations
 - `clean` removes the directory where the generated files are placed
-- `beautify` standardizes the code-formatting
+- `lint` checks the source code for style inconsistencies
+- `beautify` standardizes the code-formatting style
 - `test` runs the test suite against the source code
 - `test:watch` runs the test suite and waits for changes
 

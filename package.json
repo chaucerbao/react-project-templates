@@ -9,8 +9,8 @@
     "build:dll": "node_modules/.bin/webpack --config=src/dll/webpack.config.js --optimize-occurence-order --optimize-dedupe",
     "clean": "rm -rf public/",
     "init": "npm run clean && mkdir -p public/ && cp src/index.html public/",
-    "beautify": "node_modules/.bin/standard --fix ; node_modules/.bin/stylefmt --recursive src/",
     "lint": "node_modules/.bin/snazzy ; node_modules/.bin/stylelint 'src/**/*.css' || true",
+    "beautify": "node_modules/.bin/standard --fix ; node_modules/.bin/stylefmt --recursive src/",
     "test": "NODE_ENV=test node_modules/.bin/mocha-webpack --webpack-config webpack.config.js --recursive --glob '*.test.js' src/",
     "test:watch": "npm run test -- --watch"
   },
