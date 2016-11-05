@@ -18,4 +18,14 @@ describe('<Application />', () => {
   it('renders', () => {
     assert.ok(instance.containsMatchingElement(<header>Site Header</header>))
   })
+
+  it('renders children in the body', () => {
+    const component = shallow(
+      <Application>
+        <h1>Hello world!</h1>
+      </Application>
+    )
+
+    assert.ok(component.containsMatchingElement(<main><h1>Hello world!</h1></main>))
+  })
 })
