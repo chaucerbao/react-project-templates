@@ -1,9 +1,9 @@
 # React Project Template
 
 A starter template for building a front-end web application with [React]. The
-goal of this project is to pre-configure an optimized toolset and structure so
-you can begin developing your application quickly, with linters, code
-formatters, and a test suite already in place.
+goal of this project is to pre-configure an optimized set of tools and
+boilerplate code so you can begin developing your application quickly, with
+linters, code formatters, and a test suite already in place.
 
 ## Development
 
@@ -11,7 +11,7 @@ formatters, and a test suite already in place.
 - `start` compiles the source, starts a development server, and waits for changes
 - `build` compiles the source with production optimizations
 - `clean` removes the directory where the generated files are placed
-- `beautify` standardizes the formatting style
+- `beautify` standardizes the code-formatting
 - `test` runs the test suite against the source code
 - `test:watch` runs the test suite and waits for changes
 
