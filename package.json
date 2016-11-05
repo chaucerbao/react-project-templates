@@ -23,8 +23,15 @@
     "url": "https://github.com/chaucerbao/react-project-template/issues"
   },
   "homepage": "https://github.com/chaucerbao/react-project-template#readme",
+  "babel": {
+    "presets": ["es2015", "react"],
+    "plugins": ["transform-flow-strip-types"]
+  },
   "standard": {
     "parser": "babel-eslint"
+  },
+  "stylelint": {
+    "extends": "stylelint-config-standard"
   },
   "devDependencies": {
     "autoprefixer": "*",

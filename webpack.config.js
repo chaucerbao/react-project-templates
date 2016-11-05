@@ -70,6 +70,7 @@ const webpackConfig = {
       manifest: dllManifest
     }),
     new StyleLintPlugin({
+      configFile: null,
       context: src,
       files: '**/*.css'
     }),
