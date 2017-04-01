@@ -8,6 +8,8 @@ class BaseModel {
         this[key] = attributes[key];
       }
     });
+
+    return this;
   }
 }
 

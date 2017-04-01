@@ -14,11 +14,12 @@ it('updates existing attributes', () => {
   expect(model.id).toBe(0);
   expect(model.fakeProperty).toBe(undefined);
 
-  model._update({
+  const returnValue = model._update({
     id: 5,
     fakeProperty: 'String'
   });
 
   expect(model.id).toBe(5);
   expect(model.fakeProperty).toBe(undefined);
+  expect(returnValue).toBe(model);
 });

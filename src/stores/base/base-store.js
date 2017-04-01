@@ -19,12 +19,10 @@ class BaseStore {
 
   _load(id, attributes = {}) {
     const key = parseInt(id, 10);
-    const model = this._cache[key] || new this.Model();
 
-    model._update(attributes);
-    this._cache[key] = model;
+    this._cache[key] = this._cache[key] || new this.Model();
 
-    return this._cache[key];
+    return this._cache[key]._update(attributes);
   }
 
   async _fetch(request) {
