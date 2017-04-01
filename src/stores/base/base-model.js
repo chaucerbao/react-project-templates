@@ -6,7 +6,7 @@ class BaseModel {
     return this.id > 0;
   }
 
-  _update(attributes) {
+  update(attributes) {
     Object.keys(attributes).forEach(key => {
       if (typeof this[key] !== 'undefined') {
         this[key] = attributes[key];

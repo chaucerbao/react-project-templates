@@ -22,7 +22,7 @@ class BaseStore {
 
     this._cache[key] = this._cache[key] || new this.Model();
 
-    return this._cache[key]._update(attributes);
+    return this._cache[key].update(attributes);
   }
 
   async _fetch(request) {

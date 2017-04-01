@@ -24,7 +24,7 @@ it('updates existing attributes', () => {
   expect(model.id).toBe(0);
   expect(model.fakeProperty).toBe(undefined);
 
-  const returnValue = model._update({
+  const returnValue = model.update({
     id: 5,
     fakeProperty: 'String'
   });
