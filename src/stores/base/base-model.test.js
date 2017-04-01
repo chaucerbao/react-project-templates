@@ -8,6 +8,16 @@ it('creates a new model', () => {
   expect(model.id).toBe(0);
 });
 
+it('knows if it is from is an existing model', () => {
+  const model = new BaseModel();
+
+  expect(model.exists).toBe(false);
+
+  model.id = 5;
+
+  expect(model.exists).toBe(true);
+});
+
 it('updates existing attributes', () => {
   const model = new BaseModel();
 
