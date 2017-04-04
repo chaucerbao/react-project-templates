@@ -12,10 +12,11 @@ class SomeStore extends BaseStore {
 }
 
 // Tests
-it('creates a new store', () => {
+it('constructs a new store', () => {
   const store = new SomeStore(stores);
 
   expect(store._stores).toBe(stores);
+  expect(store._fetch._pending).toMatchObject({});
 });
 
 it('loads cached models', () => {

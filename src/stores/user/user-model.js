@@ -4,8 +4,8 @@ import BaseModel from 'stores/base/base-model';
 
 // Model
 class User extends BaseModel {
-  constructor() {
-    super();
+  constructor(stores) {
+    super(stores);
 
     extendObservable(this, {
       name: '',

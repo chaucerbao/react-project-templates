@@ -1,6 +1,11 @@
 // Model
 class BaseModel {
   id = 0;
+  _stores = {};
+
+  constructor(stores = {}) {
+    this._stores = stores;
+  }
 
   get exists() {
     return this.id > 0;

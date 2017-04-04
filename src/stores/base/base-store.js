@@ -12,7 +12,7 @@ class BaseStore {
   _stores = {};
   _cache = {};
 
-  constructor(stores) {
+  constructor(stores = {}) {
     this._stores = stores;
     this._fetch._pending = {};
   }
@@ -20,7 +20,7 @@ class BaseStore {
   _load(id, attributes = {}) {
     const key = parseInt(id, 10);
 
-    this._cache[key] = this._cache[key] || new this.Model();
+    this._cache[key] = this._cache[key] || new this.Model(this._stores);
 
     return this._cache[key].update(attributes);
   }

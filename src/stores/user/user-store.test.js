@@ -5,10 +5,11 @@ import UserStore from './user-store';
 const stores = {fake: {}};
 
 // Tests
-it('creates a new store', () => {
+it('constructs a new store', () => {
   const store = new UserStore(stores);
 
   expect(store._stores).toBe(stores);
+  expect(store.all.length).toBe(0);
 });
 
 it('retrieves all users', async () => {

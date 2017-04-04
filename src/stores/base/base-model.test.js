@@ -1,11 +1,15 @@
 // Model
 import BaseModel from './base-model';
 
+// Mocks
+const stores = {fake: {}};
+
 // Tests
-it('creates a new model', () => {
-  const model = new BaseModel();
+it('constructs a new model', () => {
+  const model = new BaseModel(stores);
 
   expect(model.id).toBe(0);
+  expect(model._stores).toBe(stores);
 });
 
 it('knows if it is from is an existing model', () => {
