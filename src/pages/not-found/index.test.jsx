@@ -1,5 +1,5 @@
 // Dependencies
-import React, {PropTypes} from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom';
 import {MemoryRouter} from 'react-router';
 import {Provider} from 'mobx-react';
@@ -11,20 +11,13 @@ import Page from './';
 // Usage
 import * as router from 'react-router-dom';
 import stores from 'stores';
-const Layout = props => (
+const NotFound = props => (
   <MemoryRouter>
     <Provider router={router} stores={stores}>
-      <Page {...props}>
-        {props.children}
-      </Page>
+      <Page {...props}/>
     </Provider>
   </MemoryRouter>
 );
-
-// Property validation
-Layout.propTypes = {
-  children: PropTypes.node.isRequired
-};
 
 // Setup and cleanup
 beforeEach(() => {
@@ -40,10 +33,5 @@ afterEach(() => {
 
 // Tests
 it('renders without crashing', () => {
-  ReactDOM.render(
-    <Layout>
-      Content
-    </Layout>,
-    document.createElement('div')
-  );
+  ReactDOM.render(<NotFound/>, document.createElement('div'));
 });

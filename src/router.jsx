@@ -32,6 +32,7 @@ const Router = ({stores}) => {
       <Provider router={router} stores={stores}>
         <Switch>
           <Route exact path="/" render={fetch('home')}/>
+          <Route render={fetch('not-found')}/>
         </Switch>
       </Provider>
     </BrowserRouter>

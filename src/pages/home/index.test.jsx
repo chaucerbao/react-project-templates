@@ -1,6 +1,7 @@
 // Dependencies
 import React from 'react';
 import ReactDOM from 'react-dom';
+import {MemoryRouter} from 'react-router';
 import {Provider} from 'mobx-react';
 import {StyleSheetTestUtils} from 'aphrodite';
 
@@ -8,12 +9,14 @@ import {StyleSheetTestUtils} from 'aphrodite';
 import Page from './';
 
 // Usage
-import router from 'react-router-dom';
+import * as router from 'react-router-dom';
 import stores from 'stores';
 const Home = props => (
-  <Provider router={router} stores={stores}>
-    <Page {...props}/>
-  </Provider>
+  <MemoryRouter>
+    <Provider router={router} stores={stores}>
+      <Page {...props}/>
+    </Provider>
+  </MemoryRouter>
 );
 
 // Setup and cleanup

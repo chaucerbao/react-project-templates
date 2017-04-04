@@ -2,15 +2,12 @@
 import {StyleSheet} from 'aphrodite';
 
 // Imported styles
-import {maroon, silver} from 'styles/variables';
+import {olive} from 'styles/variables';
 
 // Styles
 const style = StyleSheet.create({
-  layout: {
-    background: silver
-  },
-  activeLink: {
-    color: maroon
+  header: {
+    color: olive
   }
 });
 
