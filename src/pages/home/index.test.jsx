@@ -1,18 +1,20 @@
 // Dependencies
 import React from 'react';
 import ReactDOM from 'react-dom';
+import {Provider} from 'mobx-react';
 import {StyleSheetTestUtils} from 'aphrodite';
 
 // Page
-import Home from './';
+import Page from './';
 
-// Mocks
-const stores = {
-  user: {
-    all: [],
-    getAll: () => {}
-  }
-};
+// Usage
+import router from 'react-router-dom';
+import stores from 'stores';
+const Home = props => (
+  <Provider router={router} stores={stores}>
+    <Page {...props}/>
+  </Provider>
+);
 
 // Setup and cleanup
 beforeEach(() => {
@@ -28,5 +30,5 @@ afterEach(() => {
 
 // Tests
 it('renders without crashing', () => {
-  ReactDOM.render(<Home stores={stores}/>, document.createElement('div'));
+  ReactDOM.render(<Home/>, document.createElement('div'));
 });

@@ -1,10 +1,26 @@
 // Dependencies
-import React from 'react';
+import React, {PropTypes} from 'react';
 import ReactDOM from 'react-dom';
+import {Provider} from 'mobx-react';
 import {StyleSheetTestUtils} from 'aphrodite';
 
 // Page
-import Layout from './';
+import Page from './';
+
+// Usage
+import router from 'react-router-dom';
+import stores from 'stores';
+const Layout = props => (
+  <Provider router={router} stores={stores}>
+    <Page {...props}>
+      {props.children}
+    </Page>
+  </Provider>
+);
+
+Layout.propTypes = {
+  children: PropTypes.node.isRequired
+};
 
 // Setup and cleanup
 beforeEach(() => {
