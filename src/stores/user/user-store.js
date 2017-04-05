@@ -21,7 +21,7 @@ class UserStore extends BaseStore {
     );
 
     runInAction(() => {
-      this.all = response.body.map(user => super._load(user.id, user));
+      this.all = this._map(response.body);
     });
   }
 }

@@ -33,6 +33,44 @@ it('loads cached models', () => {
   expect(first).toBe(second);
 });
 
+describe('maps an array of POJOs into models', () => {
+  test('without a transformer', () => {
+    const store = new SomeStore(stores);
+
+    const json = [{id: 5, someProperty: 'Text'}, {id: 10, someProperty: true}];
+
+    const models = store._map(json);
+
+    expect(models.length).toBe(2);
+    expect(models[0].constructor.name).toBe('SomeModel');
+    expect(models[0].id).toBe(5);
+    expect(models[0].someProperty).toBe('Text');
+    expect(models[1].constructor.name).toBe('SomeModel');
+    expect(models[1].id).toBe(10);
+    expect(models[1].someProperty).toBe(true);
+  });
+
+  test('with a transformer', () => {
+    const store = new SomeStore(stores);
+
+    const json = [
+      {id: 5, obscurePropertyName: 'Text'},
+      {id: 10, obscurePropertyName: true}
+    ];
+
+    const models = store._map(json, model =>
+      Object.assign(model, {someProperty: model.obscurePropertyName}));
+
+    expect(models.length).toBe(2);
+    expect(models[0].constructor.name).toBe('SomeModel');
+    expect(models[0].id).toBe(5);
+    expect(models[0].someProperty).toBe('Text');
+    expect(models[1].constructor.name).toBe('SomeModel');
+    expect(models[1].id).toBe(10);
+    expect(models[1].someProperty).toBe(true);
+  });
+});
+
 describe('fetch', () => {
   beforeEach(() => {
     global.fetch = jest.fn(() => {

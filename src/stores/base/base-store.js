@@ -25,6 +25,10 @@ class BaseStore {
     return this._cache[key].update(attributes);
   }
 
+  _map(models, transform = model => model) {
+    return models.map(model => this._load(model.id, transform(model)));
+  }
+
   async _fetch(request) {
     const key = JSON.stringify(request);
     const pendingRequests = this._fetch._pending;
