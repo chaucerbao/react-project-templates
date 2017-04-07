@@ -1,13 +1,12 @@
 // Dependencies
 import React from 'react';
-import {css} from 'aphrodite/no-important';
 
 // Styles
-import style from './style';
+import {Tag} from './style';
 
 // Component
 const Thing = () => {
-  return <div className={css(style.thing)}>This is the thing component</div>;
+  return <Tag>This is the thing component</Tag>;
 };
 
 // Exports

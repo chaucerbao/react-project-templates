@@ -1,15 +1,10 @@
 // Dependencies
-import {StyleSheet} from 'aphrodite';
+import styled from 'styled-components';
 
 // Imported styles
 import {orange} from 'styles/variables';
 
 // Styles
-const style = StyleSheet.create({
-  thing: {
-    color: orange
-  }
-});
-
-// Exports
-export default style;
+export const Tag = styled.header`
+  color: ${orange};
+`;

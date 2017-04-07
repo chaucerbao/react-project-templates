@@ -1,33 +1,33 @@
 // Dependencies
 import React, {Component, PropTypes} from 'react';
 import {inject} from 'mobx-react';
-import {css} from 'aphrodite/no-important';
+import styled from 'styled-components';
 
 // Styles
-import style from './style';
+import {SiteHeader, SiteFooter, menuItem} from './style';
 
 // Page
 class Layout extends Component {
   render() {
-    const {NavLink} = this.props.router;
+    const {Link} = this.props.router;
+    const MenuItem = styled(Link)`${menuItem}`;
 
     return (
-      <div className={css(style.layout)}>
-        <header>
+      <div>
+        <SiteHeader>
           <nav role="navigation">
-            <NavLink exact to="/" activeClassName={css(style.activeLink)}>
+            <MenuItem to="/">
               Home
-            </NavLink>
-            <NavLink
-              to="/does-not-exist"
-              activeClassName={css(style.activeLink)}
-              >
-              Not Found
-            </NavLink>
+            </MenuItem>
+            <MenuItem to="/does-not-exist">
+              Not found
+            </MenuItem>
           </nav>
-        </header>
+        </SiteHeader>
         {this.props.children}
-        <footer/>
+        <SiteFooter>
+          The end
+        </SiteFooter>
       </div>
     );
   }
@@ -37,7 +37,7 @@ class Layout extends Component {
 Layout.propTypes = {
   children: PropTypes.node.isRequired,
   router: PropTypes.shape({
-    NavLink: PropTypes.func.isRequired
+    Link: PropTypes.func.isRequired
   }).isRequired
 };
 

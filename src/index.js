@@ -8,7 +8,7 @@ import stores from './stores';
 
 // Global styles
 import 'normalize.css/normalize.css';
-import './styles/index.css';
+import './styles';
 
 // Mount
 render(<Router stores={stores}/>, document.getElementById('root'));

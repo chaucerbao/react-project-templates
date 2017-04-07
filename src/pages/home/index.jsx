@@ -1,14 +1,13 @@
 // Dependencies
 import React, {Component, PropTypes} from 'react';
 import {inject, observer} from 'mobx-react';
-import {css} from 'aphrodite/no-important';
 
 // Components
 import Layout from 'pages/layout';
 import Thing from 'components/thing';
 
 // Styles
-import style from './style';
+import {PageHeader, PageBody} from 'styles/page';
 
 // Page
 class Home extends Component {
@@ -21,17 +20,20 @@ class Home extends Component {
   render() {
     return (
       <Layout>
-        <main>
-          <h1 className={css(style.header)}>Homepage</h1>
+        <main role="main">
+          <PageHeader>Homepage</PageHeader>
 
-          <p>List of names fetched from an API</p>
-          <ol>
-            {this.props.stores.user.all.map(user => (
-              <li key={user.id}>{user.name}</li>
-            ))}
-          </ol>
+          <PageBody>
+            <p>List of names fetched from an API</p>
 
-          <Thing/>
+            <ol>
+              {this.props.stores.user.all.map(user => (
+                <li key={user.id}>{user.name}</li>
+              ))}
+            </ol>
+
+            <Thing/>
+          </PageBody>
         </main>
       </Layout>
     );

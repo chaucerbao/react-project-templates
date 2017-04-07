@@ -1,20 +1,23 @@
 // Dependencies
 import React, {Component} from 'react';
-import {css} from 'aphrodite/no-important';
 
 // Components
 import Layout from 'pages/layout';
 
 // Styles
-import style from './style';
+import {PageHeader, PageBody} from 'styles/page';
 
 // Page
 class NotFound extends Component {
   render() {
     return (
       <Layout>
-        <main>
-          <h1 className={css(style.header)}>Page not found</h1>
+        <main role="main">
+          <PageHeader>Not found</PageHeader>
+
+          <PageBody>
+            <p>Page not found</p>
+          </PageBody>
         </main>
       </Layout>
     );
