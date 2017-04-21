@@ -1,6 +1,7 @@
 // Dependencies
-import React, {Component, PropTypes} from 'react';
+import React, {Component} from 'react';
 import {inject, observer} from 'mobx-react';
+import PropTypes from 'prop-types';
 
 // Components
 import Layout from 'pages/layout';

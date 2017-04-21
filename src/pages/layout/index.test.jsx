@@ -1,8 +1,9 @@
 // Dependencies
-import React, {PropTypes} from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom';
 import {MemoryRouter} from 'react-router';
 import {Provider} from 'mobx-react';
+import PropTypes from 'prop-types';
 
 // Page
 import Page from './';
