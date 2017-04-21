@@ -19,11 +19,10 @@ const router = {
 };
 
 // Pages
-const fetch = page =>
-  () => {
-    const Page = require(`pages/${page}/index`).default;
-    return <Page/>;
-  };
+const fetch = page => () => {
+  const Page = require(`pages/${page}/index`).default;
+  return <Page/>;
+};
 
 // Router
 const Router = ({stores}) => {

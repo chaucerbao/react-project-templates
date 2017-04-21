@@ -59,7 +59,8 @@ describe('maps an array of POJOs into models', () => {
     ];
 
     const models = store._map(json, model =>
-      Object.assign(model, {someProperty: model.obscurePropertyName}));
+      Object.assign(model, {someProperty: model.obscurePropertyName})
+    );
 
     expect(models.length).toBe(2);
     expect(models[0].constructor.name).toBe('SomeModel');
