@@ -5,6 +5,7 @@ import {inject, observer} from 'mobx-react';
 // Components
 import Layout from 'pages/layout';
 import Thing from 'components/thing';
+import Link from 'components/link';
 
 // Styles
 import {PageHeader, PageBody} from 'styles/page';
@@ -24,7 +25,13 @@ class Home extends Component {
           <PageHeader>Homepage</PageHeader>
 
           <PageBody>
-            <p>List of names fetched from an API</p>
+            <p>
+              List of names fetched from
+              {' '}
+              <Link external to="https://jsonplaceholder.typicode.com/">
+                an API
+              </Link>
+            </p>
 
             <ol>
               {this.props.stores.user.all.map(user => (
