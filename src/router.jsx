@@ -1,5 +1,5 @@
 // Dependencies
-import React, {PropTypes} from 'react';
+import React from 'react';
 import {
   BrowserRouter,
   Switch,
@@ -9,6 +9,7 @@ import {
   Redirect
 } from 'react-router-dom';
 import {Provider} from 'mobx-react';
+import PropTypes from 'prop-types';
 
 // Provided router components
 const router = {
