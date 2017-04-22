@@ -29,7 +29,7 @@ class Home extends Component {
             <p>
               List of names fetched from
               {' '}
-              <Link external to="https://jsonplaceholder.typicode.com/">
+              <Link to="https://jsonplaceholder.typicode.com/">
                 an API
               </Link>
             </p>

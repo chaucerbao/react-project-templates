@@ -8,12 +8,13 @@ import styled from 'styled-components';
 import {aqua} from 'styles/variables';
 
 // Component
-const Link = ({router, external, ...props}) => {
-  const StyledLink = (external ? styled.a : styled(router.Link))`
+const Link = ({router, ...props}) => {
+  const isExternal = /^\w+:\/\//.test(props.to);
+  const StyledLink = (isExternal ? styled.a : styled(router.Link))`
     color: ${aqua};
   `;
 
-  const transformedProps = external ?
+  const transformedProps = isExternal ?
     Object.assign({}, props, {
       to: undefined,
       href: props.to,
@@ -29,11 +30,7 @@ Link.propTypes = {
   router: PropTypes.shape({
     Link: PropTypes.func.isRequired
   }).isRequired,
-  external: PropTypes.bool,
   to: PropTypes.oneOfType([PropTypes.string, PropTypes.object]).isRequired
-};
-Link.defaultProps = {
-  external: false
 };
 
 // Exports
