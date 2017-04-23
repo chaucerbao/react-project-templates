@@ -1,24 +1,11 @@
 // Dependencies
 import React from 'react';
-import ReactDOM from 'react-dom';
-import {MemoryRouter} from 'react-router';
-import {Provider} from 'mobx-react';
+import {shallow} from 'enzyme';
 
 // Page
-import Page from './';
-
-// Usage
-import * as router from 'react-router-dom';
-import stores from 'stores';
-const NotFound = props => (
-  <MemoryRouter>
-    <Provider router={router} stores={stores}>
-      <Page {...props}/>
-    </Provider>
-  </MemoryRouter>
-);
+import NotFound from './';
 
 // Tests
 it('renders without crashing', () => {
-  ReactDOM.render(<NotFound/>, document.createElement('div'));
+  shallow(<NotFound/>);
 });

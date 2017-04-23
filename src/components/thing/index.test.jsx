@@ -1,11 +1,11 @@
 // Dependencies
 import React from 'react';
-import ReactDOM from 'react-dom';
+import {shallow} from 'enzyme';
 
-// Page
+// Component
 import Thing from './';
 
 // Tests
 it('renders without crashing', () => {
-  ReactDOM.render(<Thing/>, document.createElement('div'));
+  shallow(<Thing/>);
 });
