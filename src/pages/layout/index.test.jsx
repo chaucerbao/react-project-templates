@@ -10,5 +10,5 @@ import * as router from 'react-router-dom';
 
 // Tests
 it('renders without crashing', () => {
-  shallow(<Layout router={router}/>);
+  shallow(<Layout router={router}>Children</Layout>);
 });
