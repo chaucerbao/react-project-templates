@@ -2,28 +2,27 @@
 import React, {Component} from 'react'
 import {inject} from 'mobx-react'
 import PropTypes from 'prop-types'
-import styled from 'styled-components'
 
 // Components
-import SiteHeader, {menuItem} from 'components/site-header'
+import SiteHeader from 'components/site-header'
 import SiteFooter from 'components/site-footer'
 
 // Component
 class Layout extends Component {
   render () {
     const {Link} = this.props.router
-    const MenuItem = styled(Link)`${menuItem}`
 
     return (
       <div>
         <SiteHeader>
           <nav role='navigation'>
-            <MenuItem to='/'>
+            <Link to='/'>
               Home
-            </MenuItem>
-            <MenuItem to='/does-not-exist'>
+            </Link>
+            {' '}
+            <Link to='/does-not-exist'>
               Not found
-            </MenuItem>
+            </Link>
           </nav>
         </SiteHeader>
         {this.props.children}

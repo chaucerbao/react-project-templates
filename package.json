@@ -21,12 +21,7 @@
     "processors": [
       "stylelint-processor-styled-components"
     ],
-    "syntax": "scss",
-    "rules": {
-      "block-opening-brace-space-after": null,
-      "block-closing-brace-space-before": null,
-      "rule-empty-line-before": null
-    }
+    "syntax": "scss"
   },
   "lint-staged": {
     "src/**/*.{js,jsx}": [
