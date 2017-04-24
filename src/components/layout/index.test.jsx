@@ -2,7 +2,7 @@
 import React from 'react';
 import {shallow} from 'enzyme';
 
-// Page
+// Component
 import Layout from './';
 
 // Usage

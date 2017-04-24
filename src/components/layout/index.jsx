@@ -5,9 +5,10 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 // Styles
-import {SiteHeader, SiteFooter, menuItem} from './style';
+import SiteHeader, {menuItem} from './site-header';
+import SiteFooter from './site-footer';
 
-// Page
+// Component
 class Layout extends Component {
   render() {
     const {Link} = this.props.router;

@@ -2,7 +2,7 @@
 import React, {Component} from 'react';
 
 // Components
-import Layout from 'pages/layout';
+import Layout from 'components/layout';
 
 // Styles
 import {PageHeader, PageBody} from 'styles/page';

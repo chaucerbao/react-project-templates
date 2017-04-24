@@ -4,7 +4,7 @@ import {inject, observer} from 'mobx-react';
 import PropTypes from 'prop-types';
 
 // Components
-import Layout from 'pages/layout';
+import Layout from 'components/layout';
 import Thing from 'components/thing';
 import Link from 'components/link';
 
