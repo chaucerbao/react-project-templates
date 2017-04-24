@@ -11,12 +11,15 @@ const {MemoryRouter} = router
 
 // Stories
 storiesOf('Link', module)
-  .add('Internal link', () => (
+  .addDecorator(story => (
     <MemoryRouter>
-      <Link to='/' router={router} onClick={action('internal-link')}>
-        Internal link
-      </Link>
+      {story()}
     </MemoryRouter>
+  ))
+  .add('Internal link', () => (
+    <Link to='/' router={router} onClick={action('internal-link')}>
+      Internal link
+    </Link>
   ))
   .add('External link', () => (
     <Link
