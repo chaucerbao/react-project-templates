@@ -1,13 +1,13 @@
-// Dependencies
+// Third-party dependencies
 import React, {Component} from 'react';
 import {inject, observer} from 'mobx-react';
 import PropTypes from 'prop-types';
 
 // Components
 import Layout from 'components/layout';
-import Link from 'components/link';
 import PageHeader from 'components/page-header';
 import PageBody from 'components/page-body';
+import Link from 'components/link';
 
 // Page
 class Home extends Component {

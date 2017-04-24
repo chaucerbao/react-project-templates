@@ -1,10 +1,10 @@
-// Dependencies
+// Third-party dependencies
 import styled from 'styled-components';
 
-// Style helpers
+// Styles
 import {blue, silver, tabletWidth} from 'styles/variables';
 
-// Styles
+// Component
 export default styled.h1`
   margin: 0;
   background: ${silver};

@@ -1,10 +1,10 @@
-// Dependencies
+// Third-party dependencies
 import styled from 'styled-components';
 
-// Style helpers
+// Styles
 import {tabletWidth} from 'styles/variables';
 
-// Styles
+// Component
 export default styled.section`
   padding: 50px calc((100% - ${tabletWidth}) / 2);
 `;

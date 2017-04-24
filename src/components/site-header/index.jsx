@@ -1,10 +1,10 @@
-// Dependencies
+// Third-party dependencies
 import styled, {css} from 'styled-components';
 
-// Imported styles
+// Styles
 import {yellow, black, tabletWidth} from 'styles/variables';
 
-// Styles
+// Component
 export default styled.header`
   background: ${black};
   padding: 20px calc((100% - ${tabletWidth}) / 2);

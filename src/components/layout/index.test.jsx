@@ -1,11 +1,11 @@
-// Dependencies
+// Third-party dependencies
 import React from 'react';
 import {shallow} from 'enzyme';
 
 // Component
 import Layout from './';
 
-// Usage
+// Mocks
 import * as router from 'react-router-dom';
 
 // Tests

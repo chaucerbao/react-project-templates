@@ -1,10 +1,10 @@
-// Dependencies
+// Third-party dependencies
 import React, {Component} from 'react';
 import {inject} from 'mobx-react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
-// Styles
+// Components
 import SiteHeader, {menuItem} from 'components/site-header';
 import SiteFooter from 'components/site-footer';
 

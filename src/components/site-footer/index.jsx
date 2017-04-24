@@ -1,10 +1,10 @@
-// Dependencies
+// Third-party dependencies
 import styled from 'styled-components';
 
-// Imported styles
+// Styles
 import {black, tabletWidth} from 'styles/variables';
 
-// Styles
+// Component
 export default styled.footer`
   background: ${black};
   padding: 20px calc((100% - ${tabletWidth}) / 2);

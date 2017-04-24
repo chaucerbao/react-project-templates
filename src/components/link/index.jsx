@@ -1,4 +1,4 @@
-// Dependencies
+// Third-party dependencies
 import React from 'react';
 import {inject} from 'mobx-react';
 import PropTypes from 'prop-types';
