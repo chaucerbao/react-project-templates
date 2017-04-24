@@ -1,7 +1,7 @@
 // Dependencies
 import {injectGlobal} from 'styled-components';
 
-export const global = injectGlobal`
+export default injectGlobal`
   body {
     margin: 0;
     font-family: Verdana, Geneva, sans-serif;

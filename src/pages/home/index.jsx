@@ -7,9 +7,8 @@ import PropTypes from 'prop-types';
 import Layout from 'components/layout';
 import Thing from 'components/thing';
 import Link from 'components/link';
-
-// Styles
-import {PageHeader, PageBody} from 'styles/page';
+import PageHeader from 'components/page-header';
+import PageBody from 'components/page-body';
 
 // Page
 class Home extends Component {

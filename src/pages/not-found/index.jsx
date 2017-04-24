@@ -3,9 +3,8 @@ import React, {Component} from 'react';
 
 // Components
 import Layout from 'components/layout';
-
-// Styles
-import {PageHeader, PageBody} from 'styles/page';
+import PageHeader from 'components/page-header';
+import PageBody from 'components/page-body';
 
 // Page
 class NotFound extends Component {
