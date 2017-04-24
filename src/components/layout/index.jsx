@@ -1,27 +1,27 @@
 // Third-party dependencies
-import React, {Component} from 'react';
-import {inject} from 'mobx-react';
-import PropTypes from 'prop-types';
-import styled from 'styled-components';
+import React, {Component} from 'react'
+import {inject} from 'mobx-react'
+import PropTypes from 'prop-types'
+import styled from 'styled-components'
 
 // Components
-import SiteHeader, {menuItem} from 'components/site-header';
-import SiteFooter from 'components/site-footer';
+import SiteHeader, {menuItem} from 'components/site-header'
+import SiteFooter from 'components/site-footer'
 
 // Component
 class Layout extends Component {
-  render() {
-    const {Link} = this.props.router;
-    const MenuItem = styled(Link)`${menuItem}`;
+  render () {
+    const {Link} = this.props.router
+    const MenuItem = styled(Link)`${menuItem}`
 
     return (
       <div>
         <SiteHeader>
-          <nav role="navigation">
-            <MenuItem to="/">
+          <nav role='navigation'>
+            <MenuItem to='/'>
               Home
             </MenuItem>
-            <MenuItem to="/does-not-exist">
+            <MenuItem to='/does-not-exist'>
               Not found
             </MenuItem>
           </nav>
@@ -31,7 +31,7 @@ class Layout extends Component {
           The end
         </SiteFooter>
       </div>
-    );
+    )
   }
 }
 
@@ -41,7 +41,7 @@ Layout.propTypes = {
   router: PropTypes.shape({
     Link: PropTypes.func.isRequired
   }).isRequired
-};
+}
 
 // Exports
-export default inject('router')(Layout);
+export default inject('router')(Layout)

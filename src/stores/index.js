@@ -1,19 +1,19 @@
 // Dependencies
-import {useStrict} from 'mobx';
+import {useStrict} from 'mobx'
 
 // Individual stores
-import UiStore from './ui/ui-store';
-import UserStore from './user/user-store';
+import UiStore from './ui/ui-store'
+import UserStore from './user/user-store'
 
 // MobX strict mode
-useStrict(true);
+useStrict(true)
 
 // Stores collection
-const stores = {};
+const stores = {}
 Object.assign(stores, {
   ui: new UiStore(stores),
   user: new UserStore(stores)
-});
+})
 
 // Exports
-export default stores;
+export default stores

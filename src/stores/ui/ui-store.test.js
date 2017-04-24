@@ -1,12 +1,12 @@
 // Store
-import UiStore from './ui-store';
+import UiStore from './ui-store'
 
 // Mocks
-const stores = {fake: {}};
+const stores = {fake: {}}
 
 // Tests
 it('creates a new store', () => {
-  const store = new UiStore(stores);
+  const store = new UiStore(stores)
 
-  expect(store._stores).toBe(stores);
-});
+  expect(store._stores).toBe(stores)
+})

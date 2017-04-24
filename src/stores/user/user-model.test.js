@@ -1,15 +1,15 @@
 // Model
-import User from './user-model';
+import User from './user-model'
 
 // Mocks
-const stores = {fake: {}};
+const stores = {fake: {}}
 
 // Tests
 it('constructs a new model', () => {
-  const model = new User(stores);
+  const model = new User(stores)
 
-  expect(model.id).toBe(0);
-  expect(model.name).toBe('');
-  expect(model.email).toBe('');
-  expect(model._stores).toBe(stores);
-});
+  expect(model.id).toBe(0)
+  expect(model.name).toBe('')
+  expect(model.email).toBe('')
+  expect(model._stores).toBe(stores)
+})

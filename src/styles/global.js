@@ -1,5 +1,5 @@
 // Dependencies
-import {injectGlobal} from 'styled-components';
+import {injectGlobal} from 'styled-components'
 
 export default injectGlobal`
   body {
@@ -12,4 +12,4 @@ export default injectGlobal`
       margin-top: 0;
     }
   }
-`;
+`

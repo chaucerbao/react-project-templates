@@ -1,11 +1,11 @@
 // Third-party dependencies
-import React from 'react';
-import {shallow} from 'enzyme';
+import React from 'react'
+import {shallow} from 'enzyme'
 
 // Component
-import SiteHeader from './';
+import SiteHeader from './'
 
 // Tests
 it('renders without crashing', () => {
-  shallow(<SiteHeader>Content</SiteHeader>);
-});
+  shallow(<SiteHeader>Content</SiteHeader>)
+})

@@ -1,14 +1,14 @@
 // Third-party dependencies
-import React from 'react';
-import {shallow} from 'enzyme';
+import React from 'react'
+import {shallow} from 'enzyme'
 
 // Component
-import Link from './';
+import Link from './'
 
 // Mocks
-import * as router from 'react-router-dom';
+import * as router from 'react-router-dom'
 
 // Tests
 it('renders without crashing', () => {
-  shallow(<Link to="/" router={router}>Name</Link>);
-});
+  shallow(<Link to='/' router={router}>Name</Link>)
+})

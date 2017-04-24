@@ -1,14 +1,14 @@
 // Third-party dependencies
-import React from 'react';
-import {shallow} from 'enzyme';
+import React from 'react'
+import {shallow} from 'enzyme'
 
 // Component
-import Layout from './';
+import Layout from './'
 
 // Mocks
-import * as router from 'react-router-dom';
+import * as router from 'react-router-dom'
 
 // Tests
 it('renders without crashing', () => {
-  shallow(<Layout router={router}>Children</Layout>);
-});
+  shallow(<Layout router={router}>Children</Layout>)
+})

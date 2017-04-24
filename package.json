@@ -5,8 +5,8 @@
   "eslintConfig": {
     "parser": "babel-eslint",
     "extends": [
-      "xo-space",
-      "xo-react/space"
+      "standard",
+      "standard-react"
     ],
     "env": {
       "browser": true,
@@ -50,9 +50,13 @@
     "babel-eslint": "^7.2.3",
     "enzyme": "^2.8.2",
     "eslint": "^3.19.0",
-    "eslint-config-xo-react": "^0.11.1",
-    "eslint-config-xo-space": "^0.16.0",
+    "eslint-config-standard": "^10.2.1",
+    "eslint-config-standard-react": "^4.3.0",
+    "eslint-plugin-import": "^2.2.0",
+    "eslint-plugin-node": "^4.2.2",
+    "eslint-plugin-promise": "^3.5.0",
     "eslint-plugin-react": "^6.10.3",
+    "eslint-plugin-standard": "^3.0.1",
     "husky": "^0.13.3",
     "lint-staged": "^3.4.0",
     "prettier-eslint-cli": "^3.4.2",

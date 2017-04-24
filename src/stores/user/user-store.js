@@ -1,30 +1,30 @@
 // Dependencies
-import {extendObservable, runInAction} from 'mobx';
-import BaseStore from 'stores/base/base-store';
-import User from './user-model';
+import {extendObservable, runInAction} from 'mobx'
+import BaseStore from 'stores/base/base-store'
+import User from './user-model'
 
 // Store
 class UserStore extends BaseStore {
-  Model = User;
+  Model = User
 
-  constructor(stores) {
-    super(stores);
+  constructor (stores) {
+    super(stores)
 
     extendObservable(this, {
       all: []
-    });
+    })
   }
 
-  async getAll() {
+  async getAll () {
     const response = await super._fetch(
       'https://jsonplaceholder.typicode.com/users'
-    );
+    )
 
     runInAction(() => {
-      this.all = this._map(response.body);
-    });
+      this.all = this._map(response.body)
+    })
   }
 }
 
 // Exports
-export default UserStore;
+export default UserStore

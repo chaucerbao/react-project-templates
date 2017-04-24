@@ -1,5 +1,5 @@
 // Dependencies
-import React from 'react';
+import React from 'react'
 import {
   BrowserRouter,
   Switch,
@@ -7,9 +7,9 @@ import {
   Link,
   NavLink,
   Redirect
-} from 'react-router-dom';
-import {Provider} from 'mobx-react';
-import PropTypes from 'prop-types';
+} from 'react-router-dom'
+import {Provider} from 'mobx-react'
+import PropTypes from 'prop-types'
 
 // Provided router components
 const router = {
@@ -17,13 +17,13 @@ const router = {
   Link,
   NavLink,
   Redirect
-};
+}
 
 // Pages
 const fetch = page => () => {
-  const Page = require(`pages/${page}/index`).default;
-  return <Page/>;
-};
+  const Page = require(`pages/${page}/index`).default
+  return <Page />
+}
 
 // Router
 const Router = ({stores}) => {
@@ -31,17 +31,17 @@ const Router = ({stores}) => {
     <BrowserRouter>
       <Provider router={router} stores={stores}>
         <Switch>
-          <Route exact path="/" render={fetch('home')}/>
-          <Route render={fetch('not-found')}/>
+          <Route exact path='/' render={fetch('home')} />
+          <Route render={fetch('not-found')} />
         </Switch>
       </Provider>
     </BrowserRouter>
-  );
-};
+  )
+}
 
 Router.propTypes = {
   stores: PropTypes.object.isRequired
-};
+}
 
 // Exports
-export default Router;
+export default Router

@@ -1,33 +1,33 @@
 // Third-party dependencies
-import React, {Component} from 'react';
-import {inject, observer} from 'mobx-react';
-import PropTypes from 'prop-types';
+import React, {Component} from 'react'
+import {inject, observer} from 'mobx-react'
+import PropTypes from 'prop-types'
 
 // Components
-import Layout from 'components/layout';
-import PageHeader from 'components/page-header';
-import PageBody from 'components/page-body';
-import Link from 'components/link';
+import Layout from 'components/layout'
+import PageHeader from 'components/page-header'
+import PageBody from 'components/page-body'
+import Link from 'components/link'
 
 // Page
 class Home extends Component {
-  async componentDidMount() {
+  async componentDidMount () {
     try {
-      await this.props.stores.user.getAll();
+      await this.props.stores.user.getAll()
     } catch (err) {}
   }
 
-  render() {
+  render () {
     return (
       <Layout>
-        <main role="main">
+        <main role='main'>
           <PageHeader>Homepage</PageHeader>
 
           <PageBody>
             <p>
               List of names fetched from
               {' '}
-              <Link to="https://jsonplaceholder.typicode.com/">
+              <Link to='https://jsonplaceholder.typicode.com/'>
                 an API
               </Link>
             </p>
@@ -40,7 +40,7 @@ class Home extends Component {
           </PageBody>
         </main>
       </Layout>
-    );
+    )
   }
 }
 
@@ -49,7 +49,7 @@ Home.propTypes = {
   stores: PropTypes.shape({
     user: PropTypes.object.isRequired
   }).isRequired
-};
+}
 
 // Exports
-export default inject('stores')(observer(Home));
+export default inject('stores')(observer(Home))

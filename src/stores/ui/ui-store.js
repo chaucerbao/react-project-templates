@@ -1,11 +1,11 @@
 // Store
 class UiStore {
-  _stores = {};
+  _stores = {}
 
-  constructor(stores) {
-    this._stores = stores;
+  constructor (stores) {
+    this._stores = stores
   }
 }
 
 // Exports
-export default UiStore;
+export default UiStore

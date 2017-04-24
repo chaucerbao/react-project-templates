@@ -1,39 +1,39 @@
 // Model
-import BaseModel from './base-model';
+import BaseModel from './base-model'
 
 // Mocks
-const stores = {fake: {}};
+const stores = {fake: {}}
 
 // Tests
 it('constructs a new model', () => {
-  const model = new BaseModel(stores);
+  const model = new BaseModel(stores)
 
-  expect(model.id).toBe(0);
-  expect(model._stores).toBe(stores);
-});
+  expect(model.id).toBe(0)
+  expect(model._stores).toBe(stores)
+})
 
 it('knows if it is from is an existing model', () => {
-  const model = new BaseModel();
+  const model = new BaseModel()
 
-  expect(model.exists).toBe(false);
+  expect(model.exists).toBe(false)
 
-  model.id = 5;
+  model.id = 5
 
-  expect(model.exists).toBe(true);
-});
+  expect(model.exists).toBe(true)
+})
 
 it('updates existing attributes', () => {
-  const model = new BaseModel();
+  const model = new BaseModel()
 
-  expect(model.id).toBe(0);
-  expect(model.fakeProperty).toBe(undefined);
+  expect(model.id).toBe(0)
+  expect(model.fakeProperty).toBe(undefined)
 
   const returnValue = model.update({
     id: 5,
     fakeProperty: 'String'
-  });
+  })
 
-  expect(model.id).toBe(5);
-  expect(model.fakeProperty).toBe(undefined);
-  expect(returnValue).toBe(model);
-});
+  expect(model.id).toBe(5)
+  expect(model.fakeProperty).toBe(undefined)
+  expect(returnValue).toBe(model)
+})
