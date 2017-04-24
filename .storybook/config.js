@@ -1,4 +1,15 @@
-import {configure} from '@kadira/storybook'
+import {configure, addDecorator} from '@kadira/storybook'
+import React from 'react'
+import {MemoryRouter, Route, Link, NavLink, Redirect} from 'react-router-dom'
+import {Provider} from 'mobx-react'
+
+// Provided router components
+const router = {
+  Route,
+  Link,
+  NavLink,
+  Redirect
+}
 
 const requireContext = require.context(
   '../src/components',
@@ -6,8 +17,14 @@ const requireContext = require.context(
   /.stories.jsx?$/
 )
 
-function loadStories () {
-  requireContext.keys().forEach(filename => requireContext(filename))
-}
+addDecorator(story => (
+  <MemoryRouter>
+    <Provider router={router}>
+      {story()}
+    </Provider>
+  </MemoryRouter>
+))
 
-configure(loadStories, module)
+configure(() => {
+  requireContext.keys().forEach(filename => requireContext(filename))
+}, module)

@@ -1,32 +1,19 @@
 // Third-party dependencies
 import React from 'react'
-import * as router from 'react-router-dom'
 import {storiesOf, action} from '@kadira/storybook'
 
 // Component
 import Link from './'
 
-// Mocks
-const {MemoryRouter} = router
-
 // Stories
 storiesOf('Link', module)
-  .addDecorator(story => (
-    <MemoryRouter>
-      {story()}
-    </MemoryRouter>
-  ))
   .add('Internal link', () => (
-    <Link to='/' router={router} onClick={action('internal-link')}>
+    <Link to='/' onClick={action('internal-link')}>
       Internal link
     </Link>
   ))
   .add('External link', () => (
-    <Link
-      to='http://google.com/'
-      router={router}
-      onClick={action('external-link')}
-    >
+    <Link to='http://google.com/' onClick={action('external-link')}>
       External link
     </Link>
   ))
