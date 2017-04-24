@@ -9,7 +9,13 @@ import SmartLink from 'components/link/smart-link'
 // Styles
 import {gray} from 'styles/variables'
 const buttonStyle = css`
+  border: 0;
   background: ${gray};
+  cursor: pointer;
+  padding: 0;
+  text-decoration: none;
+  font-family: inherit;
+  font-size: inherit;
 `
 
 // Component
