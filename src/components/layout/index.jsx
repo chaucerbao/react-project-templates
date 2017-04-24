@@ -5,8 +5,8 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 // Styles
-import SiteHeader, {menuItem} from './site-header';
-import SiteFooter from './site-footer';
+import SiteHeader, {menuItem} from 'components/site-header';
+import SiteFooter from 'components/site-footer';
 
 // Component
 class Layout extends Component {
