@@ -5,7 +5,6 @@ import PropTypes from 'prop-types';
 
 // Components
 import Layout from 'components/layout';
-import Thing from 'components/thing';
 import Link from 'components/link';
 import PageHeader from 'components/page-header';
 import PageBody from 'components/page-body';
@@ -38,8 +37,6 @@ class Home extends Component {
                 <li key={user.id}>{user.name}</li>
               ))}
             </ol>
-
-            <Thing/>
           </PageBody>
         </main>
       </Layout>
