@@ -14,6 +14,7 @@ export default styled(SmartButton)`
   cursor: pointer;
   padding: 0;
   text-decoration: none;
+  line-height: inherit;
   font-family: inherit;
   font-size: inherit;
 `

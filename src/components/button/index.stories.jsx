@@ -6,17 +6,14 @@ import {storiesOf, action} from '@kadira/storybook'
 import Button from './'
 
 // Stories
-storiesOf('Button', module)
-  .add('Default', () => (
+storiesOf('Button', module).add('Neutral', () => (
+  <div style={{display: 'flex', justifyContent: 'space-around'}}>
     <Button onClick={action('regular-button')}>Regular button</Button>
-  ))
-  .add('Internal link', () => (
     <Button to='/' onClick={action('link-button-internal')}>
       Link button (internal)
     </Button>
-  ))
-  .add('External link', () => (
     <Button to='http://google.com/' onClick={action('link-button-external')}>
       Link button (external)
     </Button>
-  ))
+  </div>
+))
