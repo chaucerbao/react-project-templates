@@ -27,7 +27,7 @@ const router = {
 addDecorator(story => (
   <MemoryRouter>
     <Provider router={router}>
-      {story()}
+      <div style={{margin: '8px'}}>{story()}</div>
     </Provider>
   </MemoryRouter>
 ))
