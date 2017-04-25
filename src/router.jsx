@@ -39,6 +39,7 @@ const Router = ({stores}) => {
   )
 }
 
+// Property validation
 Router.propTypes = {
   stores: PropTypes.object.isRequired
 }

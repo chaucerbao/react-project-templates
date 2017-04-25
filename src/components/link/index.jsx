@@ -1,4 +1,4 @@
-// Third-party dependencies
+// Dependencies
 import styled from 'styled-components'
 
 // Components

@@ -1,4 +1,4 @@
-// Third-party dependencies
+// Dependencies
 import React, {Component} from 'react'
 
 // Components
