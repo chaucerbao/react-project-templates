@@ -5,7 +5,7 @@ import styled from 'styled-components'
 import SmartButton from './smart-button'
 
 // Styles
-import {gray} from 'styles/variables'
+import { gray } from 'styles/variables'
 
 // Component
 export default styled(SmartButton)`

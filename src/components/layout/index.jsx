@@ -1,6 +1,6 @@
 // Dependencies
-import React, {Component} from 'react'
-import {inject} from 'mobx-react'
+import React, { Component } from 'react'
+import { inject } from 'mobx-react'
 import PropTypes from 'prop-types'
 
 // Components
@@ -10,7 +10,7 @@ import SiteFooter from 'components/site-footer'
 // Component
 class Layout extends Component {
   render () {
-    const {Link} = this.props.router
+    const { Link } = this.props.router
 
     return (
       <div>

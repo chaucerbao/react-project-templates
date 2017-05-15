@@ -2,7 +2,7 @@
 import UserStore from './user-store'
 
 // Mocks
-const stores = {fake: {}}
+const stores = { fake: {} }
 
 // Tests
 it('constructs a new store', () => {
@@ -24,7 +24,7 @@ it('retrieves all users', async () => {
         statusText: 'OK',
         type: 'cors',
         url: 'https://jsonplaceholder.typicode.com/users',
-        json: () => [{id: 10}, {id: 20}]
+        json: () => [{ id: 10 }, { id: 20 }]
       })
     })
   })
@@ -36,6 +36,6 @@ it('retrieves all users', async () => {
     'https://jsonplaceholder.typicode.com/users'
   )
   expect(store.all.length).toBe(2)
-  expect(store.all[0]).toMatchObject({id: 10})
-  expect(store.all[1]).toMatchObject({id: 20})
+  expect(store.all[0]).toMatchObject({ id: 10 })
+  expect(store.all[1]).toMatchObject({ id: 20 })
 })

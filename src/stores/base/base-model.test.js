@@ -2,7 +2,7 @@
 import BaseModel from './base-model'
 
 // Mocks
-const stores = {fake: {}}
+const stores = { fake: {} }
 
 // Tests
 it('constructs a new model', () => {

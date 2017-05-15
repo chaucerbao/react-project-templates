@@ -2,7 +2,7 @@
 import styled from 'styled-components'
 
 // Styles
-import {tabletWidth} from 'styles/variables'
+import { tabletWidth } from 'styles/variables'
 
 // Component
 export default styled.section`

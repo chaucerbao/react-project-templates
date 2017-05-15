@@ -2,7 +2,7 @@
 import UiStore from './ui-store'
 
 // Mocks
-const stores = {fake: {}}
+const stores = { fake: {} }
 
 // Tests
 it('creates a new store', () => {

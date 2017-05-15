@@ -1,11 +1,11 @@
 // Dependencies
 import React from 'react'
-import {inject} from 'mobx-react'
+import { inject } from 'mobx-react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
 // Component
-const SmartLink = ({router, ...props}) => {
+const SmartLink = ({ router, ...props }) => {
   const isExternal = /^\w+:\/\//.test(props.to)
   const StyledLink = (isExternal ? styled.a : styled(router.Link))``
 

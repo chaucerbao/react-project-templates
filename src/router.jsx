@@ -8,7 +8,7 @@ import {
   NavLink,
   Redirect
 } from 'react-router-dom'
-import {Provider} from 'mobx-react'
+import { Provider } from 'mobx-react'
 import PropTypes from 'prop-types'
 
 // Provided router components
@@ -26,7 +26,7 @@ const fetch = page => () => {
 }
 
 // Router
-const Router = ({stores}) => {
+const Router = ({ stores }) => {
   return (
     <BrowserRouter>
       <Provider router={router} stores={stores}>

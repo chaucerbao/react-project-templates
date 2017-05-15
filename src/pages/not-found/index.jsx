@@ -1,5 +1,5 @@
 // Dependencies
-import React, {Component} from 'react'
+import React, { Component } from 'react'
 
 // Components
 import Layout from 'components/layout'

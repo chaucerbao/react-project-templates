@@ -2,7 +2,7 @@
 import User from './user-model'
 
 // Mocks
-const stores = {fake: {}}
+const stores = { fake: {} }
 
 // Tests
 it('constructs a new model', () => {

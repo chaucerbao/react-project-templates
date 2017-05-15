@@ -1,5 +1,5 @@
 // Dependencies
-import {extendObservable, runInAction} from 'mobx'
+import { extendObservable, runInAction } from 'mobx'
 import BaseStore from 'stores/base/base-store'
 import User from './user-model'
 

@@ -1,8 +1,8 @@
 // Dependencies
 import React from 'react'
-import {MemoryRouter, Route, Link, NavLink, Redirect} from 'react-router-dom'
-import {Provider} from 'mobx-react'
-import {configure, addDecorator} from '@kadira/storybook'
+import { MemoryRouter, Route, Link, NavLink, Redirect } from 'react-router-dom'
+import { Provider } from 'mobx-react'
+import { configure, addDecorator } from '@kadira/storybook'
 
 // Global styles
 import 'normalize.css/normalize.css'
@@ -27,7 +27,7 @@ const router = {
 addDecorator(story => (
   <MemoryRouter>
     <Provider router={router}>
-      <div style={{margin: '8px'}}>{story()}</div>
+      <div style={{ margin: '8px' }}>{story()}</div>
     </Provider>
   </MemoryRouter>
 ))

@@ -1,5 +1,5 @@
 // Dependencies
-import {useStrict} from 'mobx'
+import { useStrict } from 'mobx'
 
 // Individual stores
 import UiStore from './ui/ui-store'

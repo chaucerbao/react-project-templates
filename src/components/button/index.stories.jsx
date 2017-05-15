@@ -1,6 +1,6 @@
 // Dependencies
 import React from 'react'
-import {storiesOf, action} from '@kadira/storybook'
+import { storiesOf, action } from '@kadira/storybook'
 import styled from 'styled-components'
 
 // Component

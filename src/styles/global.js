@@ -1,5 +1,5 @@
 // Dependencies
-import {injectGlobal} from 'styled-components'
+import { injectGlobal } from 'styled-components'
 
 // Styles
 export default injectGlobal`

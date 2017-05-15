@@ -2,7 +2,7 @@
 import styled from 'styled-components'
 
 // Styles
-import {black, tabletWidth} from 'styles/variables'
+import { black, tabletWidth } from 'styles/variables'
 
 // Component
 export default styled.footer`

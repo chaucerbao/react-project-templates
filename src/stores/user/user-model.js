@@ -1,5 +1,5 @@
 // Dependencies
-import {extendObservable} from 'mobx'
+import { extendObservable } from 'mobx'
 import BaseModel from 'stores/base/base-model'
 
 // Model

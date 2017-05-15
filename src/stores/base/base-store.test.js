@@ -3,7 +3,7 @@ import BaseStore from './base-store'
 import BaseModel from './base-model'
 
 // Mocks
-const stores = {fake: {}}
+const stores = { fake: {} }
 class SomeModel extends BaseModel {
   someProperty = ''
 }
@@ -26,7 +26,7 @@ it('loads cached models', () => {
   expect(first.id).toBe(0)
   expect(first.someProperty).toBe('')
 
-  const second = store._load(5, {id: 10, someProperty: 'Text'})
+  const second = store._load(5, { id: 10, someProperty: 'Text' })
   expect(second.id).toBe(10)
   expect(second.someProperty).toBe('Text')
 
@@ -37,7 +37,10 @@ describe('maps an array of POJOs into models', () => {
   test('without a transformer', () => {
     const store = new SomeStore(stores)
 
-    const json = [{id: 5, someProperty: 'Text'}, {id: 10, someProperty: true}]
+    const json = [
+      { id: 5, someProperty: 'Text' },
+      { id: 10, someProperty: true }
+    ]
 
     const models = store._map(json)
 
@@ -54,12 +57,12 @@ describe('maps an array of POJOs into models', () => {
     const store = new SomeStore(stores)
 
     const json = [
-      {id: 5, obscurePropertyName: 'Text'},
-      {id: 10, obscurePropertyName: true}
+      { id: 5, obscurePropertyName: 'Text' },
+      { id: 10, obscurePropertyName: true }
     ]
 
     const models = store._map(json, model =>
-      Object.assign(model, {someProperty: model.obscurePropertyName})
+      Object.assign(model, { someProperty: model.obscurePropertyName })
     )
 
     expect(models.length).toBe(2)

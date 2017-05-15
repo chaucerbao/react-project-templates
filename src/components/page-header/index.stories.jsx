@@ -1,6 +1,6 @@
 // Dependencies
 import React from 'react'
-import {storiesOf} from '@kadira/storybook'
+import { storiesOf } from '@kadira/storybook'
 
 // Component
 import PageHeader from './'

@@ -45,9 +45,9 @@ class BaseStore {
 
       delete pendingRequests[key]
 
-      const {ok, redirected, status, statusText, type, url} = response
+      const { ok, redirected, status, statusText, type, url } = response
 
-      return {ok, redirected, status, statusText, type, url, body}
+      return { ok, redirected, status, statusText, type, url, body }
     } catch (err) {
       if (err.name !== 'FetchError') {
         delete pendingRequests[key]

@@ -2,7 +2,7 @@
 import styled from 'styled-components'
 
 // Styles
-import {blue, silver, tabletWidth} from 'styles/variables'
+import { blue, silver, tabletWidth } from 'styles/variables'
 
 // Component
 export default styled.h1`
