@@ -15,6 +15,6 @@ export default injectGlobal`
 
   body {
     margin: 0;
-    font-family: Verdana, Geneva, sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   }
 `
