@@ -10,11 +10,12 @@ const SmartLink = ({ router, ...props }) => {
   const StyledLink = (isExternal ? styled.a : styled(router.Link))``
 
   const transformedProps = isExternal
-    ? Object.assign({}, props, {
+    ? {
+      ...props,
       to: undefined,
       href: props.to,
       target: '_blank'
-    })
+    }
     : props
 
   return <StyledLink {...transformedProps} />
