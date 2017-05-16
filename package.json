@@ -26,6 +26,7 @@
   "lint-staged": {
     "src/**/*.{js,jsx}": [
       "prettier-eslint --write",
+      "styled-components-stylefmt --recursive",
       "eslint",
       "stylelint",
       "git add"
@@ -58,6 +59,7 @@
     "prettier-eslint-cli": "^3.4.4",
     "react-scripts": "0.9.5",
     "react-test-renderer": "^15.5.4",
+    "styled-components-stylefmt": "^0.1.2",
     "stylelint": "^7.10.1",
     "stylelint-config-concentric-order": "^2.0.1",
     "stylelint-config-standard": "^16.0.0",
