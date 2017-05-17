@@ -1,20 +1,17 @@
 // Dependencies
-import styled from 'styled-components'
+import React from 'react'
+import PropTypes from 'prop-types'
 
 // Components
-import SmartButton from './smart-button'
-
-// Styles
-import { gray } from 'styles/variables'
+import Link from 'components/link'
 
 // Component
-export default styled(SmartButton)`
-  border: 0;
-  background: ${gray};
-  cursor: pointer;
-  padding: 0;
-  text-decoration: none;
-  line-height: inherit;
-  font-family: inherit;
-  font-size: inherit;
-`
+const Button = props => (props.to ? <Link {...props} /> : <button {...props} />)
+
+// Property validation
+Button.propTypes = {
+  to: PropTypes.oneOfType([PropTypes.string, PropTypes.object])
+}
+
+// Exports
+export default Button

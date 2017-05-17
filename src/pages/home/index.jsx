@@ -7,7 +7,7 @@ import PropTypes from 'prop-types'
 import Layout from 'components/layout'
 import PageHeader from 'components/page-header'
 import PageBody from 'components/page-body'
-import Link from 'components/link'
+import Button from 'components/button/styled'
 
 // Page
 class Home extends Component {
@@ -27,9 +27,9 @@ class Home extends Component {
             <p>
               List of names fetched from
               {' '}
-              <Link to='https://jsonplaceholder.typicode.com/'>
+              <Button to='https://jsonplaceholder.typicode.com/'>
                 an API
-              </Link>
+              </Button>
             </p>
 
             <ol>

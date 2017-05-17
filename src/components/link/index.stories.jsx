@@ -4,7 +4,7 @@ import { storiesOf, action } from '@kadira/storybook'
 import styled from 'styled-components'
 
 // Component
-import Link from './'
+import Link from './styled'
 
 // Styles
 const Item = styled.div`

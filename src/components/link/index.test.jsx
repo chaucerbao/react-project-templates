@@ -3,7 +3,7 @@ import React from 'react'
 import { shallow } from 'enzyme'
 
 // Component
-import Link from './'
+import Link from './styled'
 
 // Mocks
 import * as router from 'react-router-dom'

@@ -6,12 +6,11 @@ import PropTypes from 'prop-types'
 // Components
 import SiteHeader from 'components/site-header'
 import SiteFooter from 'components/site-footer'
+import Link from 'components/link/styled'
 
 // Component
 class Layout extends Component {
   render () {
-    const { Link } = this.props.router
-
     return (
       <div>
         <SiteHeader>
@@ -36,10 +35,7 @@ class Layout extends Component {
 
 // Property validation
 Layout.propTypes = {
-  children: PropTypes.node.isRequired,
-  router: PropTypes.shape({
-    Link: PropTypes.func.isRequired
-  }).isRequired
+  children: PropTypes.node.isRequired
 }
 
 // Exports
