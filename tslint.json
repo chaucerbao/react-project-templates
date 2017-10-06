@@ -1,0 +1,6 @@
+{
+  "extends": ["tslint:latest", "tslint-react", "tslint-config-prettier"],
+  "rules": {
+    "no-var-requires": false
+  }
+}
