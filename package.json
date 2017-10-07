@@ -36,6 +36,9 @@
     "tslint-config-prettier": "^1.5.0"
   },
   "dependencies": {
+    "mobx": "^3.3.1",
+    "mobx-react": "^4.3.3",
+    "mobx-state-tree": "^1.0.1",
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
     "react-scripts-ts": "2.7.0"

@@ -1,9 +1,24 @@
+// Libraries
+import { Provider } from 'mobx-react'
 import * as React from 'react'
-import * as ReactDOM from 'react-dom'
-import App from './App'
+import { render } from 'react-dom'
 import registerServiceWorker from './registerServiceWorker'
 
-import './index.css'
+// Stores
+import PostStore from './stores/post-store'
+import UserStore from './stores/user-store'
 
-ReactDOM.render(<App />, document.getElementById('root') as HTMLElement)
+// Pages
+import Homepage from './pages/homepage'
+
+render(
+  <Provider
+    postStore={PostStore.create({ posts: [], selectedPost: undefined })}
+    userStore={UserStore.create({ users: [] })}
+  >
+    <Homepage />
+  </Provider>,
+  document.getElementById('root') as HTMLElement
+)
+
 registerServiceWorker()
