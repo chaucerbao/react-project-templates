@@ -6,10 +6,22 @@
     "semi": false,
     "singleQuote": true
   },
+  "stylelint": {
+    "processors": [
+      "stylelint-processor-styled-components"
+    ],
+    "extends": [
+      "stylelint-config-standard",
+      "stylelint-config-concentric-order",
+      "stylelint-config-styled-components"
+    ],
+    "syntax": "scss"
+  },
   "lint-staged": {
     "{src,public}/**/*.{ts,tsx,js,jsx}": [
       "prettier --write",
       "tslint --fix",
+      "stylelint",
       "git add"
     ],
     "{src,public}/**/*.json": [
@@ -33,6 +45,11 @@
     "lint-staged": "^4.2.3",
     "prettier": "^1.7.4",
     "size-limit": "^0.11.6",
+    "stylelint": "^8.2.0",
+    "stylelint-config-concentric-order": "^2.2.1",
+    "stylelint-config-standard": "^17.0.0",
+    "stylelint-config-styled-components": "^0.1.1",
+    "stylelint-processor-styled-components": "^1.0.0",
     "tslint-config-prettier": "^1.5.0"
   },
   "dependencies": {
@@ -41,7 +58,8 @@
     "mobx-state-tree": "^1.0.1",
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
-    "react-scripts-ts": "2.7.0"
+    "react-scripts-ts": "2.7.0",
+    "styled-components": "^2.2.1"
   },
   "scripts": {
     "start": "react-scripts-ts start",

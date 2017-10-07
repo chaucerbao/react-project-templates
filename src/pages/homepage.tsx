@@ -1,6 +1,7 @@
 // Libraries
 import { inject, observer } from 'mobx-react'
 import * as React from 'react'
+import styled from 'styled-components'
 
 // Interfaces
 import { IPostStore } from '../stores/post-store'
@@ -11,6 +12,17 @@ interface IProps {
   postStore?: IPostStore
   userStore?: IUserStore
 }
+
+// Styles
+const PostTitle = styled.h2`
+  color: black;
+`
+const PostAuthor = styled.small`
+  color: black;
+`
+const PostBody = styled.div`
+  color: black;
+`
 
 // Page
 class Homepage extends React.Component<IProps> {
@@ -25,16 +37,14 @@ class Homepage extends React.Component<IProps> {
 
     return (
       <section>
-        <h1>Here are some posts</h1>
-
         {posts.map(post => {
           const author = users.find(user => user.id === post.userId)
 
           return (
             <article key={post.id}>
-              <h2>{post.title}</h2>
-              <small>{author && author.name}</small>
-              <div>{post.body}</div>
+              <PostTitle>{post.title}</PostTitle>
+              <PostAuthor>{author && author.name}</PostAuthor>
+              <PostBody>{post.body}</PostBody>
             </article>
           )
         })}
