@@ -15,7 +15,10 @@
       "stylelint-config-concentric-order",
       "stylelint-config-styled-components"
     ],
-    "syntax": "scss"
+    "syntax": "scss",
+    "rules": {
+      "declaration-colon-newline-after": null
+    }
   },
   "lint-staged": {
     "{src,public}/**/*.{ts,tsx,js,jsx}": [
