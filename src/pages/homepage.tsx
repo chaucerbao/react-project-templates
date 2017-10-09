@@ -20,7 +20,7 @@ const tilesPerRow = (count: number) =>
 const Posts = styled.section`
   display: flex;
   flex-wrap: wrap;
-  margin: 0 -8px;
+  margin: -8px;
 `
 const Post = styled.article`
   ${tilesPerRow(1)};

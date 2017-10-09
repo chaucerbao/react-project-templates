@@ -11,6 +11,9 @@ import UserStore from './stores/user-store'
 // Pages
 import Homepage from './pages/homepage'
 
+// Global styles
+import './styles/global'
+
 render(
   <Provider
     postStore={PostStore.create({ posts: [], selectedPost: undefined })}
