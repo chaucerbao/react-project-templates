@@ -93,8 +93,8 @@ const PostBody = styled.div`
 // Page
 class Homepage extends React.Component<IProps> {
   public componentWillMount() {
-    this.props.postStore!.fetchPosts()
-    this.props.userStore!.fetchUsers()
+    this.props.postStore!.getPosts()
+    this.props.userStore!.getUsers()
   }
 
   public render() {

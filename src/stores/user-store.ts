@@ -1,4 +1,4 @@
-import { process, types } from 'mobx-state-tree'
+import { getEnv, process, types } from 'mobx-state-tree'
 
 const User = types.model('User', {
   email: types.string,
@@ -11,11 +11,8 @@ const UserStore = types
     users: types.array(User)
   })
   .actions(self => ({
-    fetchUsers: process(function*() {
-      const response = yield fetch('//jsonplaceholder.typicode.com/users')
-      self.users = yield response.json()
-
-      return self.users
+    getUsers: process(function*() {
+      self.users = yield getEnv(self).api.getUsers()
     })
   }))
 

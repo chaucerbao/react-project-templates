@@ -5,6 +5,7 @@ import { render } from 'react-dom'
 import registerServiceWorker from './register-service-worker'
 
 // Stores
+import Api from './stores/api'
 import PostStore from './stores/post-store'
 import UserStore from './stores/user-store'
 
@@ -14,10 +15,16 @@ import Homepage from './pages/homepage'
 // Global styles
 import './styles/global'
 
+// Environment
+const api = new Api(window.fetch)
+
 render(
   <Provider
-    postStore={PostStore.create({ posts: [], selectedPost: undefined })}
-    userStore={UserStore.create({ users: [] })}
+    postStore={PostStore.create(
+      { posts: [], selectedPost: undefined },
+      { api }
+    )}
+    userStore={UserStore.create({ users: [] }, { api })}
   >
     <Homepage />
   </Provider>,

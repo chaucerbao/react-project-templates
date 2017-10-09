@@ -1,4 +1,4 @@
-import { process, types } from 'mobx-state-tree'
+import { getEnv, process, types } from 'mobx-state-tree'
 
 const Post = types.model('Post', {
   body: types.string,
@@ -13,11 +13,8 @@ const PostStore = types
     selectedPost: types.maybe(types.reference(Post))
   })
   .actions(self => ({
-    fetchPosts: process(function*() {
-      const response = yield fetch('//jsonplaceholder.typicode.com/posts')
-      self.posts = yield response.json()
-
-      return self.posts
+    getPosts: process(function*() {
+      self.posts = yield getEnv(self).api.getPosts()
     })
   }))
 
