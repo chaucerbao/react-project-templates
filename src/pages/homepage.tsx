@@ -30,6 +30,7 @@ const Post = styled.article`
   border: solid black 1px;
   border-radius: 12px;
   box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.25);
+  background-color: white;
   overflow: hidden;
 
   @media (min-width: 425px) {
