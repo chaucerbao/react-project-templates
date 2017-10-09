@@ -2,7 +2,7 @@
 import { Provider } from 'mobx-react'
 import * as React from 'react'
 import { render } from 'react-dom'
-import registerServiceWorker from './registerServiceWorker'
+import registerServiceWorker from './register-service-worker'
 
 // Stores
 import PostStore from './stores/post-store'
