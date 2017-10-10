@@ -3,6 +3,9 @@ import { inject, observer } from 'mobx-react'
 import * as React from 'react'
 import styled from 'styled-components'
 
+// Components
+import Layout from './layout'
+
 // Interfaces
 import { IPostStore } from '../stores/post-store'
 import { IUserStore } from '../stores/user-store'
@@ -101,23 +104,25 @@ class Homepage extends React.Component<IProps> {
     const { users } = this.props.userStore!
 
     return (
-      <Posts>
-        {posts.map(post => {
-          const author = users.find(user => user.id === post.userId)
+      <Layout>
+        <Posts>
+          {posts.map(post => {
+            const author = users.find(user => user.id === post.userId)
 
-          return (
-            <Post key={post.id}>
-              <PostImage src="//unsplash.it/460/230" />
+            return (
+              <Post key={post.id}>
+                <PostImage src="//unsplash.it/460/230" />
 
-              <PostContent>
-                <PostTitle>{post.title}</PostTitle>
-                <PostAuthor>{author && author.name}</PostAuthor>
-                <PostBody>{post.body}</PostBody>
-              </PostContent>
-            </Post>
-          )
-        })}
-      </Posts>
+                <PostContent>
+                  <PostTitle>{post.title}</PostTitle>
+                  <PostAuthor>{author && author.name}</PostAuthor>
+                  <PostBody>{post.body}</PostBody>
+                </PostContent>
+              </Post>
+            )
+          })}
+        </Posts>
+      </Layout>
     )
   }
 }

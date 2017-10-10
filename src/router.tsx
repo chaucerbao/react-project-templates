@@ -1,13 +1,17 @@
 // Libraries
 import * as React from 'react'
-import { BrowserRouter, Route } from 'react-router-dom'
+import { BrowserRouter, Route, Switch } from 'react-router-dom'
 
 // Pages
 import Homepage from './pages/homepage'
+import NotFound from './pages/not-found'
 
 const Router = () => (
   <BrowserRouter>
-    <Route exact={true} path="/" component={Homepage} />
+    <Switch>
+      <Route path="/" component={Homepage} exact={true} />
+      <Route component={NotFound} />
+    </Switch>
   </BrowserRouter>
 )
 
