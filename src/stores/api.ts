@@ -1,5 +1,7 @@
+// Definitions
 type Fetch = typeof window.fetch
 
+// Class
 class Api {
   private fetch: Fetch
 

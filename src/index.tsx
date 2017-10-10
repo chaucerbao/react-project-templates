@@ -9,8 +9,8 @@ import Api from './stores/api'
 import PostStore from './stores/post-store'
 import UserStore from './stores/user-store'
 
-// Pages
-import Homepage from './pages/homepage'
+// Router
+import Router from './router'
 
 // Global styles
 import './styles/global'
@@ -26,7 +26,7 @@ render(
     )}
     userStore={UserStore.create({ users: [] }, { api })}
   >
-    <Homepage />
+    <Router />
   </Provider>,
   document.getElementById('root') as HTMLElement
 )

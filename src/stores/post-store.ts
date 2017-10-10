@@ -1,5 +1,7 @@
+// Libraries
 import { getEnv, process, types } from 'mobx-state-tree'
 
+// Model
 const Post = types.model('Post', {
   body: types.string,
   id: types.identifier(types.number),
@@ -7,6 +9,7 @@ const Post = types.model('Post', {
   userId: types.number
 })
 
+// Store
 const PostStore = types
   .model('PostStore', {
     posts: types.array(Post),

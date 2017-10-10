@@ -1,11 +1,14 @@
+// Libraries
 import { getEnv, process, types } from 'mobx-state-tree'
 
+// Model
 const User = types.model('User', {
   email: types.string,
   id: types.identifier(types.number),
   name: types.string
 })
 
+// Store
 const UserStore = types
   .model('UserStore', {
     users: types.array(User)
