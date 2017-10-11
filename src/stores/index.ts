@@ -9,6 +9,7 @@ import UserStore from './user-store'
 const Stores = types
   .model('Stores', {
     postStore: types.optional(PostStore, {
+      comments: {},
       posts: {}
     }),
     userStore: types.optional(UserStore, {
