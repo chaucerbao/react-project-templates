@@ -7,13 +7,11 @@ import styled from 'styled-components'
 import Layout from './layout'
 
 // Interfaces
-import { IPostStore } from '../stores/post-store'
-import { IUserStore } from '../stores/user-store'
+import { IStores } from '../stores'
 
 // Definitions
 interface IProps {
-  postStore?: IPostStore
-  userStore?: IUserStore
+  stores: IStores
 }
 
 // Styles
@@ -93,38 +91,29 @@ const PostBody = styled.div`
 `
 
 // Page
-class Homepage extends React.Component<IProps> {
-  public componentWillMount() {
-    this.props.postStore!.getPosts()
-    this.props.userStore!.getUsers()
-  }
+const Homepage = inject('stores')(
+  observer(({ stores: { postStore, userStore } }: IProps) => (
+    <Layout>
+      <Posts>
+        {postStore.posts.values().map((post: any) => {
+          const author = userStore.users.get(post.userId)
 
-  public render() {
-    const { posts } = this.props.postStore!
-    const { users } = this.props.userStore!
+          return (
+            <Post key={post.id}>
+              <PostImage src="//unsplash.it/460/230" />
 
-    return (
-      <Layout>
-        <Posts>
-          {posts.map(post => {
-            const author = users.find(user => user.id === post.userId)
+              <PostContent>
+                <PostTitle>{post.title}</PostTitle>
+                <PostAuthor>{author && author.name}</PostAuthor>
+                <PostBody>{post.body}</PostBody>
+              </PostContent>
+            </Post>
+          )
+        })}
+      </Posts>
+    </Layout>
+  ))
+)
 
-            return (
-              <Post key={post.id}>
-                <PostImage src="//unsplash.it/460/230" />
-
-                <PostContent>
-                  <PostTitle>{post.title}</PostTitle>
-                  <PostAuthor>{author && author.name}</PostAuthor>
-                  <PostBody>{post.body}</PostBody>
-                </PostContent>
-              </Post>
-            )
-          })}
-        </Posts>
-      </Layout>
-    )
-  }
-}
-
-export default inject('postStore', 'userStore')(observer(Homepage))
+// Exports
+export default Homepage

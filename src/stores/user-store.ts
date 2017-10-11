@@ -1,24 +1,44 @@
 // Libraries
-import { getEnv, process, types } from 'mobx-state-tree'
+import { getParent, process, types } from 'mobx-state-tree'
 
 // Model
 const User = types.model('User', {
   email: types.string,
   id: types.identifier(types.number),
-  name: types.string
+  name: types.string,
+  username: types.string,
+  website: types.string
 })
 
 // Store
 const UserStore = types
   .model('UserStore', {
-    users: types.array(User)
+    users: types.map(User)
   })
-  .actions(self => ({
-    getUsers: process(function*() {
-      self.users = yield getEnv(self).api.getUsers()
-    })
+  .views(self => ({
+    get stores() {
+      return getParent(self)
+    }
   }))
+  .actions(self => {
+    function updateUsers(json: IUser[]) {
+      json.forEach(userJson => self.users.put(userJson))
+    }
 
-export type IUserStore = typeof UserStore.Type
+    const getUsers = process(function*() {
+      const json = yield self.stores.api.getUsers()
+      updateUsers(json)
+    })
 
+    return {
+      getUsers,
+      updateUsers
+    }
+  })
+
+// Exports
+export { User }
 export default UserStore
+
+export type IUser = typeof User.Type
+export type IUserStore = typeof UserStore.Type

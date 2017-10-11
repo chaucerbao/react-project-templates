@@ -1,5 +1,5 @@
 // Libraries
-import { getEnv, process, types } from 'mobx-state-tree'
+import { getParent, process, types } from 'mobx-state-tree'
 
 // Model
 const Post = types.model('Post', {
@@ -12,15 +12,32 @@ const Post = types.model('Post', {
 // Store
 const PostStore = types
   .model('PostStore', {
-    posts: types.array(Post),
-    selectedPost: types.maybe(types.reference(Post))
+    posts: types.map(Post)
   })
-  .actions(self => ({
-    getPosts: process(function*() {
-      self.posts = yield getEnv(self).api.getPosts()
-    })
+  .views(self => ({
+    get stores() {
+      return getParent(self)
+    }
   }))
+  .actions(self => {
+    function updatePosts(json: IPost[]) {
+      json.forEach(postJson => self.posts.put(postJson))
+    }
 
-export type IPostStore = typeof PostStore.Type
+    const getPosts = process(function*() {
+      const json = yield self.stores.api.getPosts()
+      updatePosts(json)
+    })
 
+    return {
+      getPosts,
+      updatePosts
+    }
+  })
+
+// Exports
+export { Post }
 export default PostStore
+
+export type IPost = typeof Post.Type
+export type IPostStore = typeof PostStore.Type

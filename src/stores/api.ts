@@ -1,7 +1,7 @@
 // Definitions
 type Fetch = typeof window.fetch
 
-// Class
+// API
 class Api {
   private fetch: Fetch
 
@@ -10,16 +10,13 @@ class Api {
   }
 
   public async getPosts() {
-    const response = await fetch('//jsonplaceholder.typicode.com/posts')
-
-    return await response.json()
+    return (await fetch('//jsonplaceholder.typicode.com/posts')).json()
   }
 
   public async getUsers() {
-    const response = await fetch('//jsonplaceholder.typicode.com/users')
-
-    return await response.json()
+    return (await fetch('//jsonplaceholder.typicode.com/users')).json()
   }
 }
 
+// Exports
 export default Api

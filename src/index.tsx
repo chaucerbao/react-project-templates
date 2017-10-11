@@ -5,9 +5,8 @@ import { render } from 'react-dom'
 import registerServiceWorker from './register-service-worker'
 
 // Stores
+import Stores from './stores'
 import Api from './stores/api'
-import PostStore from './stores/post-store'
-import UserStore from './stores/user-store'
 
 // Router
 import Router from './router'
@@ -15,17 +14,9 @@ import Router from './router'
 // Global styles
 import './styles/global'
 
-// Environment
-const api = new Api(window.fetch)
-
+// Mount
 render(
-  <Provider
-    postStore={PostStore.create(
-      { posts: [], selectedPost: undefined },
-      { api }
-    )}
-    userStore={UserStore.create({ users: [] }, { api })}
-  >
+  <Provider stores={Stores.create({}, { api: new Api(window.fetch) })}>
     <Router />
   </Provider>,
   document.getElementById('root') as HTMLElement
