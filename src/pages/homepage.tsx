@@ -4,6 +4,7 @@ import * as React from 'react'
 import styled from 'styled-components'
 
 // Components
+import Link from '../components/link'
 import Layout from './layout'
 
 // Interfaces
@@ -22,7 +23,7 @@ const Posts = styled.section`
   display: flex;
   flex-wrap: wrap;
 `
-const Post = styled.article`
+const Post = styled(Link)`
   ${tilesPerRow(1)};
   display: flex;
   flex-direction: column;
@@ -108,7 +109,7 @@ class Homepage extends React.Component<{}, {}> {
             const author = userStore.users.get(post.userId)
 
             return (
-              <Post key={post.id}>
+              <Post key={post.id} to={`/post/${post.id}`}>
                 <PostImage src="//unsplash.it/460/230" />
 
                 <PostContent>

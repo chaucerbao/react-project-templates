@@ -1,6 +1,8 @@
 // Libraries
-import { getParent, types } from 'mobx-state-tree'
+import { getParent, process, types } from 'mobx-state-tree'
 import * as UrlPattern from 'url-pattern'
+
+import { Post } from './post-store'
 
 // Model
 const View = types.model('View', {
@@ -11,7 +13,8 @@ const View = types.model('View', {
 // Store
 const ViewStore = types
   .model('ViewStore', {
-    page: View
+    page: View,
+    selectedPost: types.maybe(types.reference(Post))
   })
   .views(self => ({
     get stores() {
@@ -61,14 +64,27 @@ const ViewStore = types
       self.page = { name: 'homepage', params: {} }
     }
 
-    function showPost(id: number) {
+    const showPost = process(function*(id: number) {
       const { postStore, userStore } = self.stores
 
-      postStore.getPosts()
+      yield postStore.getPosts()
+
+      const post = postStore.posts.get(id)
+
+      if (!post) {
+        show404()
+        return
+      }
+
       postStore.getComments(id)
       userStore.getUsers()
 
+      selectPost(id)
       self.page = { name: 'post', params: { id } }
+    })
+
+    function selectPost(id: any) {
+      self.selectedPost = id
     }
 
     function show404() {

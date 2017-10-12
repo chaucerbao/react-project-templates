@@ -5,6 +5,7 @@ import * as React from 'react'
 // Pages
 import Homepage from './pages/homepage'
 import NotFound from './pages/not-found'
+import Post from './pages/post'
 
 // Interfaces
 import { IStores } from './stores'
@@ -28,6 +29,8 @@ class Router extends React.Component<{}, {}> {
     switch (viewStore.page.name) {
       case 'homepage':
         return <Homepage />
+      case 'post':
+        return <Post />
       default:
         return <NotFound />
     }

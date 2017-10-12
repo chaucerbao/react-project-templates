@@ -59,8 +59,12 @@ const PostStore = types
     })
 
     const getComments = process(function*(postId: number) {
-      const json = yield self.stores.api.getComments(postId)
-      updateComments(postId, json)
+      const post = self.posts.get(postId.toString())
+
+      if (post && post.comments.length === 0) {
+        const json = yield self.stores.api.getComments(postId)
+        updateComments(postId, json)
+      }
     })
 
     return {
