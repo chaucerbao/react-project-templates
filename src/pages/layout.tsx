@@ -1,56 +1,52 @@
 // Libraries
-import { inject, observer } from 'mobx-react'
 import * as React from 'react'
 import styled from 'styled-components'
 
-// Interfaces
-import { IStores } from '../stores'
+// Components
+import Link from '../components/link'
 
 // Definitions
 interface IProps {
   children: any
 }
-interface IInjectedProps extends IProps {
-  stores: IStores
-}
 
 // Styles
 const Nav = styled.nav`
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+`
+const NavLink = styled(Link)`
+  transition: background-color 0.2s, color 0.2s;
+  border: 1px solid gray;
+  padding: 10px;
+  text-decoration: none;
+  color: dimgray;
+
+  &:not(:first-of-type) {
+    margin-left: 10px;
+  }
+
+  &:hover {
+    background-color: gray;
+    color: white;
+  }
 `
 
 // Page
 const Wrapper = ({ children }: IProps) => children
-
-@inject('stores')
-@observer
-class Layout extends React.Component<{}, {}> {
-  get injected() {
-    return this.props as IInjectedProps
-  }
-
-  public render() {
-    const { children } = this.props
-
-    return (
-      <Wrapper>
-        <header>
-          <h1>React site</h1>
-          <Nav>
-            <a onClick={this.showHomepage}>Home</a>
-            <a onClick={this.show404}>Not Found</a>
-          </Nav>
-        </header>
-        <main>{children}</main>
-        <footer>Footer</footer>
-      </Wrapper>
-    )
-  }
-
-  private showHomepage = () => this.injected.stores.viewStore.showHomepage()
-  private show404 = () => this.injected.stores.viewStore.show404()
-}
+const Layout = ({ children }: IProps) => (
+  <Wrapper>
+    <header>
+      <h1>React site</h1>
+      <Nav>
+        <NavLink to="/">Home</NavLink>
+        <NavLink to="/page-not-found">Not Found (404)</NavLink>
+      </Nav>
+    </header>
+    <main>{children}</main>
+    <footer>Footer</footer>
+  </Wrapper>
+)
 
 // Exports
 export default Layout
