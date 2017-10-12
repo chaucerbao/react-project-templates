@@ -26,8 +26,10 @@ const UserStore = types
     }
 
     const getUsers = process(function*() {
-      const json = yield self.stores.api.getUsers()
-      updateUsers(json)
+      if (self.users.size === 0) {
+        const json = yield self.stores.api.getUsers()
+        updateUsers(json)
+      }
     })
 
     return {

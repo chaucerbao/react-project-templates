@@ -10,7 +10,7 @@ import Layout from './layout'
 import { IStores } from '../stores'
 
 // Definitions
-interface IProps {
+interface IInjectedProps {
   stores: IStores
 }
 
@@ -91,29 +91,39 @@ const PostBody = styled.div`
 `
 
 // Page
-const Homepage = inject('stores')(
-  observer(({ stores: { postStore, userStore } }: IProps) => (
-    <Layout>
-      <Posts>
-        {postStore.posts.values().map((post: any) => {
-          const author = userStore.users.get(post.userId)
+@inject('stores')
+@observer
+class Homepage extends React.Component<{}, {}> {
+  get injected() {
+    return this.props as IInjectedProps
+  }
 
-          return (
-            <Post key={post.id}>
-              <PostImage src="//unsplash.it/460/230" />
+  public render() {
+    const { stores: { postStore, userStore } } = this.injected
 
-              <PostContent>
-                <PostTitle>{post.title}</PostTitle>
-                <PostAuthor>{author && author.name}</PostAuthor>
-                <PostBody>{post.body}</PostBody>
-              </PostContent>
-            </Post>
-          )
-        })}
-      </Posts>
-    </Layout>
-  ))
-)
+    return (
+      <Layout>
+        <Posts>
+          {postStore.posts.values().map((post: any) => {
+            const author = userStore.users.get(post.userId)
+
+            return (
+              <Post key={post.id}>
+                <PostImage src="//unsplash.it/460/230" />
+
+                <PostContent>
+                  <PostTitle>{post.title}</PostTitle>
+                  <PostAuthor>{author && author.name}</PostAuthor>
+                  <PostBody>{post.body}</PostBody>
+                </PostContent>
+              </Post>
+            )
+          })}
+        </Posts>
+      </Layout>
+    )
+  }
+}
 
 // Exports
 export default Homepage

@@ -1,18 +1,38 @@
 // Libraries
+import { inject, observer } from 'mobx-react'
 import * as React from 'react'
-import { BrowserRouter, Route, Switch } from 'react-router-dom'
 
 // Pages
 import Homepage from './pages/homepage'
 import NotFound from './pages/not-found'
 
-const Router = () => (
-  <BrowserRouter>
-    <Switch>
-      <Route path="/" component={Homepage} exact={true} />
-      <Route component={NotFound} />
-    </Switch>
-  </BrowserRouter>
-)
+// Interfaces
+import { IStores } from './stores'
 
+// Definitions
+interface IInjectedProps {
+  stores: IStores
+}
+
+// Router
+@inject('stores')
+@observer
+class Router extends React.Component<{}, {}> {
+  get injected() {
+    return this.props as IInjectedProps
+  }
+
+  public render() {
+    const { stores: { viewStore } } = this.injected
+
+    switch (viewStore.page.name) {
+      case 'homepage':
+        return <Homepage />
+      default:
+        return <NotFound />
+    }
+  }
+}
+
+// Exports
 export default Router

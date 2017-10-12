@@ -4,6 +4,7 @@ import { getEnv, types } from 'mobx-state-tree'
 // Individual stores
 import PostStore from './post-store'
 import UserStore from './user-store'
+import ViewStore from './view-store'
 
 // Combined stores
 const Stores = types
@@ -14,6 +15,12 @@ const Stores = types
     }),
     userStore: types.optional(UserStore, {
       users: {}
+    }),
+    viewStore: types.optional(ViewStore, {
+      page: {
+        name: 'homepage',
+        params: {}
+      }
     })
   })
   .views(self => ({
@@ -22,12 +29,11 @@ const Stores = types
     }
   }))
   .actions(self => {
-    const { postStore, userStore } = self
+    const { viewStore } = self
 
     return {
       afterCreate() {
-        postStore.getPosts()
-        userStore.getUsers()
+        viewStore.goTo(window.location.pathname)
       }
     }
   })
