@@ -4,6 +4,7 @@ import * as React from 'react'
 
 // Pages
 import Homepage from './pages/homepage'
+import Loading from './pages/loading'
 import NotFound from './pages/not-found'
 import Post from './pages/post'
 
@@ -31,6 +32,8 @@ class Router extends React.Component<{}, {}> {
         return <Homepage />
       case 'post':
         return <Post />
+      case 'loading':
+        return <Loading />
       default:
         return <NotFound />
     }

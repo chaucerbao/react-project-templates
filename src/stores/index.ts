@@ -18,7 +18,7 @@ const Stores = types
     }),
     viewStore: types.optional(ViewStore, {
       page: {
-        name: 'homepage',
+        name: 'loading',
         params: {}
       }
     })

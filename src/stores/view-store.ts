@@ -59,7 +59,7 @@ const ViewStore = types
       const { postStore, userStore } = self.stores
 
       yield userStore.getUsers()
-      postStore.getPosts()
+      yield postStore.getPosts()
 
       self.page = { name: 'homepage', params: {} }
     })
@@ -78,17 +78,17 @@ const ViewStore = types
       }
 
       selectPost(id)
-      postStore.getComments(id)
+      yield postStore.getComments(id)
 
       self.page = { name: 'post', params: { id } }
     })
 
-    function selectPost(id: any) {
-      self.selectedPost = id
-    }
-
     function show404() {
       self.page = { name: 'page-not-found', params: {} }
+    }
+
+    function selectPost(id: any) {
+      self.selectedPost = id
     }
 
     return {
