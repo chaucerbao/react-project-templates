@@ -33,7 +33,7 @@ const Stores = types
 
     return {
       afterCreate() {
-        viewStore.goTo(window.location.pathname)
+        viewStore.goTo(getEnv(self).path)
       }
     }
   })
