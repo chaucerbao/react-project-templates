@@ -55,14 +55,14 @@ const ViewStore = types
       show404()
     }
 
-    function showHomepage() {
+    const showHomepage = process(function*() {
       const { postStore, userStore } = self.stores
 
+      yield userStore.getUsers()
       postStore.getPosts()
-      userStore.getUsers()
 
       self.page = { name: 'homepage', params: {} }
-    }
+    })
 
     const showPost = process(function*(id: number) {
       const { postStore, userStore } = self.stores

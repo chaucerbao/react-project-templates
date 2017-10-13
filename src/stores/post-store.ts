@@ -1,7 +1,10 @@
 // Libraries
 import { getParent, process, types } from 'mobx-state-tree'
 
-// Model
+// Interfaces
+import { User } from './user-store'
+
+// Models
 const Comment = types.model('Comment', {
   body: types.string,
   email: types.string,
@@ -10,6 +13,7 @@ const Comment = types.model('Comment', {
   postId: types.number
 })
 const Post = types.model('Post', {
+  author: types.reference(User),
   body: types.string,
   comments: types.optional(types.array(types.reference(Comment)), []),
   id: types.identifier(types.number),
@@ -31,7 +35,7 @@ const PostStore = types
   .actions(self => {
     function updatePosts(json: IPost[]) {
       json.forEach(postJson => {
-        self.posts.put(postJson)
+        self.posts.put({ ...postJson, author: postJson.userId })
       })
     }
 

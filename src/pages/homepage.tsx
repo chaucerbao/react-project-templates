@@ -100,21 +100,19 @@ class Homepage extends React.Component<{}, {}> {
   }
 
   public render() {
-    const { stores: { postStore, userStore } } = this.injected
+    const { stores: { postStore } } = this.injected
 
     return (
       <Layout>
         <Posts>
           {postStore.posts.values().map((post: any) => {
-            const author = userStore.users.get(post.userId)
-
             return (
               <Post key={post.id} to={`/post/${post.id}`}>
                 <PostImage src="//unsplash.it/460/230" />
 
                 <PostContent>
                   <PostTitle>{post.title}</PostTitle>
-                  <PostAuthor>{author && author.name}</PostAuthor>
+                  <PostAuthor>{post.author.name}</PostAuthor>
                   <PostBody>{post.body}</PostBody>
                 </PostContent>
               </Post>
