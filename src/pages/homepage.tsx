@@ -33,6 +33,8 @@ const Post = styled(Link)`
   box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.25);
   background-color: white;
   overflow: hidden;
+  text-decoration: none;
+  color: black;
 
   @media (min-width: 425px) {
     ${tilesPerRow(2)};
@@ -71,6 +73,7 @@ const PostAuthor = styled.small`
 const PostBody = styled.div`
   position: relative;
   flex: 0 1 100%;
+  color: dimgray;
 
   &::first-letter {
     text-transform: capitalize;
