@@ -15,13 +15,13 @@ import Router from './router'
 // Global styles
 import './styles/global'
 
-// Initialize state
+// Initialize the state
 const stores = Stores.create(
   {},
   { api: new Api(window.fetch), path: window.location.pathname }
 )
 
-// Sync browser's address bar
+// Sync the browser's address bar to the current path
 reaction(
   () => stores.viewStore.path,
   path => {
@@ -31,19 +31,18 @@ reaction(
   }
 )
 
-// React to browser's back/forward navigation
+// Listen to the browser's back/forward navigation
 window.onpopstate = e => {
   if (e.type === 'popstate') {
     stores.viewStore.goTo(window.location.pathname)
   }
 }
 
-// Mount
+// Mount the application
 render(
   <Provider stores={stores}>
     <Router />
   </Provider>,
   document.getElementById('root') as HTMLElement
 )
-
 registerServiceWorker()
