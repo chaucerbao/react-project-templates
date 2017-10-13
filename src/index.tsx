@@ -31,6 +31,13 @@ reaction(
   }
 )
 
+// React to browser's back/forward navigation
+window.onpopstate = e => {
+  if (e.type === 'popstate') {
+    stores.viewStore.goTo(window.location.pathname)
+  }
+}
+
 // Mount
 render(
   <Provider stores={stores}>
