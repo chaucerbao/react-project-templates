@@ -67,6 +67,7 @@ const ViewStore = types
     const showPost = process(function*(id: number) {
       const { postStore, userStore } = self.stores
 
+      yield userStore.getUsers()
       yield postStore.getPosts()
 
       const post = postStore.posts.get(id)
@@ -76,10 +77,9 @@ const ViewStore = types
         return
       }
 
-      postStore.getComments(id)
-      userStore.getUsers()
-
       selectPost(id)
+      postStore.getComments(id)
+
       self.page = { name: 'post', params: { id } }
     })
 
