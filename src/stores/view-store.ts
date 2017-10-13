@@ -19,19 +19,19 @@ const ViewStore = types
   .views(self => ({
     get stores() {
       return getParent(self)
-    }
-    // get path() {
-    //   const { page: { name, params } } = self
+    },
+    get path() {
+      const { page: { name, params } } = self
 
-    //   switch (name) {
-    //     case 'homepage':
-    //       return '/'
-    //     case 'post':
-    //       return `/post/${params.id}`
-    //     default:
-    //       return '/page-not-found'
-    //   }
-    // }
+      switch (name) {
+        case 'homepage':
+          return '/'
+        case 'post':
+          return `/post/${params.id}`
+        default:
+          return '/page-not-found'
+      }
+    }
   }))
   .actions(self => {
     function goTo(url: string) {
