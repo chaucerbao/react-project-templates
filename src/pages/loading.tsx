@@ -2,9 +2,6 @@
 import * as React from 'react'
 import styled from 'styled-components'
 
-// Components
-import Layout from './layout'
-
 // Styles
 const Box = styled.div`
   display: flex;
@@ -14,11 +11,7 @@ const Box = styled.div`
 `
 
 // Page
-const Loading = () => (
-  <Layout>
-    <Box>Loading...</Box>
-  </Layout>
-)
+const Loading = () => <Box>Loading...</Box>
 
 // Exports
 export default Loading

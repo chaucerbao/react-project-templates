@@ -2,6 +2,9 @@
 import { inject, observer } from 'mobx-react'
 import * as React from 'react'
 
+// Components
+import Layout from './pages/layout'
+
 // Pages
 import Homepage from './pages/homepage'
 import Loading from './pages/loading'
@@ -25,6 +28,10 @@ class Router extends React.Component<{}, {}> {
   }
 
   public render() {
+    return <Layout>{this.renderPage()}</Layout>
+  }
+
+  private renderPage() {
     const { stores: { viewStore } } = this.injected
 
     switch (viewStore.page.name) {

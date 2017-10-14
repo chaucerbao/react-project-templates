@@ -3,9 +3,6 @@ import { inject, observer } from 'mobx-react'
 import * as React from 'react'
 import styled from 'styled-components'
 
-// Components
-import Layout from './layout'
-
 // Interfaces
 import { IStores } from '../stores'
 
@@ -61,24 +58,22 @@ class Post extends React.Component<{}, {}> {
     const { stores: { viewStore } } = this.injected
     const post = viewStore.selectedPost!
 
-    return (
-      <Layout>
-        <article>
-          <Title>{post.title}</Title>
-          <Body>{post.body}</Body>
-        </article>
-        <section>
-          <h3>Comments</h3>
+    return [
+      <article key="post">
+        <Title>{post.title}</Title>
+        <Body>{post.body}</Body>
+      </article>,
+      <section key="comments">
+        <h3>Comments</h3>
 
-          {post.comments.map(comment => (
-            <Comment key={comment.id}>
-              {comment.body}
-              <CommentAuthor>{comment.name}</CommentAuthor>
-            </Comment>
-          ))}
-        </section>
-      </Layout>
-    )
+        {post.comments.map(comment => (
+          <Comment key={comment.id}>
+            {comment.body}
+            <CommentAuthor>{comment.name}</CommentAuthor>
+          </Comment>
+        ))}
+      </section>
+    ]
   }
 }
 

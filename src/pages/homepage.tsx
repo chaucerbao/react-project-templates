@@ -5,7 +5,6 @@ import styled from 'styled-components'
 
 // Components
 import Link from '../components/link'
-import Layout from './layout'
 
 // Interfaces
 import { IStores } from '../stores'
@@ -106,23 +105,21 @@ class Homepage extends React.Component<{}, {}> {
     const { stores: { postStore } } = this.injected
 
     return (
-      <Layout>
-        <Posts>
-          {postStore.posts.values().map((post: any) => {
-            return (
-              <Post key={post.id} to={`/post/${post.id}`}>
-                <PostImage src="//unsplash.it/460/230" />
+      <Posts>
+        {postStore.posts.values().map((post: any) => {
+          return (
+            <Post key={post.id} to={`/post/${post.id}`}>
+              <PostImage src="//unsplash.it/460/230" />
 
-                <PostContent>
-                  <PostTitle>{post.title}</PostTitle>
-                  <PostAuthor>{post.author.name}</PostAuthor>
-                  <PostBody>{post.body}</PostBody>
-                </PostContent>
-              </Post>
-            )
-          })}
-        </Posts>
-      </Layout>
+              <PostContent>
+                <PostTitle>{post.title}</PostTitle>
+                <PostAuthor>{post.author.name}</PostAuthor>
+                <PostBody>{post.body}</PostBody>
+              </PostContent>
+            </Post>
+          )
+        })}
+      </Posts>
     )
   }
 }
