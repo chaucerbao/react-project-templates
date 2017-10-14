@@ -67,12 +67,9 @@ const ViewStore = types
     const showPost = process(function*(id: number) {
       const { postStore, userStore } = self.stores
 
-      yield userStore.getUsers()
-      yield postStore.getPosts()
+      yield Promise.all([userStore.getUsers(), postStore.getPosts()])
 
-      const post = postStore.posts.get(id)
-
-      if (!post) {
+      if (!postStore.posts.has(id)) {
         show404()
         return
       }
