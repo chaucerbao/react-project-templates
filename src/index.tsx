@@ -11,6 +11,7 @@ import Api from './stores/api'
 
 // Router
 import Router from './router'
+import routes from './routes'
 
 // Global styles
 import './styles/global'
@@ -41,7 +42,7 @@ window.onpopstate = e => {
 // Mount the application
 render(
   <Provider stores={stores}>
-    <Router />
+    <Router routes={routes} />
   </Provider>,
   document.getElementById('root') as HTMLElement
 )

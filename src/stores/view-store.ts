@@ -2,7 +2,8 @@
 import { getParent, process, types } from 'mobx-state-tree'
 import * as UrlPattern from 'url-pattern'
 
-import { Post } from './post-store'
+// Routes
+import routes from '../routes'
 
 // Model
 const View = types.model('View', {
@@ -13,8 +14,7 @@ const View = types.model('View', {
 // Store
 const ViewStore = types
   .model('ViewStore', {
-    page: View,
-    selectedPost: types.maybe(types.reference(Post))
+    page: View
   })
   .views(self => ({
     get stores() {
@@ -22,77 +22,45 @@ const ViewStore = types
     },
     get path() {
       const { page: { name, params } } = self
+      const routeFound = routes.find(route => route.name === name)
 
-      switch (name) {
-        case 'homepage':
-          return '/'
-        case 'post':
-          return `/post/${params.id}`
-        default:
-          return '/page-not-found'
+      if (routeFound) {
+        const pattern = new UrlPattern(routeFound.path)
+
+        return pattern.stringify(params)
       }
+
+      return '/page-not-found'
     }
   }))
   .actions(self => {
-    function goTo(url: string) {
-      const routes = {
-        '/': () => showHomepage(),
-        '/post/:id': ({ id }: { id: number }) => showPost(id)
-      }
+    const goTo = process(function*(url: string): any {
+      const routeFound = routes.find(route =>
+        new UrlPattern(route.path).match(url)
+      )
 
-      for (const path in routes) {
-        if (routes.hasOwnProperty(path)) {
-          const pattern = new UrlPattern(path)
-          const match = pattern.match(url)
+      if (routeFound) {
+        const pattern = new UrlPattern(routeFound.path)
+        const match = pattern.match(url)
 
-          if (match) {
-            routes[path](match)
-            return
-          }
+        yield routeFound.init(self.stores, match)
+
+        self.page = {
+          name: routeFound.name,
+          params: match
         }
-      }
 
-      show404()
-    }
-
-    const showHomepage = process(function*() {
-      const { postStore, userStore } = self.stores
-
-      yield userStore.getUsers()
-      yield postStore.getPosts()
-
-      self.page = { name: 'homepage', params: {} }
-    })
-
-    const showPost = process(function*(id: number) {
-      const { postStore, userStore } = self.stores
-
-      yield Promise.all([userStore.getUsers(), postStore.getPosts()])
-
-      if (!postStore.posts.has(id)) {
-        show404()
         return
       }
 
-      selectPost(id)
-      yield postStore.getComments(id)
-
-      self.page = { name: 'post', params: { id } }
+      self.page = {
+        name: 'page-not-found',
+        params: {}
+      }
     })
 
-    function show404() {
-      self.page = { name: 'page-not-found', params: {} }
-    }
-
-    function selectPost(id: any) {
-      self.selectedPost = id
-    }
-
     return {
-      goTo,
-      show404,
-      showHomepage,
-      showPost
+      goTo
     }
   })
 

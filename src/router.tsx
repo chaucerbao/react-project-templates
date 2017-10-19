@@ -6,23 +6,24 @@ import * as React from 'react'
 import Layout from './pages/layout'
 
 // Pages
-import Homepage from './pages/homepage'
-import Loading from './pages/loading'
 import NotFound from './pages/not-found'
-import Post from './pages/post'
 
 // Interfaces
+import { IRoute } from './routes'
 import { IStores } from './stores'
 
 // Definitions
-interface IInjectedProps {
+interface IProps {
+  routes: IRoute[]
+}
+interface IInjectedProps extends IProps {
   stores: IStores
 }
 
 // Router
 @inject('stores')
 @observer
-class Router extends React.Component<{}, {}> {
+class Router extends React.Component<IProps, {}> {
   get injected() {
     return this.props as IInjectedProps
   }
@@ -32,18 +33,16 @@ class Router extends React.Component<{}, {}> {
   }
 
   private renderPage() {
+    const { routes } = this.props
     const { stores: { viewStore } } = this.injected
 
-    switch (viewStore.page.name) {
-      case 'homepage':
-        return <Homepage />
-      case 'post':
-        return <Post />
-      case 'loading':
-        return <Loading />
-      default:
-        return <NotFound />
+    const routeFound = routes.find(route => route.name === viewStore.page.name)
+
+    if (routeFound) {
+      return <routeFound.Component />
     }
+
+    return <NotFound />
   }
 }
 
