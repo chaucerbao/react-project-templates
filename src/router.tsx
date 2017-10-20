@@ -9,12 +9,12 @@ import Layout from './pages/layout'
 import NotFound from './pages/not-found'
 
 // Interfaces
-import { IRoute } from './routes'
+import { IRoutes } from './routes'
 import { IStores } from './stores'
 
 // Definitions
 interface IProps {
-  routes: IRoute[]
+  routes: IRoutes
 }
 interface IInjectedProps extends IProps {
   stores: IStores
@@ -36,7 +36,7 @@ class Router extends React.Component<IProps, {}> {
     const { routes } = this.props
     const { stores: { viewStore } } = this.injected
 
-    const routeFound = routes.find(route => route.name === viewStore.page.name)
+    const routeFound = routes[viewStore.page.name]
 
     if (routeFound) {
       return <routeFound.Component />

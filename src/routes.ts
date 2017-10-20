@@ -1,3 +1,6 @@
+// Libraries
+import * as UrlPattern from 'url-pattern'
+
 // Interfaces
 import { IStores } from './stores'
 
@@ -9,22 +12,23 @@ import Post from './pages/post'
 interface IRoute {
   Component: any
   init: (stores: IStores, params?: any) => void
-  name: string
-  path: string
+  path: UrlPattern
+}
+interface IRoutes {
+  [name: string]: IRoute
 }
 
-const routes: IRoute[] = [
-  {
+const routes: IRoutes = {
+  homepage: {
     Component: Homepage,
     init: async stores => {
       const { postStore, userStore } = stores
       await userStore.getUsers()
       await postStore.getPosts()
     },
-    name: 'homepage',
-    path: '/'
+    path: new UrlPattern('/')
   },
-  {
+  post: {
     Component: Post,
     init: async (stores, params) => {
       const { postStore, userStore } = stores
@@ -32,12 +36,11 @@ const routes: IRoute[] = [
       await Promise.all([userStore.getUsers(), postStore.getPosts()])
       await postStore.getComments(params.id)
     },
-    name: 'post',
-    path: '/post/:id'
+    path: new UrlPattern('/post/:id')
   }
-]
+}
 
 // Exports
 export default routes
 
-export { IRoute }
+export { IRoutes }

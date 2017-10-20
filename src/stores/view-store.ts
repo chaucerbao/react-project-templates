@@ -1,6 +1,5 @@
 // Libraries
 import { getParent, process, types } from 'mobx-state-tree'
-import * as UrlPattern from 'url-pattern'
 
 // Routes
 import routes from '../routes'
@@ -22,12 +21,10 @@ const ViewStore = types
     },
     get path() {
       const { page: { name, params } } = self
-      const routeFound = routes.find(route => route.name === name)
+      const routeFound = routes[name]
 
       if (routeFound) {
-        const pattern = new UrlPattern(routeFound.path)
-
-        return pattern.stringify(params)
+        return routeFound.path.stringify(params)
       }
 
       return '/page-not-found'
@@ -35,18 +32,16 @@ const ViewStore = types
   }))
   .actions(self => {
     const goTo = process(function*(url: string): any {
-      const routeFound = routes.find(route =>
-        new UrlPattern(route.path).match(url)
-      )
+      const key = Object.keys(routes).find(name => routes[name].path.match(url))
 
-      if (routeFound) {
-        const pattern = new UrlPattern(routeFound.path)
-        const match = pattern.match(url)
+      if (key) {
+        const routeFound = routes[key]
+        const match = routeFound.path.match(url)
 
         yield routeFound.init(self.stores, match)
 
         self.page = {
-          name: routeFound.name,
+          name: key,
           params: match
         }
 
