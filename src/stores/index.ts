@@ -26,6 +26,9 @@ const Stores = types
   .views(self => ({
     get api() {
       return getEnv(self).api
+    },
+    get routes() {
+      return getEnv(self).routes
     }
   }))
   .actions(self => {

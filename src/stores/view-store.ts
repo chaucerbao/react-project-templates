@@ -1,9 +1,6 @@
 // Libraries
 import { getParent, process, types } from 'mobx-state-tree'
 
-// Routes
-import routes from '../routes'
-
 // Model
 const View = types.model('View', {
   name: types.identifier(types.string),
@@ -20,6 +17,7 @@ const ViewStore = types
       return getParent(self)
     },
     get path() {
+      const { routes } = getParent(self)
       const { page: { name, params } } = self
       const routeFound = routes[name]
 
@@ -28,10 +26,14 @@ const ViewStore = types
       }
 
       return '/page-not-found'
+    },
+    get routes() {
+      return getParent(self).routes
     }
   }))
   .actions(self => {
     const goTo = process(function*(url: string): any {
+      const { routes } = self
       const key = Object.keys(routes).find(name => routes[name].path.match(url))
 
       if (key) {
