@@ -5,6 +5,7 @@ import styled from 'styled-components'
 
 // Components
 import Link from '../components/link'
+import Loading from '../components/loading'
 
 // Interfaces
 import { IStores } from '../stores'
@@ -106,6 +107,8 @@ class Homepage extends React.Component<{}, {}> {
 
     return (
       <Posts>
+        {postStore.posts.size === 0 && <Loading />}
+
         {postStore.posts.values().map((post: any) => {
           return (
             <Post key={post.id} to={`/post/${post.id}`}>

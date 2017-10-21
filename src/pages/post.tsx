@@ -3,6 +3,9 @@ import { inject, observer } from 'mobx-react'
 import * as React from 'react'
 import styled from 'styled-components'
 
+// Components
+import Loading from '../components/loading'
+
 // Interfaces
 import { IStores } from '../stores'
 
@@ -60,19 +63,25 @@ class Post extends React.Component<{}, {}> {
 
     return [
       <article key="post">
-        <Title>{post.title}</Title>
-        <Body>{post.body}</Body>
-      </article>,
-      <section key="comments">
-        <h3>Comments</h3>
+        {!post && <Loading />}
 
-        {post.comments.map(comment => (
-          <Comment key={comment.id}>
-            {comment.body}
-            <CommentAuthor>{comment.name}</CommentAuthor>
-          </Comment>
-        ))}
-      </section>
+        {post && [
+          <Title key="title">{post.title}</Title>,
+          <Body key="body">{post.body}</Body>
+        ]}
+      </article>,
+      post && (
+        <section key="comments">
+          <h3>Comments</h3>
+
+          {post.comments.map(comment => (
+            <Comment key={comment.id}>
+              {comment.body}
+              <CommentAuthor>{comment.name}</CommentAuthor>
+            </Comment>
+          ))}
+        </section>
+      )
     ]
   }
 }

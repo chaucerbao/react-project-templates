@@ -33,20 +33,20 @@ const ViewStore = types
   }))
   .actions(self => ({
     goTo: process(function*(url: string) {
-      const { routes } = self
+      const { routes, stores } = self
       const key = Object.keys(routes).find(name => routes[name].path.match(url))
 
       if (key) {
         const { init, path } = routes[key]
         const match = path.match(url)
 
-        if (init) {
-          yield init(self.stores, match)
-        }
-
         self.page = {
           name: key,
           params: match
+        }
+
+        if (init) {
+          yield init(stores, match)
         }
 
         return
