@@ -1,26 +1,28 @@
 // Definitions
-type Fetch = typeof window.fetch
+type Fetcher = typeof window.fetch
 
 // API
 class Api {
-  private fetch: Fetch
+  private fetcher: Fetcher
 
-  constructor(fetch: Fetch) {
-    this.fetch = fetch
+  constructor(fetcher: Fetcher) {
+    this.fetcher = fetcher
   }
 
-  public async getPosts() {
-    return (await fetch('//jsonplaceholder.typicode.com/posts')).json()
+  public getPosts() {
+    return this.fetch('//jsonplaceholder.typicode.com/posts')
   }
 
-  public async getComments(postId: number) {
-    return (await fetch(
-      `//jsonplaceholder.typicode.com/posts/${postId}/comments`
-    )).json()
+  public getComments(postId: number) {
+    return this.fetch(`//jsonplaceholder.typicode.com/posts/${postId}/comments`)
   }
 
-  public async getUsers() {
-    return (await fetch('//jsonplaceholder.typicode.com/users')).json()
+  public getUsers() {
+    return this.fetch('//jsonplaceholder.typicode.com/users')
+  }
+
+  private async fetch(input: RequestInfo, init?: RequestInit) {
+    return (await this.fetcher(input, init)).json()
   }
 }
 

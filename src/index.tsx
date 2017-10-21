@@ -19,7 +19,11 @@ import './styles/global'
 // Initialize the state
 const stores = Stores.create(
   {},
-  { api: new Api(window.fetch), path: window.location.pathname, routes }
+  {
+    api: new Api(window.fetch.bind(window)),
+    path: window.location.pathname,
+    routes
+  }
 )
 
 // Sync the browser's address bar to the current path
