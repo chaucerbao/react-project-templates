@@ -18,7 +18,7 @@ const Stores = types
     }),
     viewStore: types.optional(ViewStore, {
       page: {
-        name: 'loading',
+        name: '',
         params: {}
       }
     })
@@ -31,15 +31,11 @@ const Stores = types
       return getEnv(self).routes
     }
   }))
-  .actions(self => {
-    const { viewStore } = self
-
-    return {
-      afterCreate() {
-        viewStore.goTo(getEnv(self).path)
-      }
+  .actions(self => ({
+    afterCreate() {
+      self.viewStore.goTo(getEnv(self).path)
     }
-  })
+  }))
 
 // Exports
 export default Stores

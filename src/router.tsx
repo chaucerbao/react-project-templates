@@ -33,8 +33,8 @@ class Router extends React.Component<IProps, {}> {
   }
 
   private renderPage() {
-    const { routes } = this.props
     const { stores: { viewStore } } = this.injected
+    const { routes } = this.props
 
     const routeFound = routes[viewStore.page.name]
 

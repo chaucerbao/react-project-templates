@@ -31,8 +31,8 @@ const ViewStore = types
       return getParent(self).routes
     }
   }))
-  .actions(self => {
-    const goTo = process(function*(url: string): any {
+  .actions(self => ({
+    goTo: process(function*(url: string) {
       const { routes } = self
       const key = Object.keys(routes).find(name => routes[name].path.match(url))
 
@@ -57,11 +57,7 @@ const ViewStore = types
         params: {}
       }
     })
-
-    return {
-      goTo
-    }
-  })
+  }))
 
 // Exports
 export default ViewStore
