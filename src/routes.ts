@@ -11,7 +11,7 @@ import Post from './pages/post'
 // Definitions
 interface IRoute {
   Component: any
-  init: (stores: IStores, params?: any) => void
+  init?: (stores: IStores, params?: any) => void
   path: UrlPattern
 }
 interface IRoutes {

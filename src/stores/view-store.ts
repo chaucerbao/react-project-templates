@@ -37,10 +37,12 @@ const ViewStore = types
       const key = Object.keys(routes).find(name => routes[name].path.match(url))
 
       if (key) {
-        const routeFound = routes[key]
-        const match = routeFound.path.match(url)
+        const { init, path } = routes[key]
+        const match = path.match(url)
 
-        yield routeFound.init(self.stores, match)
+        if (init) {
+          yield init(self.stores, match)
+        }
 
         self.page = {
           name: key,
