@@ -29,20 +29,17 @@ class Router extends React.Component<IProps, {}> {
   }
 
   public render() {
-    return <Layout>{this.renderPage()}</Layout>
-  }
-
-  private renderPage() {
     const { stores: { viewStore } } = this.injected
     const { routes } = this.props
 
     const routeFound = routes[viewStore.page.name]
+    const Page = routeFound ? routeFound.Component : NotFound
 
-    if (routeFound) {
-      return <routeFound.Component />
-    }
-
-    return <NotFound />
+    return (
+      <Layout>
+        <Page />
+      </Layout>
+    )
   }
 }
 
