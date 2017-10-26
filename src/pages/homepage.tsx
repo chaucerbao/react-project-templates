@@ -110,7 +110,7 @@ class Homepage extends React.Component<{}, {}> {
       <Posts>
         {postStore.posts.size === 0 && <Loading />}
 
-        {postStore.posts.values().map((post: any) => {
+        {postStore.posts.values().map(post => {
           return (
             <Post key={post.id} to={`/post/${post.id}`}>
               <PostImage src="//unsplash.it/460/230" />

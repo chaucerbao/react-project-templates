@@ -11,7 +11,10 @@ import Post from './pages/post'
 // Definitions
 interface IRoute {
   Component: any
-  init?: (stores: IStores, params?: any) => void
+  init?: (
+    stores: IStores,
+    params?: { [param: string]: string | number }
+  ) => void
   path: UrlPattern
 }
 interface IRoutes {
@@ -30,7 +33,7 @@ const routes: IRoutes = {
   },
   post: {
     Component: Post,
-    init: async (stores, params) => {
+    init: async (stores, params: { id: number }) => {
       const { postStore, userStore } = stores
 
       await Promise.all([userStore.getUsers(), postStore.getPosts()])
