@@ -22,6 +22,7 @@ const tilesPerRow = (count: number) =>
 const Posts = styled.section`
   display: flex;
   flex-wrap: wrap;
+  padding: 40px 20px;
 `
 const Post = styled(Link)`
   ${tilesPerRow(1)};

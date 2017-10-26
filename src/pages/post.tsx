@@ -15,7 +15,12 @@ interface IInjectedProps {
 }
 
 // Styles
+const Article = styled.article`
+  padding: 40px 20px 0;
+`
 const Title = styled.h2`
+  margin: 0;
+
   &::first-letter {
     text-transform: capitalize;
   }
@@ -27,6 +32,9 @@ const Body = styled.div`
   &::first-letter {
     text-transform: capitalize;
   }
+`
+const Comments = styled.section`
+  padding: 0 20px 40px;
 `
 const Comment = styled.div`
   margin: 10px;
@@ -62,16 +70,16 @@ class Post extends React.Component<{}, {}> {
     const post = postStore.posts.get(viewStore.page.params.id)!
 
     return [
-      <article key="post">
+      <Article key="post">
         {!post && <Loading />}
 
         {post && [
           <Title key="title">{post.title}</Title>,
           <Body key="body">{post.body}</Body>
         ]}
-      </article>,
+      </Article>,
       post && (
-        <section key="comments">
+        <Comments key="comments">
           <h3>Comments</h3>
 
           {post.comments.map(comment => (
@@ -80,7 +88,7 @@ class Post extends React.Component<{}, {}> {
               <CommentAuthor>{comment.name}</CommentAuthor>
             </Comment>
           ))}
-        </section>
+        </Comments>
       )
     ]
   }
