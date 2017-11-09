@@ -13,12 +13,10 @@
     "extends": [
       "stylelint-config-standard",
       "stylelint-config-concentric-order",
+      "stylelint-config-prettier",
       "stylelint-config-styled-components"
     ],
-    "syntax": "scss",
-    "rules": {
-      "declaration-colon-newline-after": null
-    }
+    "syntax": "scss"
   },
   "lint-staged": {
     "{src,public}/**/*.{ts,tsx,js,jsx}": [
@@ -50,6 +48,7 @@
     "size-limit": "^0.11.6",
     "stylelint": "^8.2.0",
     "stylelint-config-concentric-order": "^2.2.2",
+    "stylelint-config-prettier": "^1.0.2",
     "stylelint-config-standard": "^17.0.0",
     "stylelint-config-styled-components": "^0.1.1",
     "stylelint-processor-styled-components": "^1.0.0",
