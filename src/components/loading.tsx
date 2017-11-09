@@ -12,7 +12,7 @@ const Box = styled.section`
   display: flex;
 `
 
-// Page
+// Component
 const Loading = ({ children = 'Loading...' }: IProps) => <Box>{children}</Box>
 
 // Exports

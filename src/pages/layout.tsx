@@ -46,7 +46,7 @@ const Footer = styled.footer`
   color: white;
 `
 
-// Page
+// Layout
 const Wrapper = ({ children }: IProps) => children
 const Layout = ({ children }: IProps) => (
   <Wrapper>

@@ -16,7 +16,7 @@ interface IInjectedProps extends IProps {
   stores: IStores
 }
 
-// Page
+// Component
 @inject('stores')
 @observer
 class Link extends React.Component<IProps, {}> {
