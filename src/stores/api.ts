@@ -10,15 +10,17 @@ class Api {
   }
 
   public getPosts() {
-    return this.fetch('//jsonplaceholder.typicode.com/posts')
+    return this.fetch('https://jsonplaceholder.typicode.com/posts')
   }
 
   public getComments(postId: number) {
-    return this.fetch(`//jsonplaceholder.typicode.com/posts/${postId}/comments`)
+    return this.fetch(
+      `https://jsonplaceholder.typicode.com/posts/${postId}/comments`
+    )
   }
 
   public getUsers() {
-    return this.fetch('//jsonplaceholder.typicode.com/users')
+    return this.fetch('https://jsonplaceholder.typicode.com/users')
   }
 
   private async fetch(input: RequestInfo, init?: RequestInit) {
