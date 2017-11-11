@@ -40,13 +40,13 @@ const ViewStore = types
         const { init, path } = routes[key]
         const match = path.match(url)
 
+        if (init) {
+          yield init(stores, match)
+        }
+
         self.page = {
           name: key,
           params: match
-        }
-
-        if (init) {
-          yield init(stores, match)
         }
 
         return

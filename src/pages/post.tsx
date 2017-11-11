@@ -4,6 +4,7 @@ import * as React from 'react'
 import styled from 'styled-components'
 
 // Components
+import Link from '../components/link'
 import Loading from '../components/loading'
 
 // Interfaces
@@ -74,6 +75,9 @@ class Post extends React.Component<{}, {}> {
         {!post && <Loading />}
 
         {post && [
+          <Link key="edit-link" to={`/post/${post.id}/edit`}>
+            Edit
+          </Link>,
           <Title key="title">{post.title}</Title>,
           <Body key="body">{post.body}</Body>
         ]}

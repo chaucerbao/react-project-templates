@@ -9,6 +9,10 @@ class Api {
     this.fetcher = fetcher
   }
 
+  public getPost(id: number) {
+    return this.fetch(`https://jsonplaceholder.typicode.com/posts/${id}`)
+  }
+
   public getPosts() {
     return this.fetch('https://jsonplaceholder.typicode.com/posts')
   }

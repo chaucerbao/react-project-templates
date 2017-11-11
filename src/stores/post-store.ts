@@ -55,6 +55,13 @@ const PostStore = types
       })
     }
 
+    const getPost = process(function*(id: number) {
+      if (!self.posts.get(id.toString())) {
+        const json = yield self.stores.api.getPost(id)
+        updatePosts([json])
+      }
+    })
+
     const getPosts = process(function*() {
       if (self.posts.size === 0) {
         const json = yield self.stores.api.getPosts()
@@ -73,6 +80,7 @@ const PostStore = types
 
     return {
       getComments,
+      getPost,
       getPosts,
       updateComments,
       updatePosts

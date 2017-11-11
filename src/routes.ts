@@ -7,6 +7,7 @@ import { IStores } from './stores'
 // Pages
 import Homepage from './pages/homepage'
 import Post from './pages/post'
+import PostEdit from './pages/post-edit'
 
 // Definitions
 interface IRoute {
@@ -26,8 +27,8 @@ const routes: IRoutes = {
     Component: Homepage,
     init: async stores => {
       const { postStore, userStore } = stores
-      await userStore.getUsers()
-      await postStore.getPosts()
+
+      await Promise.all([userStore.getUsers(), postStore.getPosts()])
     },
     path: new UrlPattern('/')
   },
@@ -36,10 +37,19 @@ const routes: IRoutes = {
     init: async (stores, params: { id: number }) => {
       const { postStore, userStore } = stores
 
-      await Promise.all([userStore.getUsers(), postStore.getPosts()])
+      await Promise.all([userStore.getUsers(), postStore.getPost(params.id)])
       await postStore.getComments(params.id)
     },
     path: new UrlPattern('/post/:id')
+  },
+  postEdit: {
+    Component: PostEdit,
+    init: async (stores, params: { id: number }) => {
+      const { postStore } = stores
+
+      await postStore.getPost(params.id)
+    },
+    path: new UrlPattern('/post/:id/edit')
   }
 }
 
