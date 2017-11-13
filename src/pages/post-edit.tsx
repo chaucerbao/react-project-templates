@@ -40,9 +40,9 @@ class PostEdit extends React.Component<{}, {}> {
 
   @computed
   get post() {
-    const { stores: { postStore, viewStore } } = this.injected
+    const { stores: { postStore } } = this.injected
 
-    return postStore._cache.get(viewStore.page.params.id)!
+    return postStore.selected!
   }
 
   constructor() {

@@ -46,7 +46,9 @@ const UserStore = types
     }
 
     const getUsers = process(function*() {
-      updateCache(yield self.stores.api.getUsers())
+      if (!self.isLoaded) {
+        updateCache(yield self.stores.api.getUsers())
+      }
     })
 
     return {

@@ -61,21 +61,19 @@ const PostStore = types
     const getPosts = process(function*() {
       const { userStore } = self.stores
 
-      if (!userStore.isLoaded) {
-        yield userStore.getUsers()
-      }
+      yield userStore.getUsers()
 
       updateCache(yield self.stores.api.getPosts())
 
-      self.list.replace(self._cache.values())
+      self.list.replace(
+        self._cache.values().sort((a, b) => (a.id < b.id ? -1 : 1))
+      )
     })
 
     const getPost = process(function*(id: number, withComments: boolean) {
       const { api, userStore } = self.stores
 
-      if (!userStore.isLoaded) {
-        yield userStore.getUsers()
-      }
+      yield userStore.getUsers()
 
       updateCache([yield api.getPost(id)])
       self.selected = self._cache.get(id.toString())!

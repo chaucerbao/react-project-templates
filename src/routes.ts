@@ -25,22 +25,22 @@ interface IRoutes {
 const routes: IRoutes = {
   homepage: {
     Component: Homepage,
-    init: async stores => {
-      await stores.postStore.getPosts()
+    init: stores => {
+      stores.postStore.getPosts()
     },
     path: new UrlPattern('/')
   },
   post: {
     Component: Post,
-    init: async (stores, params: { id: number }) => {
-      await stores.postStore.getPost(params.id, true)
+    init: (stores, params: { id: number }) => {
+      stores.postStore.getPost(params.id, true)
     },
     path: new UrlPattern('/post/:id')
   },
   postEdit: {
     Component: PostEdit,
-    init: async (stores, params: { id: number }) => {
-      await stores.postStore.getPost(params.id, false)
+    init: (stores, params: { id: number }) => {
+      stores.postStore.getPost(params.id, false)
     },
     path: new UrlPattern('/post/:id/edit')
   }

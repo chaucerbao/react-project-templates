@@ -67,8 +67,8 @@ class Post extends React.Component<{}, {}> {
   }
 
   public render() {
-    const { stores: { postStore, viewStore } } = this.injected
-    const post = postStore._cache.get(viewStore.page.params.id)!
+    const { stores: { postStore } } = this.injected
+    const post = postStore.selected!
 
     return [
       <Article key="post">
