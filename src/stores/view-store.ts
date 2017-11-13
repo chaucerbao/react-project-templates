@@ -1,5 +1,5 @@
 // Libraries
-import { getParent, process, types } from 'mobx-state-tree'
+import { getParent, types } from 'mobx-state-tree'
 
 // Model
 const View = types.model('View', {
@@ -32,7 +32,7 @@ const ViewStore = types
     }
   }))
   .actions(self => ({
-    goTo: process(function*(url: string) {
+    goTo: (url: string) => {
       const { routes, stores } = self
       const key = Object.keys(routes).find(name => routes[name].path.match(url))
 
@@ -41,7 +41,7 @@ const ViewStore = types
         const match = path.match(url)
 
         if (init) {
-          yield init(stores, match)
+          init(stores, match)
         }
 
         self.page = {
@@ -56,7 +56,7 @@ const ViewStore = types
         name: 'page-not-found',
         params: {}
       }
-    })
+    }
   }))
 
 // Exports

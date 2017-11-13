@@ -42,7 +42,7 @@ class PostEdit extends React.Component<{}, {}> {
   get post() {
     const { stores: { postStore, viewStore } } = this.injected
 
-    return postStore.posts.get(viewStore.page.params.id)!
+    return postStore._cache.get(viewStore.page.params.id)!
   }
 
   constructor() {

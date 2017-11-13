@@ -10,11 +10,11 @@ import ViewStore from './view-store'
 const Stores = types
   .model('Stores', {
     postStore: types.optional(PostStore, {
-      comments: {},
-      posts: {}
+      _cache: {},
+      list: []
     }),
     userStore: types.optional(UserStore, {
-      users: {}
+      _cache: {}
     }),
     viewStore: types.optional(ViewStore, {
       page: {

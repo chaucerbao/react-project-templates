@@ -104,13 +104,13 @@ class Homepage extends React.Component<{}, {}> {
   }
 
   public render() {
-    const { stores: { postStore } } = this.injected
+    const { stores: { postStore: { list } } } = this.injected
 
     return (
       <Posts>
-        {postStore.posts.size === 0 && <Loading />}
+        {list.length === 0 && <Loading />}
 
-        {postStore.posts.values().map(post => {
+        {list.map(post => {
           return (
             <Post key={post.id} to={`/post/${post.id}`}>
               <PostImage src="//unsplash.it/460/230" />

@@ -1,31 +1,38 @@
 // Libraries
-import { getParent, process, types } from 'mobx-state-tree'
+import { applySnapshot, getParent, process, types } from 'mobx-state-tree'
 
 // Interfaces
 import { User } from './user-store'
+
+// Definitions
+interface IPostJson {
+  body: string
+  id: number
+  title: string
+  userId: number
+}
 
 // Models
 const Comment = types.model('Comment', {
   body: types.string,
   email: types.string,
   id: types.identifier(types.number),
-  name: types.string,
-  postId: types.number
+  name: types.string
 })
 const Post = types.model('Post', {
   author: types.reference(User),
   body: types.string,
-  comments: types.optional(types.array(types.reference(Comment)), []),
+  comments: types.optional(types.array(Comment), []),
   id: types.identifier(types.number),
-  title: types.string,
-  userId: types.number
+  title: types.string
 })
 
 // Store
 const PostStore = types
   .model('PostStore', {
-    comments: types.map(Comment),
-    posts: types.map(Post)
+    _cache: types.map(Post),
+    list: types.array(types.reference(Post)),
+    selected: types.maybe(types.reference(Post))
   })
   .views(self => ({
     get stores() {
@@ -33,57 +40,55 @@ const PostStore = types
     }
   }))
   .actions(self => {
-    function updatePosts(json: IPost[]) {
-      json.forEach(postJson => {
-        self.posts.put({ ...postJson, author: postJson.userId })
+    function updateCache(postsJson: IPostJson[]) {
+      postsJson.forEach(json => {
+        const snapshot = (({ body, id, title, userId }) => ({
+          author: userId,
+          body,
+          id,
+          title
+        }))(json)
+        const node = self._cache.get(snapshot.id.toString())
+
+        if (node) {
+          applySnapshot(node, snapshot)
+        } else {
+          self._cache.put(snapshot)
+        }
       })
     }
-
-    function updateComments(postId: number, json: IComment[]) {
-      const post = self.posts.get(postId.toString())
-
-      if (!post) {
-        return
-      }
-
-      json.forEach(commentJson => {
-        const comment = self.comments
-          .put(commentJson)
-          .get(commentJson.id.toString())!
-
-        post.comments.push(comment)
-      })
-    }
-
-    const getPost = process(function*(id: number) {
-      if (!self.posts.get(id.toString())) {
-        const json = yield self.stores.api.getPost(id)
-        updatePosts([json])
-      }
-    })
 
     const getPosts = process(function*() {
-      if (self.posts.size === 0) {
-        const json = yield self.stores.api.getPosts()
-        updatePosts(json)
+      const { userStore } = self.stores
+
+      if (!userStore.isLoaded) {
+        yield userStore.getUsers()
       }
+
+      updateCache(yield self.stores.api.getPosts())
+
+      self.list.replace(self._cache.values())
     })
 
-    const getComments = process(function*(postId: number) {
-      const post = self.posts.get(postId.toString())
+    const getPost = process(function*(id: number, withComments: boolean) {
+      const { api, userStore } = self.stores
 
-      if (post && post.comments.length === 0) {
-        const json = yield self.stores.api.getComments(postId)
-        updateComments(postId, json)
+      if (!userStore.isLoaded) {
+        yield userStore.getUsers()
+      }
+
+      updateCache([yield api.getPost(id)])
+      self.selected = self._cache.get(id.toString())!
+
+      if (withComments) {
+        self.selected.comments.replace(yield api.getComments(id))
       }
     })
 
     return {
-      getComments,
       getPost,
       getPosts,
-      updateComments,
-      updatePosts
+      updateCache
     }
   })
 

@@ -26,28 +26,21 @@ const routes: IRoutes = {
   homepage: {
     Component: Homepage,
     init: async stores => {
-      const { postStore, userStore } = stores
-
-      await Promise.all([userStore.getUsers(), postStore.getPosts()])
+      await stores.postStore.getPosts()
     },
     path: new UrlPattern('/')
   },
   post: {
     Component: Post,
     init: async (stores, params: { id: number }) => {
-      const { postStore, userStore } = stores
-
-      await Promise.all([userStore.getUsers(), postStore.getPost(params.id)])
-      await postStore.getComments(params.id)
+      await stores.postStore.getPost(params.id, true)
     },
     path: new UrlPattern('/post/:id')
   },
   postEdit: {
     Component: PostEdit,
     init: async (stores, params: { id: number }) => {
-      const { postStore } = stores
-
-      await postStore.getPost(params.id)
+      await stores.postStore.getPost(params.id, false)
     },
     path: new UrlPattern('/post/:id/edit')
   }
