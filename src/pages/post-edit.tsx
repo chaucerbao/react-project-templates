@@ -120,11 +120,16 @@ class PostEdit extends React.Component<{}, {}> {
     }
   }
 
-  private submitPostForm(e: React.FormEvent<HTMLFormElement>) {
+  private async submitPostForm(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault()
 
     if (this.postForm.validate()) {
-      // Success
+      const { stores: { postStore, viewStore } } = this.injected
+      const { id } = this.post
+
+      await postStore.savePost(id, this.postForm.fields)
+
+      viewStore.goTo(`/post/${id}`)
     }
   }
 }

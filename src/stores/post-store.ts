@@ -2,15 +2,8 @@
 import { applySnapshot, getParent, process, types } from 'mobx-state-tree'
 
 // Interfaces
+import { IPostJson } from './api'
 import { User } from './user-store'
-
-// Definitions
-interface IPostJson {
-  body: string
-  id: number
-  title: string
-  userId: number
-}
 
 // Models
 const Comment = types.model('Comment', {
@@ -83,9 +76,14 @@ const PostStore = types
       }
     })
 
+    const savePost = process(function*(id: number, body: Partial<IPostJson>) {
+      yield self.stores.api.savePost(id, body)
+    })
+
     return {
       getPost,
       getPosts,
+      savePost,
       updateCache
     }
   })

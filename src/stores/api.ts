@@ -1,5 +1,11 @@
 // Definitions
 type Fetcher = typeof window.fetch
+interface IPostJson {
+  body: string
+  id: number
+  title: string
+  userId: number
+}
 
 // API
 class Api {
@@ -9,18 +15,25 @@ class Api {
     this.fetcher = fetcher
   }
 
-  public getPost(id: number) {
-    return this.fetch(`https://jsonplaceholder.typicode.com/posts/${id}`)
-  }
-
   public getPosts() {
     return this.fetch('https://jsonplaceholder.typicode.com/posts')
+  }
+
+  public getPost(id: number) {
+    return this.fetch(`https://jsonplaceholder.typicode.com/posts/${id}`)
   }
 
   public getComments(postId: number) {
     return this.fetch(
       `https://jsonplaceholder.typicode.com/posts/${postId}/comments`
     )
+  }
+
+  public savePost(id: number, body: IPostJson) {
+    return this.fetch(`https://jsonplaceholder.typicode.com/posts/${id}`, {
+      body: JSON.stringify(body),
+      method: 'PUT'
+    })
   }
 
   public getUsers() {
@@ -34,3 +47,5 @@ class Api {
 
 // Exports
 export default Api
+
+export { IPostJson }
