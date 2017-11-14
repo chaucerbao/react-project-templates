@@ -33,20 +33,14 @@ const routes: IRoutes = {
   post: {
     Component: Post,
     init: (stores, { id }: { id: number }) => {
-      const { postStore } = stores
-
-      postStore.selectPost(id)
-      postStore.getPost(id, true)
+      stores.postStore.getPost(id, true)
     },
     path: new UrlPattern('/post/:id')
   },
   postEdit: {
     Component: PostEdit,
     init: (stores, { id }: { id: number }) => {
-      const { postStore } = stores
-
-      postStore.selectPost(id)
-      postStore.getPost(id, false)
+      stores.postStore.getPost(id, false)
     },
     path: new UrlPattern('/post/:id/edit')
   }

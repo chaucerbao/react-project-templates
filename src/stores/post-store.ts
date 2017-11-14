@@ -74,6 +74,7 @@ const PostStore = types
 
       yield userStore.getUsers()
 
+      selectPost(id)
       updateCache([yield api.getPost(id)])
       const post = selectPost(id)
 
