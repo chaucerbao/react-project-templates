@@ -3,12 +3,14 @@ import { computed, observable } from 'mobx'
 import { inject, observer } from 'mobx-react'
 import * as React from 'react'
 import styled from 'styled-components'
-import FieldSet from '../lib/field-set'
 
 // Components
 import Button from '../components/button'
 import { Input, TextArea } from '../components/form'
 import Loading from '../components/loading'
+
+// Helpers
+import FormField from '../lib/form-field'
 
 // Interfaces
 import { IStores } from '../stores'
@@ -17,9 +19,9 @@ import { IStores } from '../stores'
 interface IInjectedProps {
   stores: IStores
 }
-interface IPostFormFields {
-  title: string
-  body: string
+interface IForm {
+  body: FormField<string>
+  title: FormField<string>
 }
 
 // Styles
@@ -31,7 +33,8 @@ const PostForm = styled.form`
 @inject('stores')
 @observer
 class PostEdit extends React.Component<{}, {}> {
-  @observable private postForm: FieldSet<IPostFormFields>
+  @observable private form: IForm
+
   private isPrepopulated = false
 
   get injected() {
@@ -46,16 +49,16 @@ class PostEdit extends React.Component<{}, {}> {
   constructor() {
     super()
 
-    this.postForm = new FieldSet(
-      {
-        body: '',
-        title: ''
-      },
-      {
-        body: (value: string) => (value.length ? '' : 'Body is required'),
-        title: (value: string) => (value.length ? '' : 'Title is required')
-      }
-    )
+    this.form = {
+      body: new FormField(
+        '',
+        value => (value.length ? '' : 'Body is required')
+      ),
+      title: new FormField(
+        '',
+        value => (value.length ? '' : 'Title is required')
+      )
+    }
 
     this.updateField = this.updateField.bind(this)
     this.submitForm = this.submitForm.bind(this)
@@ -70,7 +73,7 @@ class PostEdit extends React.Component<{}, {}> {
   }
 
   public render() {
-    const { fields, errors } = this.postForm
+    const { body, title } = this.form
 
     return (
       <PostForm onSubmit={this.submitForm}>
@@ -81,16 +84,16 @@ class PostEdit extends React.Component<{}, {}> {
             key="title"
             label="Title"
             name="title"
-            value={fields.title}
-            error={errors.title}
+            value={title.value}
+            error={title.error}
             onChange={this.updateField}
           />,
           <TextArea
             key="body"
             label="Body"
             name="body"
-            value={fields.body}
-            error={errors.body}
+            value={body.value}
+            error={body.error}
             onChange={this.updateField}
           />,
           <Button primary={true} key="submit" type="submit">
@@ -106,12 +109,11 @@ class PostEdit extends React.Component<{}, {}> {
 
   private prepopulateForm() {
     if (!this.isPrepopulated && this.selectedPost) {
+      const form = this.form
       const { body, title } = this.selectedPost
 
-      this.postForm.setValues({
-        body,
-        title
-      })
+      form.body.set(body)
+      form.title.set(title)
 
       this.isPrepopulated = true
     }
@@ -119,22 +121,31 @@ class PostEdit extends React.Component<{}, {}> {
 
   private updateField(e: React.FormEvent<HTMLFormElement>) {
     const { name, value } = e.currentTarget
+    const field = this.form[name]
 
-    this.postForm.setValues({ [name]: value })
+    field.set(value)
 
-    if (this.postForm.errors[name]) {
-      this.postForm.validate(name)
+    if (field.error) {
+      field.validate()
     }
   }
 
   private async submitForm(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault()
 
-    if (this.selectedPost && this.postForm.validate()) {
+    const hasErrors = Object.keys(this.form)
+      .map(field => this.form[field].validate())
+      .some(error => error)
+
+    if (this.selectedPost && !hasErrors) {
       const { stores: { postStore, viewStore } } = this.injected
       const { id } = this.selectedPost
+      const { body, title } = this.form
 
-      await postStore.savePost(id, this.postForm.fields)
+      await postStore.savePost(id, {
+        body: body.value,
+        title: title.value
+      })
 
       viewStore.goTo(`/post/${id}`)
     }
