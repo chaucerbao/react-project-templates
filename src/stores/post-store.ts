@@ -51,6 +51,12 @@ const PostStore = types
       })
     }
 
+    function selectPost(id: number) {
+      self.selected = self._cache.get(id.toString())!
+
+      return self.selected
+    }
+
     const getPosts = process(function*() {
       const { userStore } = self.stores
 
@@ -69,10 +75,10 @@ const PostStore = types
       yield userStore.getUsers()
 
       updateCache([yield api.getPost(id)])
-      self.selected = self._cache.get(id.toString())!
+      const post = selectPost(id)
 
       if (withComments) {
-        self.selected.comments.replace(yield api.getComments(id))
+        post.comments.replace(yield api.getComments(id))
       }
     })
 
@@ -84,6 +90,7 @@ const PostStore = types
       getPost,
       getPosts,
       savePost,
+      selectPost,
       updateCache
     }
   })

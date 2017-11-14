@@ -32,15 +32,21 @@ const routes: IRoutes = {
   },
   post: {
     Component: Post,
-    init: (stores, params: { id: number }) => {
-      stores.postStore.getPost(params.id, true)
+    init: (stores, { id }: { id: number }) => {
+      const { postStore } = stores
+
+      postStore.selectPost(id)
+      postStore.getPost(id, true)
     },
     path: new UrlPattern('/post/:id')
   },
   postEdit: {
     Component: PostEdit,
-    init: (stores, params: { id: number }) => {
-      stores.postStore.getPost(params.id, false)
+    init: (stores, { id }: { id: number }) => {
+      const { postStore } = stores
+
+      postStore.selectPost(id)
+      postStore.getPost(id, false)
     },
     path: new UrlPattern('/post/:id/edit')
   }
