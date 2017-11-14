@@ -3,7 +3,7 @@ import { computed, observable } from 'mobx'
 import { inject, observer } from 'mobx-react'
 import * as React from 'react'
 import styled from 'styled-components'
-import Form from '../lib/form'
+import FieldSet from '../lib/field-set'
 
 // Components
 import Button from '../components/button'
@@ -31,7 +31,7 @@ const PostForm = styled.form`
 @inject('stores')
 @observer
 class PostEdit extends React.Component<{}, {}> {
-  @observable private postForm: Form<IPostFormFields>
+  @observable private postForm: FieldSet<IPostFormFields>
   private isPrepopulated = false
 
   get injected() {
@@ -46,7 +46,7 @@ class PostEdit extends React.Component<{}, {}> {
   constructor() {
     super()
 
-    this.postForm = new Form(
+    this.postForm = new FieldSet(
       {
         body: '',
         title: ''

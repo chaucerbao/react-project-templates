@@ -11,7 +11,7 @@ interface IValidators {
 }
 
 // Class
-class Form<T> {
+class FieldSet<T> {
   @observable public errors: IErrors = {}
   @observable public fields: T
 
@@ -51,4 +51,4 @@ class Form<T> {
 }
 
 // Exports
-export default Form
+export default FieldSet
