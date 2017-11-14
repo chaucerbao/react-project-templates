@@ -31,19 +31,16 @@ const PostForm = styled.form`
 @inject('stores')
 @observer
 class PostEdit extends React.Component<{}, {}> {
-  private isFormPopulated = false
-
   @observable private postForm: Form<IPostFormFields>
+  private isPrepopulated = false
 
   get injected() {
     return this.props as IInjectedProps
   }
 
   @computed
-  get post() {
-    const { stores: { postStore } } = this.injected
-
-    return postStore.selected!
+  get selectedPost() {
+    return this.injected.stores.postStore.selected
   }
 
   constructor() {
@@ -69,27 +66,26 @@ class PostEdit extends React.Component<{}, {}> {
   }
 
   public componentWillReact() {
-    if (!this.isFormPopulated && this.post) {
-      const { body, title } = this.post
+    if (!this.isPrepopulated && this.selectedPost) {
+      const { body, title } = this.selectedPost
 
       this.postForm.setValues({
         body,
         title
       })
 
-      this.isFormPopulated = true
+      this.isPrepopulated = true
     }
   }
 
   public render() {
-    const isPostLoaded = !!this.post
     const { fields, errors } = this.postForm
 
     return (
       <PostForm onSubmit={this.submitPostForm}>
-        {!isPostLoaded && <Loading />}
+        {!this.selectedPost && <Loading />}
 
-        {isPostLoaded && [
+        {this.selectedPost && [
           <Input
             key="title"
             label="Title"
@@ -109,7 +105,7 @@ class PostEdit extends React.Component<{}, {}> {
           <Button primary={true} key="submit" type="submit">
             Submit
           </Button>,
-          <Button key="cancel" to={`/post/${this.post.id}`}>
+          <Button key="cancel" to={`/post/${this.selectedPost.id}`}>
             Cancel
           </Button>
         ]}
@@ -130,9 +126,9 @@ class PostEdit extends React.Component<{}, {}> {
   private async submitPostForm(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault()
 
-    if (this.postForm.validate()) {
+    if (this.selectedPost && this.postForm.validate()) {
       const { stores: { postStore, viewStore } } = this.injected
-      const { id } = this.post
+      const { id } = this.selectedPost
 
       await postStore.savePost(id, this.postForm.fields)
 
