@@ -6,6 +6,7 @@ import styled from 'styled-components'
 import Form from '../lib/form'
 
 // Components
+import Button from '../components/button'
 import { Input, TextArea } from '../components/form'
 import Loading from '../components/loading'
 
@@ -104,7 +105,13 @@ class PostEdit extends React.Component<{}, {}> {
             value={fields.body}
             error={errors.body}
             onChange={this.setPostFormValue}
-          />
+          />,
+          <Button primary={true} key="submit" type="submit">
+            Submit
+          </Button>,
+          <Button key="cancel" to={`/post/${this.post.id}`}>
+            Cancel
+          </Button>
         ]}
       </PostForm>
     )
