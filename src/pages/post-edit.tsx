@@ -57,32 +57,23 @@ class PostEdit extends React.Component<{}, {}> {
       }
     )
 
-    this.setPostFormValue = this.setPostFormValue.bind(this)
-    this.submitPostForm = this.submitPostForm.bind(this)
+    this.updateField = this.updateField.bind(this)
+    this.submitForm = this.submitForm.bind(this)
   }
 
   public componentWillMount() {
-    this.componentWillReact()
+    this.prepopulateForm()
   }
 
   public componentWillReact() {
-    if (!this.isPrepopulated && this.selectedPost) {
-      const { body, title } = this.selectedPost
-
-      this.postForm.setValues({
-        body,
-        title
-      })
-
-      this.isPrepopulated = true
-    }
+    this.prepopulateForm()
   }
 
   public render() {
     const { fields, errors } = this.postForm
 
     return (
-      <PostForm onSubmit={this.submitPostForm}>
+      <PostForm onSubmit={this.submitForm}>
         {!this.selectedPost && <Loading />}
 
         {this.selectedPost && [
@@ -92,7 +83,7 @@ class PostEdit extends React.Component<{}, {}> {
             name="title"
             value={fields.title}
             error={errors.title}
-            onChange={this.setPostFormValue}
+            onChange={this.updateField}
           />,
           <TextArea
             key="body"
@@ -100,7 +91,7 @@ class PostEdit extends React.Component<{}, {}> {
             name="body"
             value={fields.body}
             error={errors.body}
-            onChange={this.setPostFormValue}
+            onChange={this.updateField}
           />,
           <Button primary={true} key="submit" type="submit">
             Submit
@@ -113,7 +104,20 @@ class PostEdit extends React.Component<{}, {}> {
     )
   }
 
-  private setPostFormValue(e: React.FormEvent<HTMLFormElement>) {
+  private prepopulateForm() {
+    if (!this.isPrepopulated && this.selectedPost) {
+      const { body, title } = this.selectedPost
+
+      this.postForm.setValues({
+        body,
+        title
+      })
+
+      this.isPrepopulated = true
+    }
+  }
+
+  private updateField(e: React.FormEvent<HTMLFormElement>) {
     const { name, value } = e.currentTarget
 
     this.postForm.setValues({ [name]: value })
@@ -123,7 +127,7 @@ class PostEdit extends React.Component<{}, {}> {
     }
   }
 
-  private async submitPostForm(e: React.FormEvent<HTMLFormElement>) {
+  private async submitForm(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault()
 
     if (this.selectedPost && this.postForm.validate()) {
