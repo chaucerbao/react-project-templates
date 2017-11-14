@@ -16,49 +16,44 @@ interface IInjectedProps {
 }
 
 // Styles
-const tilesPerRow = (count: number) =>
-  `width: calc(100% / ${count} - 2px - 16px)`
-
 const Posts = styled.section`
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid: auto / auto;
+  grid-gap: 16px;
   padding: 40px 20px;
+
+  @media (min-width: 425px) {
+    grid-template-columns: repeat(2, auto);
+  }
+
+  @media (min-width: 768px) {
+    grid-template-columns: repeat(3, auto);
+  }
+
+  @media (min-width: 1280px) {
+    grid-template-columns: repeat(4, auto);
+  }
 `
 const Post = styled(Link)`
-  ${tilesPerRow(1)};
   display: flex;
   flex-direction: column;
-  margin: 8px;
-  border: solid black 1px;
+  border: 1px solid black;
   border-radius: 12px;
   box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.25);
   background-color: white;
   overflow: hidden;
   text-decoration: none;
   color: black;
-
-  @media (min-width: 425px) {
-    ${tilesPerRow(2)};
-  }
-
-  @media (min-width: 768px) {
-    ${tilesPerRow(3)};
-  }
-
-  @media (min-width: 1280px) {
-    ${tilesPerRow(4)};
-  }
+`
+const PostImage = styled.img`
+  width: 100%;
+  object-fit: cover;
 `
 const PostContent = styled.div`
   display: flex;
   flex: 1;
   flex-direction: column;
   padding: 16px;
-`
-const PostImage = styled.img`
-  display: block;
-  width: 100%;
-  object-fit: cover;
 `
 const PostTitle = styled.h2`
   margin: 0 0 8px;
