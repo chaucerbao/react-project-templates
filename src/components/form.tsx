@@ -3,22 +3,24 @@ import * as React from 'react'
 import styled from 'styled-components'
 
 // Definitions
-interface IFieldProps {
+interface IField {
   children?: any
   error?: string
   label?: string
   name: string
 }
-interface IProps {
-  name: string
-  options?: IOption[]
+interface ITextField extends IField {
   [key: string]: any
 }
-interface IMultipleProps extends IProps {
+interface IOptionSetField extends IField {
+  [key: string]: any
   options: IOption[]
-  value: Array<number | string>
+  value: number | string | Array<number | string>
 }
-type IOption = [number | string, string]
+interface IOption {
+  label: string
+  value: number | string
+}
 
 // Styles
 const FormField = styled.div`
@@ -33,7 +35,7 @@ const ErrorMessage = styled.span`
 `
 
 // Components
-const Field = ({ children, error, label, name }: IFieldProps) => (
+const Field = ({ children, error, label, name }: IField) => (
   <FormField>
     {label && <Label htmlFor={name}>{label}</Label>}
     {children}
@@ -41,13 +43,13 @@ const Field = ({ children, error, label, name }: IFieldProps) => (
   </FormField>
 )
 
-const Input = ({ error, label, name, ...props }: IProps) => (
+const Input = ({ error, label, name, ...props }: ITextField) => (
   <Field label={label} name={name} error={error}>
     <input {...props} id={name} name={name} type="text" />
   </Field>
 )
 
-const TextArea = ({ error, label, name, ...props }: IProps) => (
+const TextArea = ({ error, label, name, ...props }: ITextField) => (
   <Field label={label} name={name} error={error}>
     <textarea {...props} id={name} name={name} />
   </Field>
@@ -57,20 +59,48 @@ const Checkbox = ({
   error,
   label,
   name,
-  value = [],
+  value,
   options = [],
   ...props
-}: IMultipleProps) => (
+}: IOptionSetField) => (
   <Field label={label} name={name} error={error}>
-    {options.map(([optionValue, optionLabel]) => (
-      <label key={`${props.name}:${optionLabel}`}>
-        <span>{optionLabel}</span>
+    {options.map((option: IOption) => (
+      <label key={`${name}:${option.label}`}>
+        <span>{option.label}</span>
         <input
           {...props}
           name={name}
-          value={optionValue}
+          value={option.value}
           type="checkbox"
-          checked={value.indexOf(optionValue.toString()) > -1}
+          checked={
+            Array.isArray(value)
+              ? value.indexOf(option.value.toString()) > -1
+              : value === option.value
+          }
+        />
+      </label>
+    ))}
+  </Field>
+)
+
+const Radio = ({
+  error,
+  label,
+  name,
+  value,
+  options = [],
+  ...props
+}: IOptionSetField) => (
+  <Field label={label} name={name} error={error}>
+    {options.map((option: IOption) => (
+      <label key={`${name}:${option.label}`}>
+        <span>{option.label}</span>
+        <input
+          {...props}
+          name={name}
+          value={option.value}
+          type="radio"
+          checked={value === option.value}
         />
       </label>
     ))}
@@ -78,4 +108,4 @@ const Checkbox = ({
 )
 
 // Exports
-export { Checkbox, Input, TextArea }
+export { Checkbox, Input, Radio, TextArea }

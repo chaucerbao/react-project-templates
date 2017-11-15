@@ -6,7 +6,7 @@ import styled from 'styled-components'
 
 // Components
 import Button from '../components/button'
-import { Checkbox, Input, TextArea } from '../components/form'
+import { Checkbox, Input, Radio, TextArea } from '../components/form'
 import Loading from '../components/loading'
 
 // Helpers
@@ -21,6 +21,7 @@ interface IInjectedProps {
 }
 interface IForm {
   body: FormField<string>
+  published: FormField<string>
   tags: FormField<number[]>
   title: FormField<string>
 }
@@ -54,6 +55,9 @@ class PostEdit extends React.Component<{}, {}> {
         validate: value => (value ? '' : 'Body is required'),
         value: ''
       }),
+      published: new FormField({
+        value: 'no'
+      }),
       tags: new FormField({
         validate: value => (value.length ? '' : 'At least 1 tag is required'),
         value: []
@@ -77,7 +81,7 @@ class PostEdit extends React.Component<{}, {}> {
   }
 
   public render() {
-    const { body, tags, title } = this.form
+    const { body, published, tags, title } = this.form
 
     return (
       <PostForm onSubmit={this.submitForm}>
@@ -105,8 +109,24 @@ class PostEdit extends React.Component<{}, {}> {
             label="Tags"
             name="tags"
             value={tags.value}
-            options={[[1, 'Tag 1'], [2, 'Tag 2'], [3, 'Tag 3']]}
+            options={[
+              { label: 'Tag 1', value: 1 },
+              { label: 'Tag 2', value: 2 },
+              { label: 'Tag 3', value: 3 }
+            ]}
             error={tags.error}
+            onChange={this.updateField}
+          />,
+          <Radio
+            key="published"
+            label="Published"
+            name="published"
+            value={published.value}
+            options={[
+              { label: 'Yes', value: 'yes' },
+              { label: 'No', value: 'no' }
+            ]}
+            error={published.error}
             onChange={this.updateField}
           />,
           <Button primary={true} key="submit" type="submit">
