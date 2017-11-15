@@ -6,7 +6,7 @@ import styled from 'styled-components'
 
 // Components
 import Button from '../components/button'
-import { Input, TextArea } from '../components/form'
+import { Checkbox, Input, TextArea } from '../components/form'
 import Loading from '../components/loading'
 
 // Helpers
@@ -21,6 +21,7 @@ interface IInjectedProps {
 }
 interface IForm {
   body: FormField<string>
+  tags: FormField<number[]>
   title: FormField<string>
 }
 
@@ -34,7 +35,6 @@ const PostForm = styled.form`
 @observer
 class PostEdit extends React.Component<{}, {}> {
   @observable private form: IForm
-
   private isPrepopulated = false
 
   get injected() {
@@ -50,14 +50,12 @@ class PostEdit extends React.Component<{}, {}> {
     super()
 
     this.form = {
-      body: new FormField(
-        '',
-        value => (value.length ? '' : 'Body is required')
+      body: new FormField('', value => (value ? '' : 'Body is required')),
+      tags: new FormField(
+        [],
+        value => (value.length ? '' : 'At least 1 tag is required')
       ),
-      title: new FormField(
-        '',
-        value => (value.length ? '' : 'Title is required')
-      )
+      title: new FormField('', value => (value ? '' : 'Title is required'))
     }
 
     this.updateField = this.updateField.bind(this)
@@ -73,7 +71,7 @@ class PostEdit extends React.Component<{}, {}> {
   }
 
   public render() {
-    const { body, title } = this.form
+    const { body, tags, title } = this.form
 
     return (
       <PostForm onSubmit={this.submitForm}>
@@ -94,6 +92,15 @@ class PostEdit extends React.Component<{}, {}> {
             name="body"
             value={body.value}
             error={body.error}
+            onChange={this.updateField}
+          />,
+          <Checkbox
+            key="tags"
+            label="Tags"
+            name="tags"
+            value={tags.value}
+            options={[[1, 'Tag 1'], [2, 'Tag 2'], [3, 'Tag 3']]}
+            error={tags.error}
             onChange={this.updateField}
           />,
           <Button primary={true} key="submit" type="submit">
@@ -123,7 +130,11 @@ class PostEdit extends React.Component<{}, {}> {
     const { name, value } = e.currentTarget
     const field = this.form[name]
 
-    field.set(value)
+    if (Array.isArray(field.value)) {
+      field.toggle(value)
+    } else {
+      field.set(value)
+    }
 
     if (field.error) {
       field.validate()

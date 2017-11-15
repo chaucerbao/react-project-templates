@@ -11,8 +11,14 @@ interface IFieldProps {
 }
 interface IProps {
   name: string
+  options?: IOption[]
   [key: string]: any
 }
+interface IMultipleProps extends IProps {
+  options: IOption[]
+  value: Array<number | string>
+}
+type IOption = [number | string, string]
 
 // Styles
 const FormField = styled.div`
@@ -35,17 +41,41 @@ const Field = ({ children, error, label, name }: IFieldProps) => (
   </FormField>
 )
 
-const Input = ({ error, label, ...props }: IProps) => (
-  <Field label={label} name={props.name} error={error}>
-    <input {...props} id={props.name} type="text" />
+const Input = ({ error, label, name, ...props }: IProps) => (
+  <Field label={label} name={name} error={error}>
+    <input {...props} id={name} name={name} type="text" />
   </Field>
 )
 
-const TextArea = ({ error, label, ...props }: IProps) => (
-  <Field label={label} name={props.name} error={error}>
-    <textarea {...props} id={props.name} />
+const TextArea = ({ error, label, name, ...props }: IProps) => (
+  <Field label={label} name={name} error={error}>
+    <textarea {...props} id={name} name={name} />
+  </Field>
+)
+
+const Checkbox = ({
+  error,
+  label,
+  name,
+  value = [],
+  options = [],
+  ...props
+}: IMultipleProps) => (
+  <Field label={label} name={name} error={error}>
+    {options.map(([optionValue, optionLabel]) => (
+      <label key={`${props.name}:${optionLabel}`}>
+        <span>{optionLabel}</span>
+        <input
+          {...props}
+          name={name}
+          value={optionValue}
+          type="checkbox"
+          checked={value.indexOf(optionValue.toString()) > -1}
+        />
+      </label>
+    ))}
   </Field>
 )
 
 // Exports
-export { Input, TextArea }
+export { Checkbox, Input, TextArea }
