@@ -6,7 +6,7 @@ import styled from 'styled-components'
 
 // Components
 import Button from '../components/button'
-import { Checkbox, Input, Radio, TextArea } from '../components/form'
+import { Checkbox, Input, Radio, Select, TextArea } from '../components/form'
 import Loading from '../components/loading'
 
 // Helpers
@@ -21,6 +21,7 @@ interface IInjectedProps {
 }
 interface IForm {
   body: FormField<string>
+  category: FormField<string>
   published: FormField<string>
   tags: FormField<number[]>
   title: FormField<string>
@@ -55,9 +56,11 @@ class PostEdit extends React.Component<{}, {}> {
         validate: value => (value ? '' : 'Body is required'),
         value: ''
       }),
-      published: new FormField({
-        value: 'no'
+      category: new FormField({
+        validate: value => (value ? '' : 'Category is required'),
+        value: ''
       }),
+      published: new FormField({ value: 'no' }),
       tags: new FormField({
         validate: value => (value.length ? '' : 'At least 1 tag is required'),
         value: []
@@ -81,7 +84,7 @@ class PostEdit extends React.Component<{}, {}> {
   }
 
   public render() {
-    const { body, published, tags, title } = this.form
+    const { body, category, published, tags, title } = this.form
 
     return (
       <PostForm onSubmit={this.submitForm}>
@@ -102,6 +105,19 @@ class PostEdit extends React.Component<{}, {}> {
             name="body"
             value={body.value}
             error={body.error}
+            onChange={this.updateField}
+          />,
+          <Select
+            key="category"
+            label="Category"
+            name="category"
+            value={category.value}
+            options={[
+              { label: 'Category 1', value: 'One' },
+              { label: 'Category 2', value: 'Two' },
+              { label: 'Category 3', value: 'Three' }
+            ]}
+            error={category.error}
             onChange={this.updateField}
           />,
           <Checkbox
@@ -153,10 +169,20 @@ class PostEdit extends React.Component<{}, {}> {
   }
 
   private updateField(e: React.FormEvent<HTMLFormElement>) {
-    const { name, value } = e.currentTarget
+    const { multiple, name, options, value } = e.currentTarget
     const field = this.form[name]
 
-    if (Array.isArray(field.value)) {
+    if (multiple) {
+      const selected = []
+
+      for (let i = 0, size = options.length; i < size; i++) {
+        if (options[i].selected) {
+          selected.push(options[i].value)
+        }
+      }
+
+      field.set(selected)
+    } else if (Array.isArray(field.value)) {
       field.toggle(value)
     } else {
       field.set(value)

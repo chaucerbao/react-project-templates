@@ -107,5 +107,31 @@ const Radio = ({
   </Field>
 )
 
+const Select = ({
+  error,
+  label,
+  name,
+  value,
+  options = [],
+  ...props
+}: IOptionSetField) => (
+  <Field label={label} name={name} error={error}>
+    <select {...props} id={name} name={name}>
+      {options.map((option: IOption) => (
+        <option
+          key={`${name}:${option.label}`}
+          value={option.value}
+          selected={
+            Array.isArray(value)
+              ? value.indexOf(option.value.toString()) > -1
+              : value === option.value
+          }
+        >
+          {option.label}
+        </option>
+      ))}
+    </select>
+  </Field>
+)
 // Exports
-export { Checkbox, Input, Radio, TextArea }
+export { Checkbox, Input, Radio, Select, TextArea }
