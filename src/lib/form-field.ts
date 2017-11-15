@@ -4,16 +4,20 @@ import { action, isObservableArray, observable } from 'mobx'
 // Definitions
 type IValue = Date | boolean | number | string
 type IValidator<T> = (value: T) => string
+interface IProps<T> {
+  validate?: IValidator<T>
+  value: T
+}
 
 // Class
 class FormField<T extends IValue | IValue[]> {
-  @observable public error: string = ''
   @observable private Value: T
+  @observable private Error = ''
   private validator?: IValidator<T>
 
-  constructor(value: T, validator?: IValidator<T>) {
+  constructor({ validate, value }: IProps<T>) {
     this.Value = value
-    this.validator = validator
+    this.validator = validate
   }
 
   get value() {
@@ -22,6 +26,10 @@ class FormField<T extends IValue | IValue[]> {
     }
 
     return this.Value
+  }
+
+  get error() {
+    return this.Error
   }
 
   @action
@@ -43,9 +51,9 @@ class FormField<T extends IValue | IValue[]> {
   @action
   public validate() {
     if (this.validator) {
-      this.error = this.validator(this.Value)
+      this.Error = this.validator(this.Value)
 
-      return this.error
+      return this.Error
     }
 
     return ''

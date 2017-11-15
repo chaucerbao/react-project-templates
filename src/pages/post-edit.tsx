@@ -50,12 +50,18 @@ class PostEdit extends React.Component<{}, {}> {
     super()
 
     this.form = {
-      body: new FormField('', value => (value ? '' : 'Body is required')),
-      tags: new FormField(
-        [],
-        value => (value.length ? '' : 'At least 1 tag is required')
-      ),
-      title: new FormField('', value => (value ? '' : 'Title is required'))
+      body: new FormField({
+        validate: value => (value ? '' : 'Body is required'),
+        value: ''
+      }),
+      tags: new FormField({
+        validate: value => (value.length ? '' : 'At least 1 tag is required'),
+        value: []
+      }),
+      title: new FormField({
+        validate: value => (value ? '' : 'Title is required'),
+        value: ''
+      })
     }
 
     this.updateField = this.updateField.bind(this)
