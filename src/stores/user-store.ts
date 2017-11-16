@@ -1,7 +1,7 @@
-// Libraries
+// Third-party dependencies
 import { applySnapshot, getParent, process, types } from 'mobx-state-tree'
 
-// Definitions
+// Type definitions
 interface IUserJson {
   email: string
   id: number
@@ -58,8 +58,8 @@ const UserStore = types
   })
 
 // Exports
-export { User }
 export default UserStore
+export { User }
 
 export type IUser = typeof User.Type
 export type IUserStore = typeof UserStore.Type

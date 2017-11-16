@@ -1,15 +1,15 @@
-// Libraries
+// Third-party dependencies
 import * as UrlPattern from 'url-pattern'
-
-// Interfaces
-import { IStores } from './stores'
 
 // Pages
 import Homepage from './pages/homepage'
 import Post from './pages/post'
 import PostEdit from './pages/post-edit'
 
-// Definitions
+// External type definitions
+import { IStores } from './stores'
+
+// Type definitions
 interface IRoute {
   Component: any
   init?: (

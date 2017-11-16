@@ -1,8 +1,8 @@
-// Libraries
+// Third-party dependencies
 import * as React from 'react'
 import styled from 'styled-components'
 
-// Definitions
+// Type definitions
 interface IField {
   children?: any
   error?: string

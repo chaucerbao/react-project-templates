@@ -1,4 +1,4 @@
-// Libraries
+// Third-party dependencies
 import { inject, observer } from 'mobx-react'
 import * as React from 'react'
 
@@ -8,11 +8,11 @@ import Layout from './pages/layout'
 // Pages
 import NotFound from './pages/not-found'
 
-// Interfaces
+// External type definitions
 import { IRoutes } from './routes'
 import { IStores } from './stores'
 
-// Definitions
+// Type definitions
 interface IProps {
   routes: IRoutes
 }

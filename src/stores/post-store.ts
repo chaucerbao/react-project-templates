@@ -1,9 +1,11 @@
-// Libraries
+// Third-party dependencies
 import { applySnapshot, getParent, process, types } from 'mobx-state-tree'
 
-// Interfaces
-import { IPostJson } from './api'
+// External models
 import { User } from './user-store'
+
+// External type definitions
+import { IPostJson } from './api'
 
 // Models
 const Comment = types.model('Comment', {
@@ -97,8 +99,8 @@ const PostStore = types
   })
 
 // Exports
-export { Comment, Post }
 export default PostStore
+export { Comment, Post }
 
 export type IComment = typeof Comment.Type
 export type IPost = typeof Post.Type

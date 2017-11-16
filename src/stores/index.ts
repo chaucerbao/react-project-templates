@@ -1,4 +1,4 @@
-// Libraries
+// Third-party dependencies
 import { getEnv, types } from 'mobx-state-tree'
 
 // Individual stores

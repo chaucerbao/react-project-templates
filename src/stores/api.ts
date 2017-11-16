@@ -1,4 +1,4 @@
-// Definitions
+// Type definitions
 type Fetcher = typeof window.fetch
 interface IPostJson {
   body: string

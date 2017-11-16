@@ -1,11 +1,11 @@
-// Libraries
+// Third-party dependencies
 import { inject, observer } from 'mobx-react'
 import * as React from 'react'
 
-// Interfaces
+// External type definitions
 import { IStores } from '../stores'
 
-// Definitions
+// Type definitions
 type IEventHandler = (e?: React.MouseEvent<HTMLAnchorElement>) => boolean | void
 interface IProps {
   children: any

@@ -1,7 +1,7 @@
-// Libraries
+// Third-party dependencies
 import { action, isObservableArray, observable } from 'mobx'
 
-// Definitions
+// Type definitions
 type IValue = string
 type IFormField = IValue | IValue[]
 type IValidator<T> = (value: T) => string

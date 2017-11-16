@@ -1,4 +1,4 @@
-// Libraries
+// Third-party dependencies
 import { reaction } from 'mobx'
 import { Provider } from 'mobx-react'
 import * as React from 'react'
@@ -9,7 +9,7 @@ import registerServiceWorker from './register-service-worker'
 import Stores from './stores'
 import Api from './stores/api'
 
-// Router
+// Routing
 import Router from './router'
 import routes from './routes'
 

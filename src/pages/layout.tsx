@@ -1,11 +1,11 @@
-// Libraries
+// Third-party dependencies
 import * as React from 'react'
 import styled from 'styled-components'
 
 // Components
 import Link from '../components/link'
 
-// Definitions
+// Type definitions
 interface IProps {
   children: any
 }

@@ -1,4 +1,4 @@
-// Libraries
+// Third-party dependencies
 import { getParent, types } from 'mobx-state-tree'
 
 // Model

@@ -1,4 +1,4 @@
-// Libraries
+// Third-party dependencies
 import { inject, observer } from 'mobx-react'
 import * as React from 'react'
 import styled from 'styled-components'
@@ -7,10 +7,10 @@ import styled from 'styled-components'
 import Link from '../components/link'
 import Loading from '../components/loading'
 
-// Interfaces
+// External type definitions
 import { IStores } from '../stores'
 
-// Definitions
+// Type definitions
 interface IInjectedProps {
   stores: IStores
 }

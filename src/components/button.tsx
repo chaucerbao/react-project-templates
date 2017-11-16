@@ -1,8 +1,11 @@
-// Libraries
+// Third-party dependencies
 import * as React from 'react'
 import styled, { css } from 'styled-components'
 
-// Definitions
+// Components
+import Link from './link'
+
+// Type definitions
 interface IProps {
   children?: any
   to?: string
@@ -12,9 +15,6 @@ interface IProps {
 interface IStyleProps {
   primary?: boolean
 }
-
-// Components
-import Link from './link'
 
 // Styles
 const buttonStyles = css`

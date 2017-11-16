@@ -1,4 +1,4 @@
-// Libraries
+// Third-party dependencies
 import { computed, observable } from 'mobx'
 import { inject, observer } from 'mobx-react'
 import * as React from 'react'
@@ -12,10 +12,10 @@ import Loading from '../components/loading'
 // Helpers
 import FormField from '../lib/form-field'
 
-// Interfaces
+// External type definitions
 import { IStores } from '../stores'
 
-// Definitions
+// Type definitions
 interface IInjectedProps {
   stores: IStores
 }
