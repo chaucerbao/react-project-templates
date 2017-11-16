@@ -60,11 +60,11 @@ const PostStore = types
     }
 
     const getPosts = process(function*() {
-      const { userStore } = self.stores
+      const { api, userStore } = self.stores
 
       yield userStore.getUsers()
 
-      updateCache(yield self.stores.api.getPosts())
+      updateCache(yield api.getPosts())
 
       self.list.replace(
         self._cache.values().sort((a, b) => (a.id < b.id ? -1 : 1))
