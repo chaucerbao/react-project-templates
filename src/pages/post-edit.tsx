@@ -23,7 +23,7 @@ interface IForm {
   body: FormField<string>
   category: FormField<string>
   published: FormField<string>
-  tags: FormField<number[]>
+  tags: FormField<string[]>
   title: FormField<string>
 }
 
@@ -126,9 +126,9 @@ class PostEdit extends React.Component<{}, {}> {
             name="tags"
             value={tags.value}
             options={[
-              { label: 'Tag 1', value: 1 },
-              { label: 'Tag 2', value: 2 },
-              { label: 'Tag 3', value: 3 }
+              { label: 'Tag 1', value: '1' },
+              { label: 'Tag 2', value: '2' },
+              { label: 'Tag 3', value: '3' }
             ]}
             error={tags.error}
             onChange={this.updateField}

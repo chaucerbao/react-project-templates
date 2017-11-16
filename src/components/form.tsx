@@ -15,15 +15,15 @@ interface ITextField extends IField {
 interface IOptionSetField extends IField {
   [key: string]: any
   options: IOption[]
-  value: number | string | Array<number | string>
+  value: string | string[]
 }
 interface IOption {
   label: string
-  value: number | string
+  value: string
 }
 
 // Styles
-const FormField = styled.div`
+const StyledField = styled.div`
   display: flex;
   flex-flow: column;
 `
@@ -36,11 +36,11 @@ const ErrorMessage = styled.span`
 
 // Components
 const Field = ({ children, error, label, name }: IField) => (
-  <FormField>
+  <StyledField>
     {label && <Label htmlFor={name}>{label}</Label>}
     {children}
     {error && <ErrorMessage>{error}</ErrorMessage>}
-  </FormField>
+  </StyledField>
 )
 
 const Input = ({ error, label, name, ...props }: ITextField) => (
@@ -64,7 +64,7 @@ const Checkbox = ({
   ...props
 }: IOptionSetField) => (
   <Field label={label} name={name} error={error}>
-    {options.map((option: IOption) => (
+    {options.map(option => (
       <label key={`${name}:${option.label}`}>
         <span>{option.label}</span>
         <input
@@ -92,7 +92,7 @@ const Radio = ({
   ...props
 }: IOptionSetField) => (
   <Field label={label} name={name} error={error}>
-    {options.map((option: IOption) => (
+    {options.map(option => (
       <label key={`${name}:${option.label}`}>
         <span>{option.label}</span>
         <input
@@ -116,17 +116,9 @@ const Select = ({
   ...props
 }: IOptionSetField) => (
   <Field label={label} name={name} error={error}>
-    <select {...props} id={name} name={name}>
-      {options.map((option: IOption) => (
-        <option
-          key={`${name}:${option.label}`}
-          value={option.value}
-          selected={
-            Array.isArray(value)
-              ? value.indexOf(option.value.toString()) > -1
-              : value === option.value
-          }
-        >
+    <select {...props} id={name} name={name} value={value}>
+      {options.map(option => (
+        <option key={`${name}:${option.label}`} value={option.value}>
           {option.label}
         </option>
       ))}

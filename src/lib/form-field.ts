@@ -2,7 +2,7 @@
 import { action, isObservableArray, observable } from 'mobx'
 
 // Definitions
-type IValue = Date | boolean | number | string
+type IValue = string
 type IFormField = IValue | IValue[]
 type IValidator<T> = (value: T) => string
 interface IProps<T> {
