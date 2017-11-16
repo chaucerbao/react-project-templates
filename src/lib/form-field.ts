@@ -60,5 +60,29 @@ class FormField<T extends IValue | IValue[]> {
   }
 }
 
+function updateFormField(
+  field: FormField<IValue | IValue[]>,
+  e: React.FormEvent<HTMLInputElement & HTMLSelectElement & HTMLTextAreaElement>
+) {
+  const { multiple, options, value } = e.currentTarget
+
+  if (multiple) {
+    const selected = []
+
+    for (let i = 0, size = options.length; i < size; i++) {
+      if (options[i].selected) {
+        selected.push(options[i].value)
+      }
+    }
+
+    field.set(selected)
+  } else if (Array.isArray(field.value)) {
+    field.toggle(value)
+  } else {
+    field.set(value)
+  }
+}
+
 // Exports
 export default FormField
+export { updateFormField }

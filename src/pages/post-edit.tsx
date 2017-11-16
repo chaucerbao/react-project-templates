@@ -10,7 +10,7 @@ import { Checkbox, Input, Radio, Select, TextArea } from '../components/form'
 import Loading from '../components/loading'
 
 // Helpers
-import FormField from '../lib/form-field'
+import FormField, { updateFormField } from '../lib/form-field'
 
 // Interfaces
 import { IStores } from '../stores'
@@ -168,25 +168,14 @@ class PostEdit extends React.Component<{}, {}> {
     }
   }
 
-  private updateField(e: React.FormEvent<HTMLFormElement>) {
-    const { multiple, name, options, value } = e.currentTarget
-    const field = this.form[name]
+  private updateField(
+    e: React.FormEvent<
+      HTMLInputElement & HTMLSelectElement & HTMLTextAreaElement
+    >
+  ) {
+    const field = this.form[e.currentTarget.name]
 
-    if (multiple) {
-      const selected = []
-
-      for (let i = 0, size = options.length; i < size; i++) {
-        if (options[i].selected) {
-          selected.push(options[i].value)
-        }
-      }
-
-      field.set(selected)
-    } else if (Array.isArray(field.value)) {
-      field.toggle(value)
-    } else {
-      field.set(value)
-    }
+    updateFormField(field, e)
 
     if (field.error) {
       field.validate()
