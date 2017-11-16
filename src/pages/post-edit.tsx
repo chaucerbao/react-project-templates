@@ -10,7 +10,7 @@ import { Checkbox, Input, Radio, Select, TextArea } from '../components/form'
 import Loading from '../components/loading'
 
 // Helpers
-import FormField, { updateFormField } from '../lib/form-field'
+import FormField from '../lib/form-field'
 
 // Interfaces
 import { IStores } from '../stores'
@@ -175,7 +175,7 @@ class PostEdit extends React.Component<{}, {}> {
   ) {
     const field = this.form[e.currentTarget.name]
 
-    updateFormField(field, e)
+    field.updateFromEvent(e)
 
     if (field.error) {
       field.validate()
