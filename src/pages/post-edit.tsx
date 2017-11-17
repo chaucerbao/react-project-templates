@@ -1,5 +1,5 @@
 // Third-party dependencies
-import { computed, observable } from 'mobx'
+import { computed } from 'mobx'
 import { inject, observer } from 'mobx-react'
 import * as React from 'react'
 import styled from 'styled-components'
@@ -36,7 +36,7 @@ const PostForm = styled.form`
 @inject('stores')
 @observer
 class PostEdit extends React.Component<{}, {}> {
-  @observable private form: IForm
+  private form: IForm
   private isPrepopulated = false
 
   get injected() {
