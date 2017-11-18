@@ -33,8 +33,10 @@ const UserStore = types
     }
   }))
   .actions(self => {
-    function updateCache(usersJson: IUserJson[]) {
-      usersJson.forEach(snapshot => {
+    function updateCache(json: IUserJson | IUserJson[]) {
+      const items = Array.isArray(json) ? json : [json]
+
+      items.forEach(snapshot => {
         const node = self._cache.get(snapshot.id.toString())
 
         if (node) {

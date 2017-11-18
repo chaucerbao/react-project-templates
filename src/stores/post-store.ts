@@ -5,7 +5,12 @@ import { applySnapshot, getParent, process, types } from 'mobx-state-tree'
 import { User } from './user-store'
 
 // External type definitions
-import { IPostJson } from './api'
+interface IPostJson {
+  body: string
+  id: number
+  title: string
+  userId: number
+}
 
 // Models
 const Comment = types.model('Comment', {
@@ -35,14 +40,16 @@ const PostStore = types
     }
   }))
   .actions(self => {
-    function updateCache(postsJson: IPostJson[]) {
-      postsJson.forEach(json => {
+    function updateCache(json: IPostJson | IPostJson[]) {
+      const items = Array.isArray(json) ? json : [json]
+
+      items.forEach(item => {
         const snapshot = (({ body, id, title, userId }) => ({
           author: userId,
           body,
           id,
           title
-        }))(json)
+        }))(item)
         const node = self._cache.get(snapshot.id.toString())
 
         if (node) {
@@ -77,7 +84,7 @@ const PostStore = types
       yield userStore.getUsers()
 
       selectPost(id)
-      updateCache([yield api.getPost(id)])
+      updateCache(yield api.getPost(id))
       const post = selectPost(id)
 
       if (withComments) {
@@ -105,3 +112,4 @@ export { Comment, Post }
 export type IComment = typeof Comment.Type
 export type IPost = typeof Post.Type
 export type IPostStore = typeof PostStore.Type
+export { IPostJson }

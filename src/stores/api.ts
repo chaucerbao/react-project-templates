@@ -1,11 +1,8 @@
 // Type definitions
 type Fetcher = typeof window.fetch
-interface IPostJson {
-  body: string
-  id: number
-  title: string
-  userId: number
-}
+
+// External type definitions
+import { IPostJson } from './post-store'
 
 // API
 class Api {
@@ -47,5 +44,3 @@ class Api {
 
 // Exports
 export default Api
-
-export { IPostJson }
