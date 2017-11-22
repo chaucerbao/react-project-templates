@@ -68,7 +68,7 @@ class PostEdit extends React.Component<{}, {}> {
       published: new FormField({ value: 'no' }),
       tags: new FormField({
         validate: value => (value.length ? '' : 'At least 1 tag is required'),
-        value: []
+        value: [] as string[]
       }),
       title: new FormField({
         validate: value => (value ? '' : 'Title is required'),
