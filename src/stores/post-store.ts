@@ -53,7 +53,7 @@ const PostStore = types
         const node = self._cache.get(snapshot.id.toString())
 
         if (node) {
-          applySnapshot(node, snapshot)
+          applySnapshot(node, { ...snapshot, comments: node.comments })
         } else {
           self._cache.put(snapshot)
         }
