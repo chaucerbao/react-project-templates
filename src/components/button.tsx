@@ -13,6 +13,7 @@ interface IProps {
   [key: string]: any
 }
 interface IStyleProps {
+  disabled?: boolean
   primary?: boolean
 }
 
@@ -20,6 +21,7 @@ interface IStyleProps {
 const buttonStyles = css`
   transition: background 0.25s;
   border: 1px solid gainsboro;
+  border-radius: 0;
   cursor: pointer;
   padding: 4px 8px;
   font: inherit;
@@ -41,6 +43,17 @@ const buttonStyles = css`
           background: lightgray;
         }
   `};
+  ${(props: IStyleProps) =>
+    props.disabled
+      ? `
+        background: lightgray;
+        color: white;
+
+        &:hover {
+          background: lightgray;
+        }
+      `
+      : ''};
 `
 const StyledButton = styled.button`
   ${buttonStyles};

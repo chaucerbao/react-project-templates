@@ -1,5 +1,5 @@
 // Third-party dependencies
-import { computed } from 'mobx'
+import { action, computed, extendObservable } from 'mobx'
 import { inject, observer } from 'mobx-react'
 import * as React from 'react'
 import styled from 'styled-components'
@@ -38,6 +38,7 @@ const PostForm = styled.form`
 class PostEdit extends React.Component<{}, {}> {
   private form: IForm
   private isPrepopulated = false
+  private isSubmitting = false
 
   get injected() {
     return this.props as IInjectedProps
@@ -50,6 +51,10 @@ class PostEdit extends React.Component<{}, {}> {
 
   constructor() {
     super()
+
+    extendObservable(this, {
+      isSubmitting: false
+    })
 
     this.form = {
       body: new FormField({
@@ -145,7 +150,12 @@ class PostEdit extends React.Component<{}, {}> {
             error={published.error}
             onChange={this.updateField}
           />,
-          <Button primary={true} key="submit" type="submit">
+          <Button
+            key="submit"
+            type="submit"
+            primary={true}
+            disabled={this.isSubmitting}
+          >
             Submit
           </Button>,
           <Button key="cancel" to={`/post/${this.selectedPost.id}`}>
@@ -156,6 +166,7 @@ class PostEdit extends React.Component<{}, {}> {
     )
   }
 
+  @action
   private prepopulateForm() {
     if (!this.isPrepopulated && this.selectedPost) {
       const form = this.form
@@ -168,6 +179,7 @@ class PostEdit extends React.Component<{}, {}> {
     }
   }
 
+  @action
   private updateField(
     e: React.FormEvent<
       HTMLInputElement & HTMLSelectElement & HTMLTextAreaElement
@@ -182,6 +194,7 @@ class PostEdit extends React.Component<{}, {}> {
     }
   }
 
+  @action
   private async submitForm(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault()
 
@@ -194,10 +207,12 @@ class PostEdit extends React.Component<{}, {}> {
       const { id } = this.selectedPost
       const { body, title } = this.form
 
+      this.isSubmitting = true
       await postStore.savePost(id, {
         body: body.value,
         title: title.value
       })
+      this.isSubmitting = false
 
       viewStore.goTo(`/post/${id}`)
     }
