@@ -6,11 +6,14 @@ import styled from 'styled-components'
 // External type definitions
 import { IStores } from '../stores'
 
+// Components
+import Button from './button'
+
 // Type definitions
-type IEventHandler = (e?: React.MouseEvent<HTMLAnchorElement>) => boolean | void
-interface IProps {
+type IClickHandler = (e: React.MouseEvent<HTMLAnchorElement>) => false | void
+interface IProps extends React.HTMLProps<HTMLAnchorElement> {
   children: any
-  onClick?: IEventHandler
+  onClick?: IClickHandler
   to: string
 }
 interface IInjectedProps extends IProps {
@@ -20,7 +23,7 @@ interface IInjectedProps extends IProps {
 // Component
 @inject('stores')
 @observer
-class Link extends React.Component<IProps, {}> {
+class Link extends React.Component<IProps> {
   get injected() {
     return this.props as IInjectedProps
   }
@@ -28,7 +31,7 @@ class Link extends React.Component<IProps, {}> {
   public render() {
     const {
       children,
-      onClick = () => true,
+      onClick = () => undefined,
       to,
       stores,
       ...props
@@ -41,7 +44,7 @@ class Link extends React.Component<IProps, {}> {
     )
   }
 
-  private routeTo = (path: string, onClick: IEventHandler) => {
+  private routeTo = (path: string, onClick: IClickHandler) => {
     const { stores: { viewStore } } = this.injected
 
     return (e: React.MouseEvent<HTMLAnchorElement>) => {
@@ -60,7 +63,10 @@ class Link extends React.Component<IProps, {}> {
 const StyledLink = styled(Link)`
   color: blue;
 `
+const LinkButton: any = Button.withComponent(Link as any).extend`
+  text-decoration: none;
+`
 
 // Exports
 export default StyledLink
-export { Link }
+export { Link, LinkButton }

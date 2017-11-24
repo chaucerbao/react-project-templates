@@ -7,6 +7,7 @@ import styled from 'styled-components'
 // Components
 import Button from '../components/button'
 import { Checkbox, Input, Radio, Select, TextArea } from '../components/form'
+import { LinkButton } from '../components/link'
 import Loading from '../components/loading'
 
 // Helpers
@@ -153,9 +154,9 @@ class PostEdit extends React.Component<{}, {}> {
           >
             Submit
           </Button>,
-          <Button key="cancel" to={`/post/${this.selectedPost.id}`}>
+          <LinkButton key="cancel" to={`/post/${this.selectedPost.id}`}>
             Cancel
-          </Button>
+          </LinkButton>
         ]}
       </PostForm>
     )

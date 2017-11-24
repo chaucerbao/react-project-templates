@@ -1,41 +1,28 @@
 // Third-party dependencies
 import * as React from 'react'
-import styled, { css } from 'styled-components'
-
-// Components
-import { Link } from './link'
+import styled from 'styled-components'
 
 // Type definitions
-interface IProps {
-  children?: any
-  to?: string
-  primary?: boolean
-  [key: string]: any
-}
-interface IStyleProps {
+interface IProps extends React.HTMLProps<HTMLButtonElement> {
+  children: any
   disabled?: boolean
   primary?: boolean
 }
 
 // Component
-const Button = ({ children, to, ...props }: IProps) =>
-  to ? (
-    <StyledLink {...props} to={to}>
-      {children}
-    </StyledLink>
-  ) : (
-    <StyledButton {...props}>{children}</StyledButton>
-  )
+const Button = ({ children, ...props }: IProps) => (
+  <button {...props}>{children}</button>
+)
 
 // Styles
-const buttonStyles = css`
+const StyledButton = styled(Button)`
   transition: background 0.25s;
   border: 1px solid gainsboro;
   border-radius: 0;
   cursor: pointer;
   padding: 4px 8px;
   font: inherit;
-  ${(props: IStyleProps) =>
+  ${props =>
     props.primary
       ? `
         background: steelblue;
@@ -53,7 +40,7 @@ const buttonStyles = css`
           background: lightgray;
         }
   `};
-  ${(props: IStyleProps) =>
+  ${props =>
     props.disabled
       ? `
         background: lightgray;
@@ -65,13 +52,6 @@ const buttonStyles = css`
       `
       : ''};
 `
-const StyledButton = styled.button`
-  ${buttonStyles};
-`
-const StyledLink = styled(Link)`
-  ${buttonStyles};
-  text-decoration: none;
-`
 
 // Exports
-export default Button
+export default StyledButton
