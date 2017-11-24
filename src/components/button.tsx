@@ -17,6 +17,16 @@ interface IStyleProps {
   primary?: boolean
 }
 
+// Component
+const Button = ({ children, to, ...props }: IProps) =>
+  to ? (
+    <StyledLink {...props} to={to}>
+      {children}
+    </StyledLink>
+  ) : (
+    <StyledButton {...props}>{children}</StyledButton>
+  )
+
 // Styles
 const buttonStyles = css`
   transition: background 0.25s;
@@ -62,16 +72,6 @@ const StyledLink = styled(Link)`
   ${buttonStyles};
   text-decoration: none;
 `
-
-// Component
-const Button = ({ children, to, ...props }: IProps) =>
-  to ? (
-    <StyledLink {...props} to={to}>
-      {children}
-    </StyledLink>
-  ) : (
-    <StyledButton {...props}>{children}</StyledButton>
-  )
 
 // Exports
 export default Button

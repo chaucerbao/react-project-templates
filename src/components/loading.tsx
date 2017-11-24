@@ -7,13 +7,13 @@ interface IProps {
   children?: any
 }
 
+// Component
+const Loading = ({ children = 'Loading...' }: IProps) => <Box>{children}</Box>
+
 // Styles
 const Box = styled.section`
   display: flex;
 `
-
-// Component
-const Loading = ({ children = 'Loading...' }: IProps) => <Box>{children}</Box>
 
 // Exports
 export default Loading

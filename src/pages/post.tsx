@@ -15,6 +15,46 @@ interface IInjectedProps {
   stores: IStores
 }
 
+// Page
+@inject('stores')
+@observer
+class Post extends React.Component<{}, {}> {
+  get injected() {
+    return this.props as IInjectedProps
+  }
+
+  public render() {
+    const { stores: { postStore } } = this.injected
+    const post = postStore.selected!
+
+    return [
+      <Article key="post">
+        {!post && <Loading />}
+
+        {post && [
+          <Link key="edit-link" to={`/post/${post.id}/edit`}>
+            Edit
+          </Link>,
+          <Title key="title">{post.title}</Title>,
+          <Body key="body">{post.body}</Body>
+        ]}
+      </Article>,
+      post && (
+        <Comments key="comments">
+          <h3>Comments</h3>
+
+          {post.comments.map(comment => (
+            <Comment key={comment.id}>
+              {comment.body}
+              <CommentAuthor>{comment.name}</CommentAuthor>
+            </Comment>
+          ))}
+        </Comments>
+      )
+    ]
+  }
+}
+
 // Styles
 const Article = styled.article`
   padding: 40px 20px 0;
@@ -57,46 +97,6 @@ const CommentAuthor = styled.div`
     text-transform: capitalize;
   }
 `
-
-// Page
-@inject('stores')
-@observer
-class Post extends React.Component<{}, {}> {
-  get injected() {
-    return this.props as IInjectedProps
-  }
-
-  public render() {
-    const { stores: { postStore } } = this.injected
-    const post = postStore.selected!
-
-    return [
-      <Article key="post">
-        {!post && <Loading />}
-
-        {post && [
-          <Link key="edit-link" to={`/post/${post.id}/edit`}>
-            Edit
-          </Link>,
-          <Title key="title">{post.title}</Title>,
-          <Body key="body">{post.body}</Body>
-        ]}
-      </Article>,
-      post && (
-        <Comments key="comments">
-          <h3>Comments</h3>
-
-          {post.comments.map(comment => (
-            <Comment key={comment.id}>
-              {comment.body}
-              <CommentAuthor>{comment.name}</CommentAuthor>
-            </Comment>
-          ))}
-        </Comments>
-      )
-    ]
-  }
-}
 
 // Exports
 export default Post

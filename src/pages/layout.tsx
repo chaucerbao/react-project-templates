@@ -10,6 +10,24 @@ interface IProps {
   children: any
 }
 
+// Layout
+const Wrapper = ({ children }: IProps) => children
+const Layout = ({ children }: IProps) => (
+  <Wrapper>
+    <header>
+      <Title>
+        <TitleLink to="/">React project</TitleLink>
+      </Title>
+      <Nav>
+        <NavLink to="/">Home</NavLink>
+        <NavLink to="/page-not-found">Not Found (404)</NavLink>
+      </Nav>
+    </header>
+    <main>{children}</main>
+    <Footer>Footer</Footer>
+  </Wrapper>
+)
+
 // Styles
 const Title = styled.h1`
   margin: 0;
@@ -45,24 +63,6 @@ const Footer = styled.footer`
   padding: 10px 20px;
   color: white;
 `
-
-// Layout
-const Wrapper = ({ children }: IProps) => children
-const Layout = ({ children }: IProps) => (
-  <Wrapper>
-    <header>
-      <Title>
-        <TitleLink to="/">React project</TitleLink>
-      </Title>
-      <Nav>
-        <NavLink to="/">Home</NavLink>
-        <NavLink to="/page-not-found">Not Found (404)</NavLink>
-      </Nav>
-    </header>
-    <main>{children}</main>
-    <Footer>Footer</Footer>
-  </Wrapper>
-)
 
 // Exports
 export default Layout

@@ -15,6 +15,39 @@ interface IInjectedProps {
   stores: IStores
 }
 
+// Page
+@inject('stores')
+@observer
+class Homepage extends React.Component<{}, {}> {
+  get injected() {
+    return this.props as IInjectedProps
+  }
+
+  public render() {
+    const { stores: { postStore: { list } } } = this.injected
+
+    return (
+      <Posts>
+        {list.length === 0 && <Loading />}
+
+        {list.map(post => {
+          return (
+            <Post key={post.id} to={`/post/${post.id}`}>
+              <PostImage src="//unsplash.it/460/230" />
+
+              <PostContent>
+                <PostTitle>{post.title}</PostTitle>
+                <PostAuthor>{post.author.name}</PostAuthor>
+                <PostBody>{post.body}</PostBody>
+              </PostContent>
+            </Post>
+          )
+        })}
+      </Posts>
+    )
+  }
+}
+
 // Styles
 const Posts = styled.section`
   display: grid;
@@ -89,39 +122,6 @@ const PostBody = styled.div`
     pointer-events: none;
   }
 `
-
-// Page
-@inject('stores')
-@observer
-class Homepage extends React.Component<{}, {}> {
-  get injected() {
-    return this.props as IInjectedProps
-  }
-
-  public render() {
-    const { stores: { postStore: { list } } } = this.injected
-
-    return (
-      <Posts>
-        {list.length === 0 && <Loading />}
-
-        {list.map(post => {
-          return (
-            <Post key={post.id} to={`/post/${post.id}`}>
-              <PostImage src="//unsplash.it/460/230" />
-
-              <PostContent>
-                <PostTitle>{post.title}</PostTitle>
-                <PostAuthor>{post.author.name}</PostAuthor>
-                <PostBody>{post.body}</PostBody>
-              </PostContent>
-            </Post>
-          )
-        })}
-      </Posts>
-    )
-  }
-}
 
 // Exports
 export default Homepage

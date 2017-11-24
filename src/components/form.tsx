@@ -22,18 +22,6 @@ interface IOption {
   value: string
 }
 
-// Styles
-const StyledField = styled.div`
-  display: flex;
-  flex-flow: column;
-`
-const Label = styled.label`
-  font-weight: bold;
-`
-const ErrorMessage = styled.span`
-  color: red;
-`
-
 // Components
 const Field = ({ children, error, label, name }: IField) => (
   <StyledField>
@@ -125,6 +113,18 @@ const Select = ({
     </select>
   </Field>
 )
+
+// Styles
+const StyledField = styled.div`
+  display: flex;
+  flex-flow: column;
+`
+const Label = styled.label`
+  font-weight: bold;
+`
+const ErrorMessage = styled.span`
+  color: red;
+`
 
 // Exports
 export { Checkbox, Input, Radio, Select, TextArea }

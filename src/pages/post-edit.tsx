@@ -27,11 +27,6 @@ interface IForm {
   title: FormField<string>
 }
 
-// Styles
-const PostForm = styled.form`
-  padding: 10px;
-`
-
 // Page
 @inject('stores')
 @observer
@@ -218,6 +213,11 @@ class PostEdit extends React.Component<{}, {}> {
     }
   }
 }
+
+// Styles
+const PostForm = styled.form`
+  padding: 10px;
+`
 
 // Exports
 export default PostEdit
