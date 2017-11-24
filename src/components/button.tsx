@@ -3,7 +3,7 @@ import * as React from 'react'
 import styled, { css } from 'styled-components'
 
 // Components
-import Link from './link'
+import { Link } from './link'
 
 // Type definitions
 interface IProps {

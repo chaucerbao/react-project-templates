@@ -1,6 +1,7 @@
 // Third-party dependencies
 import { inject, observer } from 'mobx-react'
 import * as React from 'react'
+import styled from 'styled-components'
 
 // External type definitions
 import { IStores } from '../stores'
@@ -55,5 +56,11 @@ class Link extends React.Component<IProps, {}> {
   }
 }
 
+// Styles
+const StyledLink = styled(Link)`
+  color: blue;
+`
+
 // Exports
-export default Link
+export default StyledLink
+export { Link }

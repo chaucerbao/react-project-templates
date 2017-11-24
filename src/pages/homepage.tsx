@@ -4,7 +4,7 @@ import * as React from 'react'
 import styled from 'styled-components'
 
 // Components
-import Link from '../components/link'
+import { Link } from '../components/link'
 import Loading from '../components/loading'
 
 // External type definitions
