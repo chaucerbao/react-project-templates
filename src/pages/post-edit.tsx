@@ -44,8 +44,8 @@ class PostEdit extends React.Component<{}, {}> {
     return this.injected.stores.postStore.selected
   }
 
-  constructor() {
-    super()
+  constructor(props: {}) {
+    super(props)
 
     extendObservable(this, {
       isSubmitting: false
