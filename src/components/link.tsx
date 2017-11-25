@@ -61,7 +61,7 @@ class Link extends React.Component<IProps> {
 
 // Styles
 const StyledLink = styled(Link)`
-  color: blue;
+  color: ${props => props.theme.blue};
 `
 const LinkButton: any = Button.withComponent(Link as any).extend`
   text-decoration: none;

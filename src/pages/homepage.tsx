@@ -70,13 +70,13 @@ const Posts = styled.section`
 const Post = styled(Link)`
   display: flex;
   flex-direction: column;
-  border: 1px solid black;
+  border: 1px solid ${props => props.theme.black};
   border-radius: 12px;
   box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.25);
-  background-color: white;
+  background-color: ${props => props.theme.white};
   overflow: hidden;
   text-decoration: none;
-  color: black;
+  color: ${props => props.theme.black};
 `
 const PostImage = styled.img`
   width: 100%;
@@ -102,7 +102,7 @@ const PostAuthor = styled.small`
 const PostBody = styled.div`
   position: relative;
   flex: 0 1 100%;
-  color: dimgray;
+  color: ${props => props.theme.dimgray};
 
   &::first-letter {
     text-transform: capitalize;

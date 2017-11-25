@@ -132,7 +132,7 @@ const Label = styled.label`
   font-weight: bold;
 `
 const ErrorMessage = styled.span`
-  color: red;
+  color: ${props => props.theme.red};
 `
 
 // Exports

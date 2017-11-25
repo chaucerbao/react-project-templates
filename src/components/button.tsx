@@ -17,7 +17,7 @@ const Button = ({ children, ...props }: IProps) => (
 // Styles
 const StyledButton = styled(Button)`
   transition: background 0.25s;
-  border: 1px solid gainsboro;
+  border: 1px solid ${props => props.theme.lightgray};
   border-radius: 0;
   cursor: pointer;
   padding: 4px 8px;
@@ -25,29 +25,29 @@ const StyledButton = styled(Button)`
   ${props =>
     props.primary
       ? `
-        background: steelblue;
-        color: white;
+        background: ${props.theme.blue};
+        color: ${props.theme.white};
 
         &:hover {
-          background: royalblue;
+          background: ${props.theme.darkblue};
         }
       `
       : `
-        background: gainsboro;
-        color: dimgray;
+        background: ${props.theme.lightgray};
+        color: ${props.theme.dimgray};
 
         &:hover {
-          background: lightgray;
+          background: ${props.theme.lightgray};
         }
   `};
   ${props =>
     props.disabled
       ? `
-        background: lightgray;
-        color: white;
+        background: ${props.theme.lightgray};
+        color: ${props.theme.white};
 
         &:hover {
-          background: lightgray;
+          background: ${props.theme.lightgray};
         }
       `
       : ''};

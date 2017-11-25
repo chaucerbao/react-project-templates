@@ -31,37 +31,37 @@ const Layout = ({ children }: IProps) => (
 // Styles
 const Title = styled.h1`
   margin: 0;
-  background-color: #333;
+  background-color: ${props => props.theme.darkgray};
   padding: 32px 0;
   text-align: center;
 `
 const TitleLink = styled(Link)`
   text-decoration: none;
-  color: white;
+  color: ${props => props.theme.white};
 `
 const Nav = styled.nav`
   display: flex;
   flex-direction: row;
-  background-color: lightsteelblue;
+  background-color: ${props => props.theme.lightblue};
 `
 const NavLink = styled(Link)`
   transition: background-color 0.2s, color 0.2s;
   margin: 10px 20px;
   text-decoration: none;
-  color: white;
+  color: ${props => props.theme.white};
 
   &:not(:first-of-type) {
     margin-left: 10px;
   }
 
   &:hover {
-    color: gainsboro;
+    color: ${props => props.theme.lightgray};
   }
 `
 const Footer = styled.footer`
-  background-color: #333;
+  background-color: ${props => props.theme.darkgray};
   padding: 10px 20px;
-  color: white;
+  color: ${props => props.theme.white};
 `
 
 // Exports

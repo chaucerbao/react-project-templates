@@ -3,6 +3,7 @@ import { reaction } from 'mobx'
 import { Provider } from 'mobx-react'
 import * as React from 'react'
 import { render } from 'react-dom'
+import { ThemeProvider } from 'styled-components'
 import registerServiceWorker from './register-service-worker'
 
 // Stores
@@ -15,6 +16,7 @@ import routes from './routes'
 
 // Global styles
 import './styles/global'
+import theme from './styles/theme'
 
 // Initialize the state
 const stores = Stores.create(
@@ -46,7 +48,9 @@ window.onpopstate = e => {
 // Mount the application
 render(
   <Provider stores={stores}>
-    <Router routes={routes} />
+    <ThemeProvider theme={theme}>
+      <Router routes={routes} />
+    </ThemeProvider>
   </Provider>,
   document.getElementById('root') as HTMLElement
 )

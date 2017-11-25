@@ -79,7 +79,7 @@ const Comments = styled.section`
 `
 const Comment = styled.div`
   margin: 10px;
-  border: 1px solid black;
+  border: 1px solid ${props => props.theme.dimgray};
   padding: 10px;
 
   &::first-letter {
