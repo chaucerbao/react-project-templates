@@ -8,12 +8,14 @@ interface IProps {
 }
 
 // Component
-const Loading = ({ children = 'Loading...' }: IProps) => <Box>{children}</Box>
+const Loading = ({ children = 'Loading...' }: IProps) => (
+  <section>{children}</section>
+)
 
 // Styles
-const Box = styled.section`
+const StyledLoading = styled(Loading)`
   display: flex;
 `
 
 // Exports
-export default Loading
+export default StyledLoading
