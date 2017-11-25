@@ -13,7 +13,6 @@ interface IProps extends React.HTMLProps<HTMLButtonElement> {
 const Button = ({ children, ...props }: IProps) => {
   const filteredProps = {
     ...props,
-    disabled: undefined,
     primary: undefined
   }
 

@@ -36,21 +36,30 @@ class Link extends React.Component<IProps> {
       stores,
       ...props
     } = this.injected
+    const { disabled, ...filteredProps } = props
 
     return (
-      <a {...props} href={to} onClick={this.routeTo(to, onClick)}>
+      <a
+        {...filteredProps}
+        href={to}
+        onClick={this.routeTo(to, onClick, disabled)}
+      >
         {children}
       </a>
     )
   }
 
-  private routeTo = (path: string, onClick: IClickHandler) => {
+  private routeTo = (
+    path: string,
+    onClick: IClickHandler,
+    disabled = false
+  ) => {
     const { stores: { viewStore } } = this.injected
 
     return (e: React.MouseEvent<HTMLAnchorElement>) => {
       e.preventDefault()
 
-      if (onClick(e) === false) {
+      if (disabled || onClick(e) === false) {
         return
       }
 
