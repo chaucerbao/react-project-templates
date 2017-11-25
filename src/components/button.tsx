@@ -10,9 +10,15 @@ interface IProps extends React.HTMLProps<HTMLButtonElement> {
 }
 
 // Component
-const Button = ({ children, ...props }: IProps) => (
-  <button {...props}>{children}</button>
-)
+const Button = ({ children, ...props }: IProps) => {
+  const filteredProps = {
+    ...props,
+    disabled: undefined,
+    primary: undefined
+  }
+
+  return <button {...filteredProps}>{children}</button>
+}
 
 // Styles
 const StyledButton = styled(Button)`
