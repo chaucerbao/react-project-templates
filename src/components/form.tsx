@@ -4,18 +4,12 @@ import styled from 'styled-components'
 
 // Type definitions
 interface IField {
-  children?: any
   error?: string
   label?: string
   name: string
 }
-interface ITextField extends IField {
-  [key: string]: any
-}
-interface IOptionSetField extends IField {
-  [key: string]: any
+interface IOptionSet {
   options: IOption[]
-  value: string | string[]
 }
 interface IOption {
   label: string
@@ -23,7 +17,12 @@ interface IOption {
 }
 
 // Components
-const Field = ({ children, error, label, name }: IField) => (
+const Field = ({
+  children,
+  error,
+  label,
+  name
+}: IField & { children: any }) => (
   <StyledField>
     {label && <Label htmlFor={name}>{label}</Label>}
     {children}
@@ -31,13 +30,23 @@ const Field = ({ children, error, label, name }: IField) => (
   </StyledField>
 )
 
-const Input = ({ error, label, name, ...props }: ITextField) => (
+const Input = ({
+  error,
+  label,
+  name,
+  ...props
+}: IField & React.HTMLProps<HTMLInputElement>) => (
   <Field label={label} name={name} error={error}>
     <input {...props} id={name} name={name} type="text" />
   </Field>
 )
 
-const TextArea = ({ error, label, name, ...props }: ITextField) => (
+const TextArea = ({
+  error,
+  label,
+  name,
+  ...props
+}: IField & React.HTMLProps<HTMLTextAreaElement>) => (
   <Field label={label} name={name} error={error}>
     <textarea {...props} id={name} name={name} />
   </Field>
@@ -50,7 +59,7 @@ const Checkbox = ({
   value,
   options = [],
   ...props
-}: IOptionSetField) => (
+}: IField & IOptionSet & React.HTMLProps<HTMLInputElement>) => (
   <Field label={label} name={name} error={error}>
     {options.map(option => (
       <label key={`${name}:${option.label}`}>
@@ -78,7 +87,7 @@ const Radio = ({
   value,
   options = [],
   ...props
-}: IOptionSetField) => (
+}: IField & IOptionSet & React.HTMLProps<HTMLInputElement>) => (
   <Field label={label} name={name} error={error}>
     {options.map(option => (
       <label key={`${name}:${option.label}`}>
@@ -102,7 +111,7 @@ const Select = ({
   value,
   options = [],
   ...props
-}: IOptionSetField) => (
+}: IField & IOptionSet & React.HTMLProps<HTMLSelectElement>) => (
   <Field label={label} name={name} error={error}>
     <select {...props} id={name} name={name} value={value}>
       {options.map(option => (
