@@ -1,5 +1,5 @@
 // Third-party dependencies
-import { applySnapshot, getParent, process, types } from 'mobx-state-tree'
+import { applySnapshot, flow, getParent, types } from 'mobx-state-tree'
 
 // External models
 import { User } from './user-store'
@@ -66,7 +66,7 @@ const PostStore = types
       return self.selected
     }
 
-    const getPosts = process(function*() {
+    const getPosts = flow(function*() {
       const { api, userStore } = self.stores
 
       yield userStore.getUsers()
@@ -78,7 +78,7 @@ const PostStore = types
       )
     })
 
-    const getPost = process(function*(id: number, withComments: boolean) {
+    const getPost = flow(function*(id: number, withComments: boolean) {
       const { api, userStore } = self.stores
 
       yield userStore.getUsers()
@@ -92,7 +92,7 @@ const PostStore = types
       }
     })
 
-    const savePost = process(function*(id: number, body: Partial<IPostJson>) {
+    const savePost = flow(function*(id: number, body: Partial<IPostJson>) {
       yield self.stores.api.savePost(id, body)
     })
 

@@ -1,5 +1,5 @@
 // Third-party dependencies
-import { applySnapshot, getParent, process, types } from 'mobx-state-tree'
+import { applySnapshot, flow, getParent, types } from 'mobx-state-tree'
 
 // Type definitions
 interface IUserJson {
@@ -47,7 +47,7 @@ const UserStore = types
       })
     }
 
-    const getUsers = process(function*() {
+    const getUsers = flow(function*() {
       if (!self.isLoaded) {
         updateCache(yield self.stores.api.getUsers())
       }
