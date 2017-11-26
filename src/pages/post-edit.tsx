@@ -5,9 +5,8 @@ import * as React from 'react'
 import styled from 'styled-components'
 
 // Components
-import Button from '../components/button'
+import Button, { LinkButton } from '../components/button'
 import { Checkbox, Input, Radio, Select, TextArea } from '../components/form'
-import { LinkButton } from '../components/link'
 import Loading from '../components/loading'
 
 // Helpers

@@ -2,6 +2,9 @@
 import * as React from 'react'
 import styled from 'styled-components'
 
+// Components
+import { Link } from './link'
+
 // Type definitions
 interface IProps extends React.HTMLProps<HTMLButtonElement> {
   children: any
@@ -57,6 +60,10 @@ const StyledButton = styled(Button)`
       `
       : ''};
 `
+const LinkButton: any = StyledButton.withComponent(Link as any).extend`
+  text-decoration: none;
+`
 
 // Exports
 export default StyledButton
+export { LinkButton }
