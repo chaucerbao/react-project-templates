@@ -67,7 +67,14 @@ class Link extends React.Component<IProps> {
 
 // Styles
 const StyledLink = styled(Link)`
+  text-decoration: none;
   color: ${props => props.theme.blue};
+  &:hover {
+    text-decoration: underline;
+  }
+  &:active {
+    color: ${props => props.theme.lightblue};
+  }
 `
 
 // Exports
