@@ -34,10 +34,11 @@ const Input = ({
   error,
   label,
   name,
+  type = 'text',
   ...props
 }: IField & React.HTMLProps<HTMLInputElement>) => (
   <Field label={label} name={name} error={error}>
-    <input {...props} id={name} name={name} type="text" />
+    <input {...props} id={name} name={name} type={type} />
   </Field>
 )
 
