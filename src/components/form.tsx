@@ -63,13 +63,15 @@ const Select = ({
   ...props
 }: ISelect) => (
   <Field label={label} name={name} error={error}>
-    <StyledSelect {...props} id={name} name={name} value={value}>
-      {options.map(option => (
-        <option key={`${name}:${option.label}`} value={option.value}>
-          {option.label}
-        </option>
-      ))}
-    </StyledSelect>
+    <SelectWrapper>
+      <StyledSelect {...props} id={name} name={name} value={value}>
+        {options.map(option => (
+          <option key={`${name}:${option.label}`} value={option.value}>
+            {option.label}
+          </option>
+        ))}
+      </StyledSelect>
+    </SelectWrapper>
   </Field>
 )
 
@@ -116,6 +118,7 @@ const ErrorMessage = styled.span`
   color: ${props => props.theme.red};
 `
 const inputBox = css`
+  margin: 0;
   outline: none;
   border: 1px solid ${props => props.theme.darkgray};
   border-radius: 0;
@@ -134,6 +137,22 @@ const StyledTextArea = styled.textarea`
 const StyledSelect = styled.select`
   ${inputBox};
   appearance: none;
+  flex: 1;
+`
+const SelectWrapper = styled.div`
+  display: flex;
+  position: relative;
+  &::after {
+    display: block;
+    position: absolute;
+    top: calc(50% - 5px / 2);
+    right: 5px;
+    border: 5px solid;
+    border-color: ${props => props.theme.darkgray} transparent transparent
+      transparent;
+    pointer-events: none;
+    content: '';
+  }
 `
 const CheckboxLabel = styled.span`
   display: flex;
