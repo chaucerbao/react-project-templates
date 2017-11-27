@@ -1,8 +1,11 @@
 // Third-party dependencies
 import * as React from 'react'
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 
 // Type definitions
+interface IStyledComponent {
+  ref?: any
+}
 interface IField {
   error?: string
   label?: string
@@ -15,6 +18,15 @@ interface IOption {
   label: string
   value: string
 }
+type IInput = IField & IStyledComponent & React.HTMLProps<HTMLInputElement>
+type ITextArea = IField &
+  IStyledComponent &
+  React.HTMLProps<HTMLTextAreaElement>
+type ISelect = IField &
+  IStyledComponent &
+  React.HTMLProps<HTMLSelectElement> &
+  IOptionSet
+type ICheckbox = IInput & IOptionSet
 
 // Components
 const Field = ({
@@ -24,84 +36,21 @@ const Field = ({
   name
 }: IField & { children: any }) => (
   <StyledField>
-    {label && <Label htmlFor={name}>{label}</Label>}
+    {label && <FieldLabel htmlFor={name}>{label}</FieldLabel>}
     {children}
     {error && <ErrorMessage>{error}</ErrorMessage>}
   </StyledField>
 )
 
-const Input = ({
-  error,
-  label,
-  name,
-  type = 'text',
-  ...props
-}: IField & React.HTMLProps<HTMLInputElement>) => (
+const Input = ({ error, label, name, type = 'text', ...props }: IInput) => (
   <Field label={label} name={name} error={error}>
-    <input {...props} id={name} name={name} type={type} />
+    <StyledInput {...props} id={name} name={name} type={type} />
   </Field>
 )
 
-const TextArea = ({
-  error,
-  label,
-  name,
-  ...props
-}: IField & React.HTMLProps<HTMLTextAreaElement>) => (
+const TextArea = ({ error, label, name, ...props }: ITextArea) => (
   <Field label={label} name={name} error={error}>
-    <textarea {...props} id={name} name={name} />
-  </Field>
-)
-
-const Checkbox = ({
-  error,
-  label,
-  name,
-  value,
-  options = [],
-  ...props
-}: IField & IOptionSet & React.HTMLProps<HTMLInputElement>) => (
-  <Field label={label} name={name} error={error}>
-    {options.map(option => (
-      <label key={`${name}:${option.label}`}>
-        <span>{option.label}</span>
-        <input
-          {...props}
-          name={name}
-          value={option.value}
-          type="checkbox"
-          checked={
-            Array.isArray(value)
-              ? value.indexOf(option.value.toString()) > -1
-              : value === option.value
-          }
-        />
-      </label>
-    ))}
-  </Field>
-)
-
-const Radio = ({
-  error,
-  label,
-  name,
-  value,
-  options = [],
-  ...props
-}: IField & IOptionSet & React.HTMLProps<HTMLInputElement>) => (
-  <Field label={label} name={name} error={error}>
-    {options.map(option => (
-      <label key={`${name}:${option.label}`}>
-        <span>{option.label}</span>
-        <input
-          {...props}
-          name={name}
-          value={option.value}
-          type="radio"
-          checked={value === option.value}
-        />
-      </label>
-    ))}
+    <StyledTextArea {...props} id={name} name={name} />
   </Field>
 )
 
@@ -112,28 +61,118 @@ const Select = ({
   value,
   options = [],
   ...props
-}: IField & IOptionSet & React.HTMLProps<HTMLSelectElement>) => (
+}: ISelect) => (
   <Field label={label} name={name} error={error}>
-    <select {...props} id={name} name={name} value={value}>
+    <StyledSelect {...props} id={name} name={name} value={value}>
       {options.map(option => (
         <option key={`${name}:${option.label}`} value={option.value}>
           {option.label}
         </option>
       ))}
-    </select>
+    </StyledSelect>
   </Field>
 )
+
+const Checkbox = ({
+  error,
+  label,
+  name,
+  value,
+  type = 'checkbox',
+  options = [],
+  ...props
+}: ICheckbox) => (
+  <Field label={label} name={name} error={error}>
+    {options.map(option => (
+      <label key={`${name}:${option.label}`}>
+        <CheckboxField
+          {...props}
+          name={name}
+          value={option.value}
+          type={type}
+          checked={
+            Array.isArray(value)
+              ? value.indexOf(option.value.toString()) > -1
+              : value === option.value
+          }
+        />
+        <CheckboxLabel>{option.label}</CheckboxLabel>
+      </label>
+    ))}
+  </Field>
+)
+
+const Radio = (props: ICheckbox) => <Checkbox {...props} type="radio" />
 
 // Styles
 const StyledField = styled.div`
   display: flex;
   flex-flow: column;
 `
-const Label = styled.label`
+const FieldLabel = styled.label`
   font-weight: bold;
 `
 const ErrorMessage = styled.span`
   color: ${props => props.theme.red};
+`
+const inputBox = css`
+  outline: none;
+  border: 1px solid ${props => props.theme.darkgray};
+  border-radius: 0;
+  background: ${props => props.theme.white};
+  padding: 4px;
+  &:focus {
+    border-color: ${props => props.theme.darkblue};
+  }
+`
+const StyledInput = styled.input`
+  ${inputBox};
+`
+const StyledTextArea = styled.textarea`
+  ${inputBox};
+`
+const StyledSelect = styled.select`
+  ${inputBox};
+  appearance: none;
+`
+const CheckboxLabel = styled.span`
+  display: flex;
+  position: relative;
+  align-items: center;
+  &::before {
+    ${inputBox};
+    display: block;
+    margin-right: 4px;
+    padding: 0;
+    width: 13px;
+    height: 13px;
+    content: '';
+  }
+  &::after {
+    position: absolute;
+    top: calc(50% - 11px / 2);
+    left: 2px;
+    transform: scale(0);
+    transition: transform 0.2s;
+    background: ${props => props.theme.darkblue};
+    width: 11px;
+    height: 11px;
+    content: '';
+  }
+`
+const CheckboxField = styled.input`
+  position: absolute;
+  opacity: 0;
+  &:focus + span::before {
+    border-color: ${props => props.theme.darkblue};
+  }
+  &:checked + span::after {
+    transform: scale(1);
+  }
+  & + span::before,
+  &:checked + span::after {
+    border-radius: ${props => (props.type === 'radio' ? '50%' : '0')};
+  }
 `
 
 // Exports
