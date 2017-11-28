@@ -8,19 +8,29 @@ import { Link } from '../components/link'
 import Loading from '../components/loading'
 
 // External type definitions
+import * as lozad from 'lozad'
 import { IStores } from '../stores'
 
 // Type definitions
 interface IInjectedProps {
+  lazy: lozad.Observer
   stores: IStores
 }
 
 // Page
-@inject('stores')
+@inject('lazy', 'stores')
 @observer
 class Homepage extends React.Component<{}, {}> {
   get injected() {
     return this.props as IInjectedProps
+  }
+
+  public componentDidMount() {
+    this.injected.lazy.observe()
+  }
+
+  public componentDidUpdate() {
+    this.injected.lazy.observe()
   }
 
   public render() {
@@ -33,7 +43,7 @@ class Homepage extends React.Component<{}, {}> {
         {list.map(post => {
           return (
             <Post key={post.id} to={`/post/${post.id}`}>
-              <PostImage src="//unsplash.it/460/230" />
+              <PostImage data-lazy={true} data-src="//unsplash.it/460/230" />
 
               <PostContent>
                 <PostTitle>{post.title}</PostTitle>

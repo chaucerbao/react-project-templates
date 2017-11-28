@@ -1,4 +1,5 @@
 // Third-party dependencies
+import * as lozad from 'lozad'
 import { reaction } from 'mobx'
 import { Provider } from 'mobx-react'
 import * as React from 'react'
@@ -45,9 +46,12 @@ window.onpopstate = e => {
   }
 }
 
+// Lazy loader
+const lazy = lozad('[data-lazy]', { rootMargin: '25%' })
+
 // Mount the application
 render(
-  <Provider stores={stores}>
+  <Provider lazy={lazy} stores={stores}>
     <ThemeProvider theme={theme}>
       <Router routes={routes} />
     </ThemeProvider>
