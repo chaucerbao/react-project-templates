@@ -43,7 +43,7 @@ const StyledButton = styled(Button)`
   &:active {
     box-shadow: inset 1px 1px 4px rgba(0, 0, 0, 0.25);
   }
-  & {
+  && {
     ${props =>
       props.primary
         ? `
