@@ -1,4 +1,5 @@
 // Third-party dependencies
+import { hideVisually } from 'polished'
 import * as React from 'react'
 import styled, { css } from 'styled-components'
 
@@ -180,14 +181,16 @@ const CheckboxLabel = styled.span`
   }
 `
 const CheckboxField = styled.input`
-  position: absolute;
-  opacity: 0;
+  ${hideVisually() as string};
   &:checked + span::after {
     transform: scale(1);
   }
   & + span::before,
   &:checked + span::after {
     border-radius: ${props => (props.type === 'radio' ? '50%' : '0')};
+  }
+  &:focus + span {
+    color: ${props => props.theme.darkblue};
   }
   &:focus + span::before {
     border-color: ${props => props.theme.darkblue};
