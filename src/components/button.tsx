@@ -47,29 +47,29 @@ const StyledButton = styled(Button)`
     ${props =>
       props.primary
         ? `
-            border-color: ${props.theme.blue};
-            background: ${props.theme.blue};
-            color: ${props.theme.white};
+          border-color: ${props.theme.blue};
+          background: ${props.theme.blue};
+          color: ${props.theme.white};
 
-            &:hover {
-              background: ${props.theme.darkblue};
-            }
-            &:focus {
-              border-color: ${props.theme.lightblue};
-            }
-          `
+          &:hover {
+            background: ${props.theme.darkblue};
+          }
+          &:focus {
+            border-color: ${props.theme.lightblue};
+          }
+        `
         : ``};
     ${props =>
       props.disabled
         ? `
-            border-color: ${props.theme.lightgray};
-            background: ${props.theme.lightgray};
-            color: ${props.theme.white};
+          border-color: ${props.theme.lightgray};
+          background: ${props.theme.lightgray};
+          color: ${props.theme.white};
 
-            &:hover {
-              background: ${props.theme.lightgray};
-            }
-          `
+          &:hover {
+            background: ${props.theme.lightgray};
+          }
+        `
         : ''};
   }
 `

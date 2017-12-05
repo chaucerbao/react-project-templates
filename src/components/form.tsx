@@ -182,15 +182,15 @@ const CheckboxLabel = styled.span`
 const CheckboxField = styled.input`
   position: absolute;
   opacity: 0;
-  &:focus + span::before {
-    border-color: ${props => props.theme.darkblue};
-  }
   &:checked + span::after {
     transform: scale(1);
   }
   & + span::before,
   &:checked + span::after {
     border-radius: ${props => (props.type === 'radio' ? '50%' : '0')};
+  }
+  &:focus + span::before {
+    border-color: ${props => props.theme.darkblue};
   }
 `
 
