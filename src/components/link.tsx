@@ -35,8 +35,13 @@ class Link extends React.Component<IProps> {
     } = this.injected
     const { disabled, ...filteredProps } = props
 
+    const computedProps = {
+      rel: this.isExternalLink() ? 'noopener' : filteredProps.rel
+    }
+
     return (
       <a
+        {...computedProps}
         {...filteredProps}
         href={to}
         onClick={this.routeTo(to, onClick, disabled)}
@@ -44,6 +49,12 @@ class Link extends React.Component<IProps> {
         {children}
       </a>
     )
+  }
+
+  private isExternalLink() {
+    const { rel, target, to } = this.props
+
+    return target === '_blank' && !rel && /^([^:]+:)?\/\//.test(to)
   }
 
   private routeTo = (
@@ -54,13 +65,15 @@ class Link extends React.Component<IProps> {
     const { stores: { viewStore } } = this.injected
 
     return (e: React.MouseEvent<HTMLAnchorElement>) => {
-      e.preventDefault()
-
       if (disabled || onClick(e) === false) {
+        e.preventDefault()
         return
       }
 
-      viewStore.goTo(path)
+      if (!this.isExternalLink()) {
+        e.preventDefault()
+        viewStore.goTo(path)
+      }
     }
   }
 }
