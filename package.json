@@ -19,7 +19,7 @@
     "syntax": "scss"
   },
   "lint-staged": {
-    "{src,public}/**/*.{ts,tsx,js,jsx}": [
+    "src/**/*.{ts,tsx}": [
       "prettier --write",
       "tslint --fix",
       "stylelint",
