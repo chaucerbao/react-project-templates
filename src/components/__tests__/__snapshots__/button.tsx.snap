@@ -1,0 +1,305 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Button /> renders a disabled, neutral Button 1`] = `
+.c0 {
+  -webkit-transition: background 0.2s;
+  transition: background 0.2s;
+  margin: 0;
+  outline: none;
+  border-radius: 0;
+  padding: 4px 8px;
+  font: inherit;
+  border: 1px solid #e9e9e9;
+  background: #e9e9e9;
+  cursor: not-allowed;
+  color: #fff;
+}
+
+.c0:hover {
+  border-color: #e9e9e9;
+  background: #e9e9e9;
+}
+
+.c0:focus {
+  border-color: #e9e9e9;
+}
+
+.c0:active {
+  background: #e9e9e9;
+}
+
+<button
+  className="c0"
+  disabled={true}
+  primary={undefined}
+>
+  Button Text
+</button>
+`;
+
+exports[`<Button /> renders a disabled, primary Button 1`] = `
+.c0 {
+  -webkit-transition: background 0.2s;
+  transition: background 0.2s;
+  margin: 0;
+  outline: none;
+  border-radius: 0;
+  padding: 4px 8px;
+  font: inherit;
+  border: 1px solid #8db3d3;
+  background: #8db3d3;
+  cursor: not-allowed;
+  color: #fff;
+}
+
+.c0:hover {
+  border-color: #8db3d3;
+  background: #8db3d3;
+}
+
+.c0:focus {
+  border-color: #8db3d3;
+}
+
+.c0:active {
+  background: #8db3d3;
+}
+
+<button
+  className="c0"
+  disabled={true}
+  primary={undefined}
+>
+  Button Text
+</button>
+`;
+
+exports[`<Button /> renders a neutral Button 1`] = `
+.c0 {
+  -webkit-transition: background 0.2s;
+  transition: background 0.2s;
+  margin: 0;
+  outline: none;
+  border-radius: 0;
+  padding: 4px 8px;
+  font: inherit;
+  border: 1px solid gainsboro;
+  background: gainsboro;
+  cursor: pointer;
+  color: dimgray;
+}
+
+.c0:hover {
+  border-color: #e9e9e9;
+  background: #e9e9e9;
+}
+
+.c0:focus {
+  border-color: #9c9c9c;
+}
+
+.c0:active {
+  background: #cfcfcf;
+}
+
+<button
+  className="c0"
+  primary={undefined}
+>
+  Button Text
+</button>
+`;
+
+exports[`<Button /> renders a primary Button 1`] = `
+.c0 {
+  -webkit-transition: background 0.2s;
+  transition: background 0.2s;
+  margin: 0;
+  outline: none;
+  border-radius: 0;
+  padding: 4px 8px;
+  font: inherit;
+  border: 1px solid steelblue;
+  background: steelblue;
+  cursor: pointer;
+  color: #fff;
+}
+
+.c0:hover {
+  border-color: #568ebd;
+  background: #568ebd;
+}
+
+.c0:focus {
+  border-color: #224058;
+}
+
+.c0:active {
+  background: #3f75a2;
+}
+
+<button
+  className="c0"
+  primary={undefined}
+>
+  Button Text
+</button>
+`;
+
+exports[`<LinkButton /> renders a disabled, neutral LinkButton 1`] = `
+.c0 {
+  -webkit-transition: background 0.2s;
+  transition: background 0.2s;
+  margin: 0;
+  outline: none;
+  border-radius: 0;
+  padding: 4px 8px;
+  font: inherit;
+  border: 1px solid #e9e9e9;
+  background: #e9e9e9;
+  cursor: not-allowed;
+  color: #fff;
+  text-decoration: none;
+}
+
+.c0:hover {
+  border-color: #e9e9e9;
+  background: #e9e9e9;
+}
+
+.c0:focus {
+  border-color: #e9e9e9;
+}
+
+.c0:active {
+  background: #e9e9e9;
+}
+
+<a
+  className="c0"
+  href="/url"
+  onClick={[Function]}
+  rel={undefined}
+>
+  Button Text
+</a>
+`;
+
+exports[`<LinkButton /> renders a disabled, primary LinkButton 1`] = `
+.c0 {
+  -webkit-transition: background 0.2s;
+  transition: background 0.2s;
+  margin: 0;
+  outline: none;
+  border-radius: 0;
+  padding: 4px 8px;
+  font: inherit;
+  border: 1px solid #8db3d3;
+  background: #8db3d3;
+  cursor: not-allowed;
+  color: #fff;
+  text-decoration: none;
+}
+
+.c0:hover {
+  border-color: #8db3d3;
+  background: #8db3d3;
+}
+
+.c0:focus {
+  border-color: #8db3d3;
+}
+
+.c0:active {
+  background: #8db3d3;
+}
+
+<a
+  className="c0"
+  href="/url"
+  onClick={[Function]}
+  primary={true}
+  rel={undefined}
+>
+  Button Text
+</a>
+`;
+
+exports[`<LinkButton /> renders a neutral LinkButton 1`] = `
+.c0 {
+  -webkit-transition: background 0.2s;
+  transition: background 0.2s;
+  margin: 0;
+  outline: none;
+  border-radius: 0;
+  padding: 4px 8px;
+  font: inherit;
+  border: 1px solid gainsboro;
+  background: gainsboro;
+  cursor: pointer;
+  color: dimgray;
+  text-decoration: none;
+}
+
+.c0:hover {
+  border-color: #e9e9e9;
+  background: #e9e9e9;
+}
+
+.c0:focus {
+  border-color: #9c9c9c;
+}
+
+.c0:active {
+  background: #cfcfcf;
+}
+
+<a
+  className="c0"
+  href="/url"
+  onClick={[Function]}
+  rel={undefined}
+>
+  Button Text
+</a>
+`;
+
+exports[`<LinkButton /> renders a primary LinkButton 1`] = `
+.c0 {
+  -webkit-transition: background 0.2s;
+  transition: background 0.2s;
+  margin: 0;
+  outline: none;
+  border-radius: 0;
+  padding: 4px 8px;
+  font: inherit;
+  border: 1px solid steelblue;
+  background: steelblue;
+  cursor: pointer;
+  color: #fff;
+  text-decoration: none;
+}
+
+.c0:hover {
+  border-color: #568ebd;
+  background: #568ebd;
+}
+
+.c0:focus {
+  border-color: #224058;
+}
+
+.c0:active {
+  background: #3f75a2;
+}
+
+<a
+  className="c0"
+  href="/url"
+  onClick={[Function]}
+  primary={true}
+  rel={undefined}
+>
+  Button Text
+</a>
+`;

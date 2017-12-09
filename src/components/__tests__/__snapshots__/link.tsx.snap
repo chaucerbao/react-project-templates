@@ -1,0 +1,124 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Link /> renders an external Link 1`] = `
+.c0 {
+  text-decoration: none;
+  color: steelblue;
+}
+
+.c0:hover {
+  text-decoration: underline;
+}
+
+.c0:active {
+  color: lightsteelblue;
+}
+
+<a
+  className="c0"
+  href="http://domain/"
+  onClick={[Function]}
+  rel={undefined}
+>
+  Link Text
+</a>
+`;
+
+exports[`<Link /> renders an external pop-up Link 1`] = `
+.c0 {
+  text-decoration: none;
+  color: steelblue;
+}
+
+.c0:hover {
+  text-decoration: underline;
+}
+
+.c0:active {
+  color: lightsteelblue;
+}
+
+<a
+  className="c0"
+  href="http://domain/"
+  onClick={[Function]}
+  rel="noopener"
+  target="_blank"
+>
+  Link Text
+</a>
+`;
+
+exports[`<Link /> renders an external pop-up Link with \`rel\` attribute overridden 1`] = `
+.c0 {
+  text-decoration: none;
+  color: steelblue;
+}
+
+.c0:hover {
+  text-decoration: underline;
+}
+
+.c0:active {
+  color: lightsteelblue;
+}
+
+<a
+  className="c0"
+  href="http://domain/"
+  onClick={[Function]}
+  rel="nofollow"
+  target="_blank"
+>
+  Link Text
+</a>
+`;
+
+exports[`<Link /> renders an internal Link 1`] = `
+.c0 {
+  text-decoration: none;
+  color: steelblue;
+}
+
+.c0:hover {
+  text-decoration: underline;
+}
+
+.c0:active {
+  color: lightsteelblue;
+}
+
+<a
+  className="c0"
+  href="/url"
+  onClick={[Function]}
+  rel={undefined}
+>
+  Link Text
+</a>
+`;
+
+exports[`<Link /> renders an internal pop-up Link 1`] = `
+.c0 {
+  text-decoration: none;
+  color: steelblue;
+}
+
+.c0:hover {
+  text-decoration: underline;
+}
+
+.c0:active {
+  color: lightsteelblue;
+}
+
+<a
+  className="c0"
+  href="/url"
+  onClick={[Function]}
+  rel={undefined}
+  target="_blank"
+>
+  Link Text
+</a>
+`;

@@ -1,0 +1,530 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Checkbox /> renders 1`] = `
+.c0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-flow: column;
+  -ms-flex-flow: column;
+  flex-flow: column;
+}
+
+.c1 {
+  font-weight: bold;
+}
+
+.c4 {
+  color: red;
+}
+
+.c3 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  position: relative;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.c3::before {
+  margin: 0;
+  outline: none;
+  border: 1px solid #333;
+  border-radius: 0;
+  background: #fff;
+  padding: 4px;
+  display: block;
+  margin-right: 4px;
+  padding: 0;
+  width: 13px;
+  height: 13px;
+  content: '';
+}
+
+.c3::before:focus {
+  border-color: royalblue;
+}
+
+.c3::after {
+  position: absolute;
+  top: calc(50% - 11px / 2);
+  left: 2px;
+  -webkit-transform: scale(0);
+  -ms-transform: scale(0);
+  transform: scale(0);
+  -webkit-transition: -webkit-transform 0.2s;
+  -webkit-transition: transform 0.2s;
+  transition: transform 0.2s;
+  background: royalblue;
+  width: 11px;
+  height: 11px;
+  content: '';
+}
+
+.c2 {
+  border: 0;
+  -webkit-clip: rect(0 0 0 0);
+  clip: rect(0 0 0 0);
+  -webkit-clip-path: inset(50%);
+  clip-path: inset(50%);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+}
+
+.c2:checked + span::after {
+  -webkit-transform: scale(1);
+  -ms-transform: scale(1);
+  transform: scale(1);
+}
+
+.c2 + span::before,
+.c2:checked + span::after {
+  border-radius: 0;
+}
+
+.c2:focus + span {
+  color: royalblue;
+}
+
+.c2:focus + span::before {
+  border-color: royalblue;
+}
+
+<div
+  className="c0"
+>
+  <label
+    className="c1"
+    htmlFor="name"
+  >
+    Label
+  </label>
+  <label>
+    <input
+      checked={true}
+      className="c2"
+      name="name"
+      type="checkbox"
+      value="one"
+    />
+    <span
+      className="c3"
+    >
+      Option 1
+    </span>
+  </label>
+  <label>
+    <input
+      checked={false}
+      className="c2"
+      name="name"
+      type="checkbox"
+      value="two"
+    />
+    <span
+      className="c3"
+    >
+      Option 2
+    </span>
+  </label>
+  <label>
+    <input
+      checked={true}
+      className="c2"
+      name="name"
+      type="checkbox"
+      value="three"
+    />
+    <span
+      className="c3"
+    >
+      Option 3
+    </span>
+  </label>
+  <span
+    className="c4"
+  >
+    Error message
+  </span>
+</div>
+`;
+
+exports[`<Input /> renders 1`] = `
+.c0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-flow: column;
+  -ms-flex-flow: column;
+  flex-flow: column;
+}
+
+.c1 {
+  font-weight: bold;
+}
+
+.c3 {
+  color: red;
+}
+
+.c2 {
+  margin: 0;
+  outline: none;
+  border: 1px solid #333;
+  border-radius: 0;
+  background: #fff;
+  padding: 4px;
+}
+
+.c2:focus {
+  border-color: royalblue;
+}
+
+<div
+  className="c0"
+>
+  <label
+    className="c1"
+    htmlFor="name"
+  >
+    Label
+  </label>
+  <input
+    className="c2"
+    id="name"
+    name="name"
+    type="text"
+    value="Value"
+  />
+  <span
+    className="c3"
+  >
+    Error message
+  </span>
+</div>
+`;
+
+exports[`<Radio /> renders 1`] = `
+.c0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-flow: column;
+  -ms-flex-flow: column;
+  flex-flow: column;
+}
+
+.c1 {
+  font-weight: bold;
+}
+
+.c4 {
+  color: red;
+}
+
+.c3 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  position: relative;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.c3::before {
+  margin: 0;
+  outline: none;
+  border: 1px solid #333;
+  border-radius: 0;
+  background: #fff;
+  padding: 4px;
+  display: block;
+  margin-right: 4px;
+  padding: 0;
+  width: 13px;
+  height: 13px;
+  content: '';
+}
+
+.c3::before:focus {
+  border-color: royalblue;
+}
+
+.c3::after {
+  position: absolute;
+  top: calc(50% - 11px / 2);
+  left: 2px;
+  -webkit-transform: scale(0);
+  -ms-transform: scale(0);
+  transform: scale(0);
+  -webkit-transition: -webkit-transform 0.2s;
+  -webkit-transition: transform 0.2s;
+  transition: transform 0.2s;
+  background: royalblue;
+  width: 11px;
+  height: 11px;
+  content: '';
+}
+
+.c2 {
+  border: 0;
+  -webkit-clip: rect(0 0 0 0);
+  clip: rect(0 0 0 0);
+  -webkit-clip-path: inset(50%);
+  clip-path: inset(50%);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+}
+
+.c2:checked + span::after {
+  -webkit-transform: scale(1);
+  -ms-transform: scale(1);
+  transform: scale(1);
+}
+
+.c2 + span::before,
+.c2:checked + span::after {
+  border-radius: 50%;
+}
+
+.c2:focus + span {
+  color: royalblue;
+}
+
+.c2:focus + span::before {
+  border-color: royalblue;
+}
+
+<div
+  className="c0"
+>
+  <label
+    className="c1"
+    htmlFor="name"
+  >
+    Label
+  </label>
+  <label>
+    <input
+      checked={false}
+      className="c2"
+      name="name"
+      type="radio"
+      value="one"
+    />
+    <span
+      className="c3"
+    >
+      Option 1
+    </span>
+  </label>
+  <label>
+    <input
+      checked={true}
+      className="c2"
+      name="name"
+      type="radio"
+      value="two"
+    />
+    <span
+      className="c3"
+    >
+      Option 2
+    </span>
+  </label>
+  <label>
+    <input
+      checked={false}
+      className="c2"
+      name="name"
+      type="radio"
+      value="three"
+    />
+    <span
+      className="c3"
+    >
+      Option 3
+    </span>
+  </label>
+  <span
+    className="c4"
+  >
+    Error message
+  </span>
+</div>
+`;
+
+exports[`<Select /> renders 1`] = `
+.c0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-flow: column;
+  -ms-flex-flow: column;
+  flex-flow: column;
+}
+
+.c1 {
+  font-weight: bold;
+}
+
+.c4 {
+  color: red;
+}
+
+.c3 {
+  margin: 0;
+  outline: none;
+  border: 1px solid #333;
+  border-radius: 0;
+  background: #fff;
+  padding: 4px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+}
+
+.c3:focus {
+  border-color: royalblue;
+}
+
+.c2 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  position: relative;
+}
+
+.c2::after {
+  display: block;
+  position: absolute;
+  top: calc(50% - 5px / 2);
+  right: 5px;
+  border: 5px solid;
+  border-color: #333 transparent transparent transparent;
+  pointer-events: none;
+  content: '';
+}
+
+<div
+  className="c0"
+>
+  <label
+    className="c1"
+    htmlFor="name"
+  >
+    Label
+  </label>
+  <div
+    className="c2"
+  >
+    <select
+      className="c3"
+      id="name"
+      name="name"
+      value="two"
+    >
+      <option
+        value="one"
+      >
+        Option 1
+      </option>
+      <option
+        value="two"
+      >
+        Option 2
+      </option>
+      <option
+        value="three"
+      >
+        Option 3
+      </option>
+    </select>
+  </div>
+  <span
+    className="c4"
+  >
+    Error message
+  </span>
+</div>
+`;
+
+exports[`<TextArea /> renders 1`] = `
+.c0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-flow: column;
+  -ms-flex-flow: column;
+  flex-flow: column;
+}
+
+.c1 {
+  font-weight: bold;
+}
+
+.c3 {
+  color: red;
+}
+
+.c2 {
+  margin: 0;
+  outline: none;
+  border: 1px solid #333;
+  border-radius: 0;
+  background: #fff;
+  padding: 4px;
+}
+
+.c2:focus {
+  border-color: royalblue;
+}
+
+<div
+  className="c0"
+>
+  <label
+    className="c1"
+    htmlFor="name"
+  >
+    Label
+  </label>
+  <textarea
+    className="c2"
+    id="name"
+    name="name"
+    value="Value"
+  />
+  <span
+    className="c3"
+  >
+    Error message
+  </span>
+</div>
+`;
