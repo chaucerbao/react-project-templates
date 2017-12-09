@@ -60,14 +60,11 @@ describe('FormField', () => {
     expect(errorMessage).toBe('')
   })
 
-  fit('sets a string value from a change event', () => {
+  it('sets a string value from a change event', () => {
     const field = new FormField({ value: '' })
 
-    const onChangeHandler = (
-      e: React.ChangeEvent<
-        HTMLInputElement & HTMLSelectElement & HTMLTextAreaElement
-      >
-    ) => field.updateFromEvent(e)
+    const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) =>
+      field.setOnChange(e)
     const input = mount(<input onChange={onChangeHandler} />)
 
     input.prop('onChange')({ currentTarget: { value: 'Text String' } })
@@ -78,11 +75,8 @@ describe('FormField', () => {
   it('toggles values in an array value from a change event', () => {
     const field = new FormField({ value: ['one', 'two', 'three'] })
 
-    const onChangeHandler = (
-      e: React.ChangeEvent<
-        HTMLInputElement & HTMLSelectElement & HTMLTextAreaElement
-      >
-    ) => field.updateFromEvent(e)
+    const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) =>
+      field.setOnChange(e)
     const input = mount(<input onChange={onChangeHandler} />)
 
     input.prop('onChange')({ currentTarget: { value: 'two' } })
@@ -94,36 +88,25 @@ describe('FormField', () => {
     expect(field.value).toEqual(['one', 'three', 'four'])
   })
 
-  xit('sets an array value from a change event', () => {
+  it('sets an array value from a change event', () => {
     const field = new FormField({ value: [] })
 
-    const onChangeHandler = (
-      e: React.ChangeEvent<
-        HTMLInputElement & HTMLSelectElement & HTMLTextAreaElement
-      >
-    ) => field.updateFromEvent(e)
-    const input = mount(
+    const onChangeHandler = (e: React.ChangeEvent<HTMLSelectElement>) =>
+      field.setOnChange(e)
+    const select = mount(
       <select multiple={true} onChange={onChangeHandler}>
         <option value="one">One</option>
         <option value="two">Two</option>
         <option value="three">Three</option>
       </select>
     )
+    const { options } = select.getDOMNode() as HTMLSelectElement
 
-    input.prop('onChange')({
-      currentTarget: {
-        multiple: input.prop('multiple'),
-        options: input.getDOMNode().options,
-        value: 'two'
-      }
-    })
-    input.prop('onChange')({
-      currentTarget: {
-        multiple: input.prop('multiple'),
-        options: input.getDOMNode().options,
-        value: 'three'
-      }
-    })
+    options[0].selected = false
+    options[1].selected = true
+    options[2].selected = true
+
+    select.simulate('change')
 
     expect(field.value).toEqual(['two', 'three'])
   })

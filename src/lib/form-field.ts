@@ -50,14 +50,19 @@ class FormField<T extends IFormField> {
   }
 
   @action
-  public updateFromEvent(
-    e: React.FormEvent<
-      HTMLInputElement & HTMLSelectElement & HTMLTextAreaElement
-    >
+  public setOnChange(
+    e:
+      | React.ChangeEvent<HTMLInputElement>
+      | React.ChangeEvent<HTMLSelectElement>
+      | React.ChangeEvent<HTMLTextAreaElement>
   ) {
-    const { multiple, options, value } = e.currentTarget
+    const { value } = e.currentTarget
 
-    if (multiple) {
+    if (
+      e.currentTarget instanceof HTMLSelectElement &&
+      e.currentTarget.multiple
+    ) {
+      const { options } = e.currentTarget
       const selected = []
 
       for (let i = 0, size = options.length; i < size; i++) {
