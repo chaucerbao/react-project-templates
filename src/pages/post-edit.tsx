@@ -182,7 +182,7 @@ class PostEdit extends React.Component<{}, {}> {
   ) {
     const field = this.form[e.currentTarget.name]
 
-    field.updateFromEvent(e)
+    field.setOnChange(e)
 
     if (field.error) {
       field.validate()
