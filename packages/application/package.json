@@ -1,0 +1,21 @@
+{
+  "name": "application",
+  "version": "0.1.0",
+  "description": "",
+  "author": "Alvin Chan <no@email.com>",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/react-dom": "^16.0.4",
+    "@types/react-loadable": "^5.3.3",
+    "html-webpack-plugin": "^3.1.0",
+    "webpack-cli": "^2.0.13",
+    "webpack-dev-server": "^3.1.1"
+  },
+  "dependencies": {
+    "react-dom": "^16.2.0",
+    "react-loadable": "^5.3.1"
+  },
+  "scripts": {
+    "start": "webpack-dev-server -d --devtool cheap-module-eval-source-map"
+  }
+}

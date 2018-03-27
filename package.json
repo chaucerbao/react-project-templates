@@ -1,0 +1,29 @@
+{
+  "name": "react-project-template",
+  "version": "0.1.0",
+  "description": "",
+  "author": "Alvin Chan <no@email.com>",
+  "license": "ISC",
+  "prettier": {
+    "semi": false,
+    "singleQuote": true
+  },
+  "devDependencies": {
+    "@types/react": "^16.0.41",
+    "cache-loader": "^1.2.2",
+    "fork-ts-checker-webpack-plugin": "^0.4.1",
+    "lerna": "^2.9.0",
+    "prettier": "^1.11.1",
+    "thread-loader": "^1.1.5",
+    "ts-loader": "^4.1.0",
+    "typescript": "^2.8.1",
+    "webpack": "^4.3.0"
+  },
+  "dependencies": {
+    "react": "^16.2.0",
+    "tslib": "^1.9.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}
