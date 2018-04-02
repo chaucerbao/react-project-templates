@@ -33,7 +33,7 @@ export default class Homepage extends React.Component<Props> {
 
         {items.length > 0 && (
           <ul>
-            {items.map(item => <li key={`item-${item.id}`}>{item.name}</li>)}
+            {items.map(item => <li key={`item:${item.id}`}>{item.name}</li>)}
           </ul>
         )}
         {!items.length && <button onClick={this.loadItems}>Load items</button>}
