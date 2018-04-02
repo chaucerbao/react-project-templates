@@ -1,7 +1,7 @@
 {
   "name": "application",
   "version": "0.1.0",
-  "description": "",
+  "description": "Core template to bootstrap a React application",
   "author": "Alvin Chan <no@email.com>",
   "license": "ISC",
   "devDependencies": {

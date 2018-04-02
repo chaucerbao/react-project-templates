@@ -1,7 +1,7 @@
 {
   "name": "mobx-store",
   "version": "0.1.0",
-  "description": "",
+  "description": "Using MobX to handle the Store",
   "author": "Alvin Chan <no@email.com>",
   "license": "ISC",
   "devDependencies": {
