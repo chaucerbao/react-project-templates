@@ -1,14 +1,14 @@
 // Stores
-import ItemStore from './item'
+import ItemsStore from './items'
 
 // Type definitions
 export interface Store {
-  item: ItemStore
+  items: ItemsStore
 }
 
 // Store collection
 const store: Store = {
-  item: new ItemStore()
+  items: new ItemsStore()
 }
 
 // Exports

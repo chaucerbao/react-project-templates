@@ -21,11 +21,11 @@ export default class Homepage extends React.Component<Props> {
   }
 
   loadItems = () => {
-    this.store.item.fetchItems()
+    this.store.items.fetchItems()
   }
 
   render() {
-    const items = this.store.item.all
+    const items = this.store.items.all
 
     return (
       <>

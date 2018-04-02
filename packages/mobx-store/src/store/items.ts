@@ -9,7 +9,7 @@ class Item {
 }
 
 // Store
-export default class ItemStore {
+export default class ItemsStore {
   stow: Stow<Item>
 
   constructor() {
@@ -21,7 +21,7 @@ export default class ItemStore {
     return Array.from(this.stow.dump())
   }
 
-  fetchItems = flow(function*(this: ItemStore) {
+  fetchItems = flow(function*(this: ItemsStore) {
     const items: Item[] = yield fetch(
       'http://jsonplaceholder.typicode.com/users'
     ).then(response => response.json())
