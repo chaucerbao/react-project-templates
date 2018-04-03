@@ -26,7 +26,7 @@ const Router = () => (
         <Switch>
           <Route exact path="/" component={Homepage} />
           <Route path="/login" component={Login} />
-          <Route path="/Logout" component={Logout} />
+          <Route path="/logout" component={Logout} />
           <ProtectedRoute path="/secret" component={Secret} />
           <Route component={NotFound} />
         </Switch>

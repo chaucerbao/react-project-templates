@@ -8,6 +8,7 @@ export default () => (
   <AuthConsumer>
     {({ logOut }: AuthContext) => {
       logOut()
+
       return <Redirect to="/" />
     }}
   </AuthConsumer>
