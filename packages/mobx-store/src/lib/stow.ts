@@ -2,33 +2,30 @@
 import { observable } from 'mobx'
 
 // Type definitions
-export type MapKey = string | number
-export interface ModelProps {
-  [key: string]: any
-}
+export type Key = string | number
 
 // Stow
-export default class Stow<Model extends ModelProps> {
-  @observable private collection: Map<MapKey, Model> = new Map()
+export default class Stow<Model extends { [key: string]: any }> {
+  @observable private stowage: Map<Key, Model> = new Map()
 
   constructor(private newModel: () => Model) {}
 
   get size() {
-    return this.collection.size
+    return this.stowage.size
   }
 
-  get(id: MapKey) {
+  get(id: Key) {
+    const { stowage, newModel } = this
     const idString = id.toString()
-    const { collection, newModel } = this
 
-    if (!collection.has(idString)) {
-      collection.set(idString, newModel())
+    if (!stowage.has(idString)) {
+      stowage.set(idString, newModel())
     }
 
-    return collection.get(idString)!
+    return stowage.get(idString)!
   }
 
-  set(id: MapKey, props?: ModelProps) {
+  set(id: Key, props?: Partial<Model>) {
     const model = this.get(id.toString())
 
     if (props) {
@@ -43,6 +40,6 @@ export default class Stow<Model extends ModelProps> {
   }
 
   dump() {
-    return this.collection.values()
+    return this.stowage.values()
   }
 }
