@@ -1,6 +1,6 @@
 // Dependencies
-import { computed, flow } from 'mobx'
-import Stow from '../lib/stow'
+import { computed, flow, observable } from 'mobx'
+import Stow from '@chaucerbao/stow'
 
 // Model
 class Item {
@@ -13,7 +13,7 @@ export default class ItemsStore {
   stow: Stow<Item>
 
   constructor() {
-    this.stow = new Stow(() => new Item())
+    this.stow = new Stow(() => new Item(), { observable })
   }
 
   @computed
