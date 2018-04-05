@@ -5,6 +5,7 @@
   "author": "Alvin Chan <no@email.com>",
   "license": "ISC",
   "devDependencies": {
+    "source-map-explorer": "^1.5.0",
     "webpack-cli": "^2.0.13",
     "webpack-dev-server": "^3.1.1"
   },
@@ -15,6 +16,8 @@
     "mobx-react": "^5.0.0"
   },
   "scripts": {
-    "start": "webpack-dev-server --config ../../webpack.config.js -d"
+    "start": "webpack-dev-server --config ../../webpack.config.js -d",
+    "build": "webpack-cli --config ../../webpack.config.js -p --devtool source-map --progress",
+    "analyze": "source-map-explorer public/js/script.js{,.map}"
   }
 }
