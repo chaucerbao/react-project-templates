@@ -26,10 +26,10 @@ const defaultState = {
 // Selectors
 export const selectItems = createSelector(
   (state: StoreState) => state.items._cache,
-  items =>
-    orderBy<Item>('name')(Object.values(items))
+  items => orderBy<Item>('name')(Object.values(items))
 )
-export const selectItem = (state: StoreState, id: Item['id']) => state.items._cache[id]
+export const selectItem = (state: StoreState, id: Item['id']) =>
+  state.items._cache[id]
 export const selectIsLoading = (state: StoreState) => state.items.isLoading
 
 // Actions
