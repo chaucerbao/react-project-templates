@@ -73,6 +73,16 @@ export default class extends React.Component {
       <>
         <h1>Welcome home</h1>
 
+        <nav>
+          <Link external to="https://google.com/">
+            External link
+          </Link>
+          &nbsp;
+          <Button external to="https://google.com/">
+            External button
+          </Button>
+        </nav>
+
         <form onSubmit={this.submitForm}>
           <Input
             label="Title"
