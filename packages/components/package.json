@@ -1,0 +1,14 @@
+{
+  "name": "components",
+  "version": "0.1.0",
+  "description": "React components common in many applications",
+  "author": "Alvin Chan <no@email.com>",
+  "license": "ISC",
+  "devDependencies": {
+    "webpack-cli": "^2.0.13",
+    "webpack-dev-server": "^3.1.1"
+  },
+  "scripts": {
+    "start": "webpack-dev-server --config ../../webpack.config.js -d"
+  }
+}
