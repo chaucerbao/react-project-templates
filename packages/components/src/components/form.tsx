@@ -51,7 +51,7 @@ const Group = ({ children, error, label }: GroupProps) => (
   </div>
 )
 
-export const Input = ({
+const Input = ({
   error,
   label,
   ...props
@@ -61,7 +61,7 @@ export const Input = ({
   </Field>
 )
 
-export const TextArea = ({
+const TextArea = ({
   error,
   label,
   ...props
@@ -71,7 +71,7 @@ export const TextArea = ({
   </Field>
 )
 
-export const Select = ({
+const Select = ({
   error,
   label,
   options,
@@ -88,7 +88,7 @@ export const Select = ({
   </Field>
 )
 
-export const Checkbox = ({
+const Checkbox = ({
   error,
   label,
   ...props
@@ -98,7 +98,7 @@ export const Checkbox = ({
   </Field>
 )
 
-export const CheckboxGroup = ({
+const CheckboxGroup = ({
   error,
   label,
   name,
@@ -125,7 +125,7 @@ export const CheckboxGroup = ({
   </Group>
 )
 
-export const RadioGroup = ({
+const RadioGroup = ({
   error,
   label,
   name,
@@ -148,7 +148,7 @@ export const RadioGroup = ({
   </Group>
 )
 
-export class FileUpload extends React.Component<
+class FileUpload extends React.Component<
   FormFieldProps & FileUploadProps & React.HTMLProps<HTMLInputElement>
 > {
   input?: HTMLInputElement
@@ -211,7 +211,7 @@ export class FileUpload extends React.Component<
   }
 }
 
-export function fieldValue(e: ChangeEvent) {
+function fieldValue(e: ChangeEvent) {
   const field = e.currentTarget
 
   if (field instanceof HTMLSelectElement && field.multiple) {
@@ -235,4 +235,16 @@ export function fieldValue(e: ChangeEvent) {
   }
 
   return field.value
+}
+
+// Exports
+export {
+  Input,
+  TextArea,
+  Select,
+  Checkbox,
+  CheckboxGroup,
+  RadioGroup,
+  FileUpload,
+  fieldValue
 }
