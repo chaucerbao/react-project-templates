@@ -1,5 +1,3 @@
-// TODO: Consider a better way to calculate `fieldValue()` for CheckboxGroup
-
 // Dependencies
 import React from 'react'
 
@@ -10,13 +8,12 @@ interface FieldProps {
   label?: string
   name: string
 }
-interface GroupProps {
-  children: React.ReactNode
-  error?: string
-  label?: string
-}
+type FieldGroupProps = Pick<FieldProps, Exclude<keyof FieldProps, 'name'>>
 type FormFieldProps = Pick<FieldProps, Exclude<keyof FieldProps, 'children'>>
-type FormGroupProps = Pick<GroupProps, Exclude<keyof GroupProps, 'children'>>
+type FormFieldGroupProps = Pick<
+  FieldGroupProps,
+  Exclude<keyof FieldGroupProps, 'children'>
+>
 interface OptionProps {
   options: Array<{ label: string; value: string }>
 }
@@ -43,7 +40,7 @@ const Field = ({ children, error, label, name }: FieldProps) => (
   </div>
 )
 
-const Group = ({ children, error, label }: GroupProps) => (
+const FieldGroup = ({ children, error, label }: FieldGroupProps) => (
   <div>
     {label && <span>{label}</span>}
     {error && <span>{error}</span>}
@@ -104,8 +101,8 @@ const CheckboxGroup = ({
   name,
   options,
   ...props
-}: FormGroupProps & React.HTMLProps<HTMLInputElement> & OptionProps) => (
-  <Group error={error} label={label}>
+}: FormFieldGroupProps & React.HTMLProps<HTMLInputElement> & OptionProps) => (
+  <FieldGroup error={error} label={label}>
     {options.map(({ label, value }) => (
       <label key={`${name}:${value}`} htmlFor={`${name}:${value}`}>
         <input
@@ -122,7 +119,7 @@ const CheckboxGroup = ({
         <span>{label}</span>
       </label>
     ))}
-  </Group>
+  </FieldGroup>
 )
 
 const RadioGroup = ({
@@ -131,8 +128,8 @@ const RadioGroup = ({
   name,
   options,
   ...props
-}: FormGroupProps & React.HTMLProps<HTMLInputElement> & OptionProps) => (
-  <Group error={error} label={label}>
+}: FormFieldGroupProps & React.HTMLProps<HTMLInputElement> & OptionProps) => (
+  <FieldGroup error={error} label={label}>
     {options.map(({ label, value }) => (
       <label key={`${name}:${value}`} htmlFor={`${name}:${value}`}>
         <input
@@ -145,7 +142,7 @@ const RadioGroup = ({
         <span>{label}</span>
       </label>
     ))}
-  </Group>
+  </FieldGroup>
 )
 
 class FileUpload extends React.Component<
