@@ -21,7 +21,7 @@ export default class ItemsStore {
     return Array.from(this.stow.dump())
   }
 
-  fetchItems = flow(function*(this: ItemsStore) {
+  fetchItems = flow(function* fetchItems(this: ItemsStore) {
     const items: Item[] = yield fetch(
       'http://jsonplaceholder.typicode.com/users'
     ).then(response => response.json())
