@@ -6,7 +6,7 @@ import { Provider } from 'mobx-react'
 import { enableLogging } from 'mobx-logger'
 
 // Configure MobX
-configure({ enforceActions: true })
+configure({ enforceActions: 'strict' })
 if (process.env.NODE_ENV !== 'production') {
   enableLogging()
 }

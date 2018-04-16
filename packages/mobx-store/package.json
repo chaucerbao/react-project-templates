@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "@chaucerbao/stow": "^0.2.0",
-    "mobx": "^4.1.1",
+    "mobx": "^4.2.0",
     "mobx-logger": "^0.7.0",
     "mobx-react": "^5.0.0"
   },
