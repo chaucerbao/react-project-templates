@@ -10,7 +10,7 @@ class Item {
 
 // Store
 export default class ItemsStore {
-  stow: Stow<Item>
+  private stow: Stow<Item>
 
   constructor() {
     this.stow = new Stow(() => new Item(), { observable })
