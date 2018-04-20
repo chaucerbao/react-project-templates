@@ -1,15 +1,15 @@
 // Dependencies
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { AuthConsumer, Context as AuthContext } from './auth-context'
+import { AuthConsumer, IContext as AuthContext } from './auth-context'
 
 // Type definitions
-interface Props {
+interface IProps {
   children: React.ReactNode
 }
 
 // Layout
-export default ({ children }: Props) => (
+export default ({ children }: IProps) => (
   <AuthConsumer>
     {({ isLoggedIn }: AuthContext) => (
       <>

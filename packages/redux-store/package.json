@@ -9,6 +9,7 @@
     "@types/redux-actions": "^2.2.4",
     "@types/redux-logger": "^3.0.5",
     "source-map-explorer": "^1.5.0",
+    "tslint": "^5.9.1",
     "webpack-cli": "^2.0.13",
     "webpack-dev-server": "^3.1.1"
   },

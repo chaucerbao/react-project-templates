@@ -1,18 +1,18 @@
 // Dependencies
 import produce from 'immer'
 import { Dispatch } from 'redux'
-import { createAction, handleActions, Action } from 'redux-actions'
+import { Action, createAction, handleActions } from 'redux-actions'
 import { createSelector } from 'reselect'
-import { State as StoreState } from '../store'
 import { orderBy } from '../lib/helper'
+import { IState as StoreState } from '../store'
 
 // Type definitions
-export interface State {
-  _cache: { [key: number]: Item }
+export interface IState {
+  _cache: { [key: number]: IItem }
   isLoading: boolean
 }
 
-export interface Item {
+export interface IItem {
   id: number
   name: string
 }
@@ -20,58 +20,60 @@ export interface Item {
 // Default state
 const defaultState = {
   _cache: {},
-  isLoading: false
+  isLoading: false,
 }
 
 // Selectors
 export const selectItems = createSelector(
   (state: StoreState) => state.items._cache,
-  items => orderBy<Item>('name')(Object.values(items))
+  (items) => orderBy<IItem>('name')(Object.values(items)),
 )
-export const selectItem = (state: StoreState, id: Item['id']) =>
+export const selectItem = (state: StoreState, id: IItem['id']) =>
   state.items._cache[id]
 export const selectIsLoading = (state: StoreState) => state.items.isLoading
 
 // Actions
 const setLoading = createAction<boolean>('ITEMS/SET_LOADING')
-export const cacheItems = createAction<Item[]>('ITEMS/CACHE_ITEMS')
+export const cacheItems = createAction<IItem[]>('ITEMS/CACHE_ITEMS')
 
 // Thunk actions
 export const fetchItems = () => async (
   dispatch: Dispatch<StoreState>,
-  getState: () => StoreState
+  getState: () => StoreState,
 ) => {
-  if (Object.keys(getState().items._cache).length > 0) return
+  if (Object.keys(getState().items._cache).length > 0) {
+    return
+  }
 
   dispatch(setLoading(true))
 
   dispatch(
     cacheItems(
-      await fetch('http://jsonplaceholder.typicode.com/users').then(response =>
-        response.json()
-      )
-    )
+      await fetch('http://jsonplaceholder.typicode.com/users').then((response) =>
+        response.json(),
+      ),
+    ),
   )
 
   dispatch(setLoading(false))
 }
 
 // Reducer
-export default handleActions<State, any>(
+export default handleActions<IState, any>(
   {
     [setLoading.toString()]: (state, { payload }: Action<boolean>) =>
-      produce(state, draft => {
+      produce(state, (draft) => {
         draft.isLoading = !!payload
       }),
 
-    [cacheItems.toString()]: (state, { payload }: Action<Item[]>) =>
-      produce(state, draft => {
+    [cacheItems.toString()]: (state, { payload }: Action<IItem[]>) =>
+      produce(state, (draft) => {
         if (payload) {
-          payload.forEach(item => {
+          payload.forEach((item) => {
             draft._cache[item.id] = { ...draft._cache[item.id], ...item }
           })
         }
-      })
+      }),
   },
-  defaultState
+  defaultState,
 )

@@ -2,11 +2,12 @@
 import React from 'react'
 
 // Type definitions
-interface Props {
+interface IProps {
   error?: boolean
   pastDelay?: boolean
   timedOut?: boolean
 }
 
 // Component
-export default (_props: Props) => <>Loading...</>
+// tslint:disable-next-line
+export default (_props: IProps) => <>Loading...</>

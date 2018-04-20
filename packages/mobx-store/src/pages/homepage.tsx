@@ -1,30 +1,30 @@
 // Dependencies
-import React from 'react'
 import { inject, observer } from 'mobx-react'
-import { Store } from '../store'
+import React from 'react'
+import { IStore } from '../store'
 
 // Type definitions
-interface Props {
-  store?: Store
+interface IProps {
+  store?: IStore
 }
 
 // Page
 @inject('store')
 @observer
-export default class Homepage extends React.Component<Props> {
-  store: Store
+export default class Homepage extends React.Component<IProps> {
+  public store: IStore
 
-  constructor(props: Props) {
+  constructor(props: IProps) {
     super(props)
 
     this.store = props.store!
   }
 
-  loadItems = () => {
+  public loadItems = () => {
     this.store.items.fetchItems()
   }
 
-  render() {
+  public render() {
     const items = this.store.items.all
 
     return (
@@ -33,7 +33,7 @@ export default class Homepage extends React.Component<Props> {
 
         {items.length > 0 && (
           <ul>
-            {items.map(item => <li key={`item:${item.id}`}>{item.name}</li>)}
+            {items.map((item) => <li key={`item:${item.id}`}>{item.name}</li>)}
           </ul>
         )}
         {!items.length && <button onClick={this.loadItems}>Load items</button>}

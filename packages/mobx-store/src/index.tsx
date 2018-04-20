@@ -1,9 +1,9 @@
 // Dependencies
+import { configure } from 'mobx'
+import { enableLogging } from 'mobx-logger'
+import { Provider } from 'mobx-react'
 import React from 'react'
 import { render } from 'react-dom'
-import { configure } from 'mobx'
-import { Provider } from 'mobx-react'
-import { enableLogging } from 'mobx-logger'
 
 // Configure MobX
 configure({ enforceActions: 'strict' })
@@ -22,5 +22,5 @@ render(
   <Provider store={store}>
     <Homepage />
   </Provider>,
-  document.getElementById('application')
+  document.getElementById('application'),
 )

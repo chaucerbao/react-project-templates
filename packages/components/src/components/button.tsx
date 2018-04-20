@@ -1,14 +1,14 @@
 // Dependencies
 import React from 'react'
-import Link, { Props as LinkProps } from './link'
+import Link, { IProps as LinkProps } from './link'
 
 // Type definitions
-interface Props {
+interface IProps {
   disabled?: boolean
   primary?: boolean
 }
-type ButtonProps = React.HTMLProps<HTMLButtonElement> & Props
-type LinkButtonProps = LinkProps & Props
+type ButtonProps = React.HTMLProps<HTMLButtonElement> & IProps
+type LinkButtonProps = LinkProps & IProps
 
 // Component
 const Button = ({ children, ...props }: ButtonProps | LinkButtonProps) =>

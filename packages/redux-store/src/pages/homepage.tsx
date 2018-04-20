@@ -2,27 +2,27 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators, Dispatch } from 'redux'
-import { State as StoreState } from '../store'
-import { selectIsLoading, selectItems, fetchItems, Item } from '../store/items'
+import { IState as StoreState } from '../store'
+import { fetchItems, IItem, selectIsLoading, selectItems } from '../store/items'
 
 // Type definitions
-interface Props {
+interface IProps {
   state: {
     isLoading: boolean
-    items: Item[]
+    items: IItem[],
   }
   dispatch: {
-    fetchItems: typeof fetchItems
+    fetchItems: typeof fetchItems,
   }
 }
 
 // Page
-class Homepage extends React.Component<Props> {
-  loadItems = () => {
+class Homepage extends React.Component<IProps> {
+  public loadItems = () => {
     this.props.dispatch.fetchItems()
   }
 
-  render() {
+  public render() {
     const { isLoading, items } = this.props.state
 
     return (
@@ -32,7 +32,7 @@ class Homepage extends React.Component<Props> {
         {!isLoading &&
           items.length > 0 && (
             <ul>
-              {items.map(item => <li key={`item:${item.id}`}>{item.name}</li>)}
+              {items.map((item) => <li key={`item:${item.id}`}>{item.name}</li>)}
             </ul>
           )}
         {!items.length && <button onClick={this.loadItems}>Load items</button>}
@@ -45,13 +45,13 @@ class Homepage extends React.Component<Props> {
 const mapStateToProps = (state: StoreState) => ({
   state: {
     isLoading: selectIsLoading(state),
-    items: selectItems(state)
-  }
+    items: selectItems(state),
+  },
 })
 
 // Dispatch
 const mapDispatchToProps = (dispatch: Dispatch<StoreState>) => ({
-  dispatch: bindActionCreators({ fetchItems }, dispatch)
+  dispatch: bindActionCreators({ fetchItems }, dispatch),
 })
 
 // Exports

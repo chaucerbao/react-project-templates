@@ -4,69 +4,69 @@ import React from 'react'
 // Components
 import Button from '../components/button'
 import {
-  Input,
-  TextArea,
-  Select,
+  ChangeEvent,
   Checkbox,
   CheckboxGroup,
-  RadioGroup,
+  fieldValue,
   FileUpload,
-  ChangeEvent,
-  fieldValue
+  Input,
+  RadioGroup,
+  Select,
+  TextArea,
 } from '../components/form'
 import Link from '../components/link'
 
 // Homepage
 export default class extends React.Component {
-  categories = [
+  public categories = [
     { label: 'Category A', value: 'A' },
     { label: 'Category B', value: 'B' },
-    { label: 'Category C', value: 'C' }
+    { label: 'Category C', value: 'C' },
   ]
 
-  tags = [
+  public tags = [
     { label: 'Tag 1', value: '1' },
     { label: 'Tag 2', value: '2' },
-    { label: 'Tag 3', value: '3' }
+    { label: 'Tag 3', value: '3' },
   ]
 
-  state = {
-    form: {
-      title: '',
-      body: '',
-      category: '',
-      categories: [],
-      related_category: '',
-      isPublished: false,
-      tags: [],
-      image: undefined,
-      attachments: []
-    },
+  public state = {
     errors: {
-      title: '',
+      attachments: '',
       body: '',
-      category: '',
       categories: '',
-      related_category: '',
-      isPublished: '',
-      tags: '',
+      category: '',
       image: '',
-      attachments: ''
-    }
+      isPublished: '',
+      related_category: '',
+      tags: '',
+      title: '',
+    },
+    form: {
+      attachments: [],
+      body: '',
+      categories: [],
+      category: '',
+      image: undefined,
+      isPublished: false,
+      related_category: '',
+      tags: [],
+      title: '',
+    },
   }
 
-  updateField = (e: ChangeEvent) => {
+  public updateField = (e: ChangeEvent) => {
     this.setState({
-      form: { ...this.state.form, [e.currentTarget.name]: fieldValue(e) }
+      form: { ...this.state.form, [e.currentTarget.name]: fieldValue(e) },
     })
   }
 
-  submitForm = (e: React.FormEvent<HTMLFormElement>) => {
+  public submitForm = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    console.log('Submitting', this.state.form)
+    console.log('Submitting', this.state.form) // tslint:disable-line no-console
   }
 
-  render() {
+  public render() {
     const { form, errors } = this.state
 
     return (

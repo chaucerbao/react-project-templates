@@ -2,27 +2,27 @@
 import React from 'react'
 
 // Type definitions
-interface FieldProps {
+interface IFieldProps {
   children: React.ReactNode
   error?: string
   label?: string
   name: string
 }
-type FieldGroupProps = Pick<FieldProps, Exclude<keyof FieldProps, 'name'>>
-type FormFieldProps = Pick<FieldProps, Exclude<keyof FieldProps, 'children'>>
+type FieldGroupProps = Pick<IFieldProps, Exclude<keyof IFieldProps, 'name'>>
+type FormFieldProps = Pick<IFieldProps, Exclude<keyof IFieldProps, 'children'>>
 type FormFieldGroupProps = Pick<
   FieldGroupProps,
   Exclude<keyof FieldGroupProps, 'children'>
 >
-interface OptionProps {
+interface IOptionProps {
   options: Array<{ label: string; value: string }>
 }
-interface FileUploadProps {
+interface IFileUploadProps {
   render?: () => React.ReactNode
   renderPreview?: (
     key: string,
     Image: React.StatelessComponent<{ [key: string]: any }>,
-    file: File
+    file: File,
   ) => React.ReactNode
 }
 export type ChangeEvent = React.FormEvent<
@@ -30,7 +30,7 @@ export type ChangeEvent = React.FormEvent<
 >
 
 // Components
-const Field = ({ children, error, label, name }: FieldProps) => (
+const Field = ({ children, error, label, name }: IFieldProps) => (
   <div>
     <label htmlFor={name}>
       {label && <span>{label}</span>}
@@ -51,7 +51,7 @@ const FieldGroup = ({ children, error, label }: FieldGroupProps) => (
 const Input = ({
   error,
   label,
-  ...props
+  ...props,
 }: FormFieldProps & React.HTMLProps<HTMLInputElement>) => (
   <Field error={error} label={label} name={props.name}>
     <input {...props} id={props.name} type="text" />
@@ -61,7 +61,7 @@ const Input = ({
 const TextArea = ({
   error,
   label,
-  ...props
+  ...props,
 }: FormFieldProps & React.HTMLProps<HTMLTextAreaElement>) => (
   <Field error={error} label={label} name={props.name}>
     <textarea {...props} id={props.name} />
@@ -72,13 +72,13 @@ const Select = ({
   error,
   label,
   options,
-  ...props
-}: FormFieldProps & React.HTMLProps<HTMLSelectElement> & OptionProps) => (
+  ...props,
+}: FormFieldProps & React.HTMLProps<HTMLSelectElement> & IOptionProps) => (
   <Field error={error} label={label} name={props.name}>
     <select {...props} id={props.name}>
-      {options.map(({ label, value }) => (
+      {options.map(({ label: optionLabel, value }) => (
         <option key={`${props.name}:${value}`} value={value}>
-          {label}
+          {optionLabel}
         </option>
       ))}
     </select>
@@ -88,7 +88,7 @@ const Select = ({
 const Checkbox = ({
   error,
   label,
-  ...props
+  ...props,
 }: FormFieldProps & React.HTMLProps<HTMLInputElement>) => (
   <Field error={error} label={label} name={props.name}>
     <input {...props} id={props.name} type="checkbox" />
@@ -100,10 +100,10 @@ const CheckboxGroup = ({
   label,
   name,
   options,
-  ...props
-}: FormFieldGroupProps & React.HTMLProps<HTMLInputElement> & OptionProps) => (
+  ...props,
+}: FormFieldGroupProps & React.HTMLProps<HTMLInputElement> & IOptionProps) => (
   <FieldGroup error={error} label={label}>
-    {options.map(({ label, value }) => (
+    {options.map(({ label: optionLabel, value }) => (
       <label key={`${name}:${value}`} htmlFor={`${name}:${value}`}>
         <input
           {...props}
@@ -116,7 +116,7 @@ const CheckboxGroup = ({
           }
           data-checkbox-group
         />
-        <span>{label}</span>
+        <span>{optionLabel}</span>
       </label>
     ))}
   </FieldGroup>
@@ -127,10 +127,10 @@ const RadioGroup = ({
   label,
   name,
   options,
-  ...props
-}: FormFieldGroupProps & React.HTMLProps<HTMLInputElement> & OptionProps) => (
+  ...props,
+}: FormFieldGroupProps & React.HTMLProps<HTMLInputElement> & IOptionProps) => (
   <FieldGroup error={error} label={label}>
-    {options.map(({ label, value }) => (
+    {options.map(({ label: optionLabel, value }) => (
       <label key={`${name}:${value}`} htmlFor={`${name}:${value}`}>
         <input
           {...props}
@@ -139,26 +139,26 @@ const RadioGroup = ({
           value={value}
           type="radio"
         />
-        <span>{label}</span>
+        <span>{optionLabel}</span>
       </label>
     ))}
   </FieldGroup>
 )
 
 class FileUpload extends React.Component<
-  FormFieldProps & FileUploadProps & React.HTMLProps<HTMLInputElement>
+  FormFieldProps & IFileUploadProps & React.HTMLProps<HTMLInputElement>
 > {
-  input?: HTMLInputElement
-  imageFiles: File[] = []
-  imagePreviews: HTMLImageElement[] = []
+  private input?: HTMLInputElement
+  private imageFiles: File[] = []
+  private imagePreviews: HTMLImageElement[] = []
 
-  componentWillUpdate() {
+  public componentWillUpdate() {
     const { input } = this
 
     const imageFiles =
       input && input.files
-        ? Array.from(input.files).filter(file =>
-            /\.(gif|jpg|png)$/.test(file.name)
+        ? Array.from(input.files).filter((file) =>
+            /\.(gif|jpg|png)$/.test(file.name),
           )
         : []
 
@@ -167,8 +167,9 @@ class FileUpload extends React.Component<
         const fileReader = new FileReader()
 
         fileReader.addEventListener('load', () => {
-          if (this.imagePreviews[i])
+          if (this.imagePreviews[i]) {
             this.imagePreviews[i].src = fileReader.result
+          }
         })
         fileReader.readAsDataURL(file)
       })
@@ -178,7 +179,7 @@ class FileUpload extends React.Component<
     this.imagePreviews = []
   }
 
-  render() {
+  public render() {
     const { error, label, render, renderPreview, ...props } = this.props
 
     return (
@@ -188,20 +189,20 @@ class FileUpload extends React.Component<
           this.imageFiles.map((file, i) =>
             renderPreview(
               `${props.name}:${i}`,
-              imageProps => (
+              (imageProps) => (
                 <img
                   {...imageProps}
-                  ref={img => (this.imagePreviews[i] = img!)}
+                  ref={(img) => (this.imagePreviews[i] = img!)}
                 />
               ),
-              file
-            )
+              file,
+            ),
           )}
         <input
           {...props}
           id={props.name}
           type="file"
-          ref={input => (this.input = input!)}
+          ref={(input) => (this.input = input!)}
         />
       </Field>
     )
@@ -213,13 +214,13 @@ function fieldValue(e: ChangeEvent) {
 
   if (field instanceof HTMLSelectElement && field.multiple) {
     return Array.from(field.options)
-      .filter(option => option.selected)
-      .map(option => option.value)
+      .filter((option) => option.selected)
+      .map((option) => option.value)
   } else if (field instanceof HTMLInputElement && field.type === 'checkbox') {
     if (field.dataset.checkboxGroup) {
       return Array.from(
-        field.parentElement!.parentElement!.querySelectorAll('input:checked')
-      ).map(input => (input as HTMLInputElement).value)
+        field.parentElement!.parentElement!.querySelectorAll('input:checked'),
+      ).map((input) => (input as HTMLInputElement).value)
     } else {
       return field.checked
     }
@@ -243,5 +244,5 @@ export {
   CheckboxGroup,
   RadioGroup,
   FileUpload,
-  fieldValue
+  fieldValue,
 }

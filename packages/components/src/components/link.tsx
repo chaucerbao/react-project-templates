@@ -4,20 +4,20 @@ import React from 'react'
 // Stub a Link component from some router
 const RouteLink = ({
   children,
-  ...props
+  ...props,
 }: { children: React.ReactNode } & React.HTMLProps<HTMLAnchorElement>) => (
   <a {...props}>{children}</a>
 )
 
 // Type definitions
-export interface Props {
+export interface IProps {
   children: React.ReactNode
   external?: boolean
   to: string
 }
 
 // Component
-const Link = ({ children, external, to, ...props }: Props) =>
+const Link = ({ children, external, to, ...props }: IProps) =>
   external ? (
     <a {...props} href={to} target="_blank" rel="noopener">
       {children}

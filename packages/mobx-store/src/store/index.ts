@@ -2,13 +2,13 @@
 import ItemsStore from './items'
 
 // Type definitions
-export interface Store {
+export interface IStore {
   items: ItemsStore
 }
 
 // Store collection
-const store: Store = {
-  items: new ItemsStore()
+const store: IStore = {
+  items: new ItemsStore(),
 }
 
 // Exports

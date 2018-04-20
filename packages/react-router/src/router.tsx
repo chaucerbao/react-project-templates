@@ -1,13 +1,13 @@
 // Dependencies
 import React from 'react'
-import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import Loadable from 'react-loadable'
-import Loading from './components/loading'
-import Layout from './components/layout'
+import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import AuthProvider from './components/auth-context'
+import Layout from './components/layout'
+import Loading from './components/loading'
 import ProtectedRoute from './components/protected-route'
-import NotFound from './pages/not-found'
 import Logout from './pages/logout'
+import NotFound from './pages/not-found'
 
 // Asynchronous page loader
 const AsyncPage = (loader: () => Promise<any>) =>

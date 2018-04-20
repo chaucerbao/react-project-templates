@@ -1,15 +1,24 @@
 // Dependencies
-import { computed, flow, observable } from 'mobx'
 import Stow from '@chaucerbao/stow'
+import { computed, flow, observable } from 'mobx'
 
 // Model
 class Item {
-  id: number = 0
-  name: string = ''
+  public id: number = 0
+  public name: string = ''
 }
 
 // Store
+// tslint:disable-next-line max-classes-per-file
 export default class ItemsStore {
+  public fetchItems = flow(function* fetchItems(this: ItemsStore) {
+    const items: Item[] = yield fetch(
+      'http://jsonplaceholder.typicode.com/users',
+    ).then((response) => response.json())
+
+    items.forEach((item) => this.stow.set(item.id, item))
+  })
+
   private stow: Stow<Item>
 
   constructor() {
@@ -20,12 +29,4 @@ export default class ItemsStore {
   get all() {
     return Array.from(this.stow.dump())
   }
-
-  fetchItems = flow(function* fetchItems(this: ItemsStore) {
-    const items: Item[] = yield fetch(
-      'http://jsonplaceholder.typicode.com/users'
-    ).then(response => response.json())
-
-    items.forEach(item => this.stow.set(item.id, item))
-  })
 }

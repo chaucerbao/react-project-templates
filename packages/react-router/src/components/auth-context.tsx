@@ -2,14 +2,14 @@
 import React from 'react'
 
 // Type definitions
-interface Props {
+interface IProps {
   children: React.ReactNode
 }
-interface State {
+interface IState {
   isLoggedIn: boolean
 }
-export interface Context {
-  isLoggedIn: State['isLoggedIn']
+export interface IContext {
+  isLoggedIn: IState['isLoggedIn']
   logIn: () => void
   logOut: () => void
 }
@@ -18,20 +18,20 @@ export interface Context {
 const AuthContext = React.createContext()
 
 // Provider
-export default class AuthProvider extends React.Component<Props, State> {
-  state = {
-    isLoggedIn: false
+export default class AuthProvider extends React.Component<IProps, IState> {
+  public state = {
+    isLoggedIn: false,
   }
 
-  logIn = () => {
+  public logIn = () => {
     this.setState({ isLoggedIn: true })
   }
 
-  logOut = () => {
+  public logOut = () => {
     this.setState({ isLoggedIn: false })
   }
 
-  render() {
+  public render() {
     const { isLoggedIn } = this.state
     const { logIn, logOut } = this
 

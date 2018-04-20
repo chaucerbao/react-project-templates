@@ -3,38 +3,38 @@ import React from 'react'
 import { Redirect, RouteProps } from 'react-router-dom'
 import {
   AuthConsumer,
-  Context as AuthContext
+  IContext as AuthContext,
 } from '../components/auth-context'
 
 // Type definitions
-interface Props {
+interface IProps {
   location: RouteProps['location']
 }
-interface State {
+interface IState {
   form: {
     email: string
-    password: string
+    password: string,
   }
 }
 
 // Login
-export default class Login extends React.Component<Props, State> {
-  state = {
+export default class Login extends React.Component<IProps, IState> {
+  public state = {
     form: {
       email: '',
-      password: ''
-    }
+      password: '',
+    },
   }
 
-  updateField = (e: React.FormEvent<HTMLInputElement>) => {
+  public updateField = (e: React.FormEvent<HTMLInputElement>) => {
     const field = e.currentTarget
 
     this.setState({
-      form: Object.assign({}, this.state.form, { [field.name]: field.value })
+      form: Object.assign({}, this.state.form, { [field.name]: field.value }),
     })
   }
 
-  render() {
+  public render() {
     const { form } = this.state
     const path = this.props.location!.search
 

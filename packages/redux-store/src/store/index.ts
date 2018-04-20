@@ -3,24 +3,24 @@ import {
   applyMiddleware,
   combineReducers,
   createStore,
-  Middleware
+  Middleware,
 } from 'redux'
+import logger from 'redux-logger'
 import { persistReducer, persistStore } from 'redux-persist'
 import storage from 'redux-persist/lib/storage'
 import thunk from 'redux-thunk'
-import logger from 'redux-logger'
 
 // Reducers
-import items, { State as ItemsState } from './items'
+import items, { IState as ItemsState } from './items'
 
 // Type definitions
-export interface State {
+export interface IState {
   items: ItemsState
 }
 
 // Reducers
 const reducers = {
-  items
+  items,
 }
 
 // Middleware
@@ -32,7 +32,7 @@ if (process.env.NODE_ENV !== 'production') {
 // Store
 const store = createStore(
   persistReducer({ key: 'persistStore', storage }, combineReducers(reducers)),
-  applyMiddleware(...middleware)
+  applyMiddleware(...middleware),
 )
 
 // Exports

@@ -1,13 +1,10 @@
 // Dependencies
 import React from 'react'
 import { Redirect, Route, RouteProps } from 'react-router-dom'
-import { AuthConsumer, Context as AuthContext } from './auth-context'
-
-// Type definitions
-interface Props extends RouteProps {}
+import { AuthConsumer, IContext as AuthContext } from './auth-context'
 
 // Component
-export default (props: Props) => (
+export default (props: RouteProps) => (
   <AuthConsumer>
     {({ isLoggedIn }: AuthContext) =>
       isLoggedIn ? (
@@ -15,7 +12,7 @@ export default (props: Props) => (
       ) : (
         <Redirect
           to={`/login?${props.location!.pathname}${encodeURIComponent(
-            props.location!.search
+            props.location!.search,
           )}`}
         />
       )

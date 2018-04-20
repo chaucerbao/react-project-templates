@@ -1,0 +1,11 @@
+{
+  "extends": ["tslint:recommended"],
+  "rules": {
+    "quotemark": {
+      "options": ["single", "jsx-double", "avoid-escape"]
+    },
+    "semicolon": {
+      "options": ["never"]
+    }
+  }
+}
