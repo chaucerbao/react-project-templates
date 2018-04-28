@@ -1,0 +1,22 @@
+{
+  "name": "mobx-state-tree-store",
+  "version": "0.1.0",
+  "description": "Using MobX State Tree to handle the Store",
+  "author": "Alvin Chan <no@email.com>",
+  "license": "ISC",
+  "devDependencies": {
+    "source-map-explorer": "^1.5.0",
+    "webpack-cli": "^2.0.15",
+    "webpack-dev-server": "^3.1.3"
+  },
+  "dependencies": {
+    "mobx": "^4.2.0",
+    "mobx-react": "^5.0.0",
+    "mobx-state-tree": "^2.0.4"
+  },
+  "scripts": {
+    "start": "webpack-dev-server --config ../../webpack.config.js -d",
+    "build": "webpack-cli --config ../../webpack.config.js -p --devtool source-map --progress",
+    "analyze": "source-map-explorer public/js/script.js{,.map}"
+  }
+}
