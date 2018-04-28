@@ -26,14 +26,6 @@ export default class Login extends React.Component<IProps, IState> {
     },
   }
 
-  public updateField = (e: React.FormEvent<HTMLInputElement>) => {
-    const field = e.currentTarget
-
-    this.setState({
-      form: Object.assign({}, this.state.form, { [field.name]: field.value }),
-    })
-  }
-
   public render() {
     const { form } = this.state
     const path = this.props.location!.search
@@ -81,5 +73,13 @@ export default class Login extends React.Component<IProps, IState> {
         }
       </AuthConsumer>
     )
+  }
+
+  private updateField = (e: React.FormEvent<HTMLInputElement>) => {
+    const field = e.currentTarget
+
+    this.setState({
+      form: Object.assign({}, this.state.form, { [field.name]: field.value }),
+    })
   }
 }

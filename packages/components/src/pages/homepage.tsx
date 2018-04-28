@@ -18,18 +18,6 @@ import Link from '../components/link'
 
 // Homepage
 export default class extends React.Component {
-  public categories = [
-    { label: 'Category A', value: 'A' },
-    { label: 'Category B', value: 'B' },
-    { label: 'Category C', value: 'C' },
-  ]
-
-  public tags = [
-    { label: 'Tag 1', value: '1' },
-    { label: 'Tag 2', value: '2' },
-    { label: 'Tag 3', value: '3' },
-  ]
-
   public state = {
     errors: {
       attachments: '',
@@ -55,16 +43,17 @@ export default class extends React.Component {
     },
   }
 
-  public updateField = (e: ChangeEvent) => {
-    this.setState({
-      form: { ...this.state.form, [e.currentTarget.name]: fieldValue(e) },
-    })
-  }
+  private categories = [
+    { label: 'Category A', value: 'A' },
+    { label: 'Category B', value: 'B' },
+    { label: 'Category C', value: 'C' },
+  ]
 
-  public submitForm = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
-    console.log('Submitting', this.state.form) // tslint:disable-line no-console
-  }
+  private tags = [
+    { label: 'Tag 1', value: '1' },
+    { label: 'Tag 2', value: '2' },
+    { label: 'Tag 3', value: '3' },
+  ]
 
   public render() {
     const { form, errors } = this.state
@@ -173,5 +162,16 @@ export default class extends React.Component {
         </form>
       </>
     )
+  }
+
+  private updateField = (e: ChangeEvent) => {
+    this.setState({
+      form: { ...this.state.form, [e.currentTarget.name]: fieldValue(e) },
+    })
+  }
+
+  private submitForm = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    console.log('Submitting', this.state.form) // tslint:disable-line no-console
   }
 }

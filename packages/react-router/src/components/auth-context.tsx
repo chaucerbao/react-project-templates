@@ -23,14 +23,6 @@ export default class AuthProvider extends React.Component<IProps, IState> {
     isLoggedIn: false,
   }
 
-  public logIn = () => {
-    this.setState({ isLoggedIn: true })
-  }
-
-  public logOut = () => {
-    this.setState({ isLoggedIn: false })
-  }
-
   public render() {
     const { isLoggedIn } = this.state
     const { logIn, logOut } = this
@@ -40,6 +32,14 @@ export default class AuthProvider extends React.Component<IProps, IState> {
         {this.props.children}
       </AuthContext.Provider>
     )
+  }
+
+  private logIn = () => {
+    this.setState({ isLoggedIn: true })
+  }
+
+  private logOut = () => {
+    this.setState({ isLoggedIn: false })
   }
 }
 

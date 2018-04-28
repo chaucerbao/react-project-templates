@@ -18,10 +18,6 @@ interface IProps {
 
 // Page
 class Homepage extends React.Component<IProps> {
-  public loadItems = () => {
-    this.props.dispatch.fetchItems()
-  }
-
   public render() {
     const { isLoading, items } = this.props.state
 
@@ -38,6 +34,10 @@ class Homepage extends React.Component<IProps> {
         {!items.length && <button onClick={this.loadItems}>Load items</button>}
       </>
     )
+  }
+
+  private loadItems = () => {
+    this.props.dispatch.fetchItems()
   }
 }
 

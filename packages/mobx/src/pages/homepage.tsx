@@ -12,16 +12,12 @@ interface IProps {
 @inject('store')
 @observer
 export default class Homepage extends React.Component<IProps> {
-  public store: IStore
+  private store: IStore
 
   constructor(props: IProps) {
     super(props)
 
     this.store = props.store!
-  }
-
-  public loadItems = () => {
-    this.store.items.fetchItems()
   }
 
   public render() {
@@ -36,8 +32,13 @@ export default class Homepage extends React.Component<IProps> {
             {items.map((item) => <li key={`item:${item.id}`}>{item.name}</li>)}
           </ul>
         )}
+
         {!items.length && <button onClick={this.loadItems}>Load items</button>}
       </>
     )
+  }
+
+  private loadItems = () => {
+    this.store.items.fetchItems()
   }
 }
