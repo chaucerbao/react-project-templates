@@ -11,11 +11,11 @@ type ButtonProps = React.HTMLProps<HTMLButtonElement> & IProps
 type LinkButtonProps = LinkProps & IProps
 
 // Component
-const Button = ({ children, ...props }: ButtonProps | LinkButtonProps) =>
+const Button = ({ ...props }: ButtonProps | LinkButtonProps) =>
   (props as LinkProps).to ? (
-    <Link {...props as LinkProps}>{children}</Link>
+    <Link {...props as LinkProps} />
   ) : (
-    <button {...props}>{children}</button>
+    <button {...props} />
   )
 
 // Exports
