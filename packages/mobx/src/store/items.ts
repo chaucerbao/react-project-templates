@@ -1,6 +1,7 @@
 // Dependencies
 import Stow from '@chaucerbao/stow'
 import { computed, flow, observable } from 'mobx'
+import * as api from './api'
 
 // Model
 class Item {
@@ -12,9 +13,7 @@ class Item {
 // tslint:disable-next-line max-classes-per-file
 export default class ItemsStore {
   public fetchItems = flow(function* fetchItems(this: ItemsStore) {
-    const items: Item[] = yield fetch(
-      'http://jsonplaceholder.typicode.com/users',
-    ).then((response) => response.json())
+    const items: Item[] = yield api.getItems()
 
     items.forEach((item) => this.stow.set(item.id, item))
   })

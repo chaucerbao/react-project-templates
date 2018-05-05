@@ -5,6 +5,7 @@ import { Action, createAction, handleActions } from 'redux-actions'
 import { createSelector } from 'reselect'
 import { orderBy } from '../lib/helper'
 import { IState as StoreState } from '../store'
+import * as api from './api'
 
 // Type definitions
 export interface IState {
@@ -46,15 +47,7 @@ export const fetchItems = () => async (
   }
 
   dispatch(setLoading(true))
-
-  dispatch(
-    cacheItems(
-      await fetch('http://jsonplaceholder.typicode.com/users').then((response) =>
-        response.json(),
-      ),
-    ),
-  )
-
+  dispatch(cacheItems(await api.getItems()))
   dispatch(setLoading(false))
 }
 

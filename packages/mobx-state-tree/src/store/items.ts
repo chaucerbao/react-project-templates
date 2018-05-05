@@ -1,5 +1,6 @@
 // Dependencies
 import { flow, types } from 'mobx-state-tree'
+import * as api from './api'
 
 // Model
 const Item = types.model('Item', {
@@ -14,9 +15,7 @@ const ItemsStore = types
   })
   .actions((self) => {
     const fetchItems = flow(function*() {
-      const items: Array<typeof Item.Type> = yield fetch(
-        'http://jsonplaceholder.typicode.com/users',
-      ).then((response) => response.json())
+      const items: Array<typeof Item.Type> = yield api.getItems()
 
       items.forEach((item) => self._cache.set(item.id.toString(), item))
     })
