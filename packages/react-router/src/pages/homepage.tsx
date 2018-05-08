@@ -1,7 +1,7 @@
 // Dependencies
 import React from 'react'
 
-// Homepage
+// Page
 export default () => (
   <>
     <h1>Welcome home</h1>

@@ -17,7 +17,7 @@ interface IState {
   }
 }
 
-// Login
+// Page
 export default class Login extends React.Component<IProps, IState> {
   public state = {
     form: {
