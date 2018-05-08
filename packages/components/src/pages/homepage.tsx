@@ -4,11 +4,11 @@ import React from 'react'
 // Components
 import Button from '../components/button'
 import {
-  ChangeEvent,
   Checkbox,
   CheckboxGroup,
   fieldValue,
   FileUpload,
+  IChangeEvent,
   Input,
   RadioGroup,
   Select,
@@ -164,7 +164,7 @@ export default class extends React.Component {
     )
   }
 
-  private updateField = (e: ChangeEvent) => {
+  private updateField = (e: IChangeEvent) => {
     this.setState({
       form: { ...this.state.form, [e.currentTarget.name]: fieldValue(e) },
     })

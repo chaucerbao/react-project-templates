@@ -2,22 +2,28 @@
 import React from 'react'
 
 // Stub a Link component from some router
-const RouteLink = (props: React.HTMLProps<HTMLAnchorElement>) => (
-  <a {...props} />
-)
+interface IRouterLink extends IAnchorLink {
+  to: IAnchorLink['href']
+}
+const RouterLink = (props: IRouterLink) => <a {...props} href={props.to} />
 
 // Type definitions
 export interface IProps {
   external?: boolean
-  to: string
+  to: IAnchorLink['href'] | IRouterLink['to']
 }
+type IAnchorLink = React.HTMLProps<HTMLAnchorElement>
 
 // Component
-const Link = ({ external, to, ...props }: IProps) =>
+const Link = ({
+  external,
+  to,
+  ...props,
+}: IProps & (IAnchorLink | IRouterLink)) =>
   external && typeof to === 'string' ? (
-    <a {...props} href={to} target="_blank" rel="noopener" />
+    <a {...props as IAnchorLink} href={to} target="_blank" rel="noopener" />
   ) : (
-    <RouteLink {...props} href={to} />
+    <RouterLink {...props as IRouterLink} />
   )
 
 // Exports

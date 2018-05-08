@@ -2,22 +2,19 @@
 import React from 'react'
 
 // Type definitions
-interface IFieldProps {
+interface IField {
   children: React.ReactNode
   error?: string
   label?: string
   name: string
 }
-type FieldGroupProps = Pick<IFieldProps, Exclude<keyof IFieldProps, 'name'>>
-type FormFieldProps = Pick<IFieldProps, Exclude<keyof IFieldProps, 'children'>>
-type FormFieldGroupProps = Pick<
-  FieldGroupProps,
-  Exclude<keyof FieldGroupProps, 'children'>
->
-interface IOptionProps {
+type IFieldGroup = Pick<IField, Exclude<keyof IField, 'name'>>
+type IFormField = Pick<IField, Exclude<keyof IField, 'children'>>
+type IFormFieldGroup = Pick<IFieldGroup, Exclude<keyof IFieldGroup, 'children'>>
+interface IOptions {
   options: Array<{ label: string; value: string }>
 }
-interface IFileUploadProps {
+interface IFileUpload {
   render?: () => React.ReactNode
   renderPreview?: (
     key: string,
@@ -25,12 +22,12 @@ interface IFileUploadProps {
     file: File,
   ) => React.ReactNode
 }
-export type ChangeEvent = React.FormEvent<
+export type IChangeEvent = React.FormEvent<
   HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
 >
 
 // Components
-const Field = ({ children, error, label, name }: IFieldProps) => (
+const Field = ({ children, error, label, name }: IField) => (
   <div>
     <label htmlFor={name}>
       {label && <span>{label}</span>}
@@ -40,7 +37,7 @@ const Field = ({ children, error, label, name }: IFieldProps) => (
   </div>
 )
 
-const FieldGroup = ({ children, error, label }: FieldGroupProps) => (
+const FieldGroup = ({ children, error, label }: IFieldGroup) => (
   <div>
     {label && <span>{label}</span>}
     {error && <span>{error}</span>}
@@ -52,7 +49,7 @@ const Input = ({
   error,
   label,
   ...props,
-}: FormFieldProps & React.HTMLProps<HTMLInputElement>) => (
+}: IFormField & React.HTMLProps<HTMLInputElement>) => (
   <Field error={error} label={label} name={props.name}>
     <input {...props} id={props.name} type="text" />
   </Field>
@@ -62,7 +59,7 @@ const TextArea = ({
   error,
   label,
   ...props,
-}: FormFieldProps & React.HTMLProps<HTMLTextAreaElement>) => (
+}: IFormField & React.HTMLProps<HTMLTextAreaElement>) => (
   <Field error={error} label={label} name={props.name}>
     <textarea {...props} id={props.name} />
   </Field>
@@ -73,7 +70,7 @@ const Select = ({
   label,
   options,
   ...props,
-}: FormFieldProps & React.HTMLProps<HTMLSelectElement> & IOptionProps) => (
+}: IFormField & React.HTMLProps<HTMLSelectElement> & IOptions) => (
   <Field error={error} label={label} name={props.name}>
     <select {...props} id={props.name}>
       {options.map(({ label: optionLabel, value }) => (
@@ -89,7 +86,7 @@ const Checkbox = ({
   error,
   label,
   ...props,
-}: FormFieldProps & React.HTMLProps<HTMLInputElement>) => (
+}: IFormField & React.HTMLProps<HTMLInputElement>) => (
   <Field error={error} label={label} name={props.name}>
     <input {...props} id={props.name} type="checkbox" />
   </Field>
@@ -101,7 +98,7 @@ const CheckboxGroup = ({
   name,
   options,
   ...props,
-}: FormFieldGroupProps & React.HTMLProps<HTMLInputElement> & IOptionProps) => (
+}: IFormFieldGroup & React.HTMLProps<HTMLInputElement> & IOptions) => (
   <FieldGroup error={error} label={label}>
     {options.map(({ label: optionLabel, value }) => (
       <label key={`${name}:${value}`} htmlFor={`${name}:${value}`}>
@@ -128,7 +125,7 @@ const RadioGroup = ({
   name,
   options,
   ...props,
-}: FormFieldGroupProps & React.HTMLProps<HTMLInputElement> & IOptionProps) => (
+}: IFormFieldGroup & React.HTMLProps<HTMLInputElement> & IOptions) => (
   <FieldGroup error={error} label={label}>
     {options.map(({ label: optionLabel, value }) => (
       <label key={`${name}:${value}`} htmlFor={`${name}:${value}`}>
@@ -146,7 +143,7 @@ const RadioGroup = ({
 )
 
 class FileUpload extends React.Component<
-  FormFieldProps & IFileUploadProps & React.HTMLProps<HTMLInputElement>
+  IFormField & IFileUpload & React.HTMLProps<HTMLInputElement>
 > {
   private input?: HTMLInputElement
   private imageFiles: File[] = []
@@ -209,7 +206,7 @@ class FileUpload extends React.Component<
   }
 }
 
-function fieldValue(e: ChangeEvent) {
+function fieldValue(e: IChangeEvent) {
   const field = e.currentTarget
 
   if (field instanceof HTMLSelectElement && field.multiple) {
