@@ -3,7 +3,7 @@ import React from 'react'
 import styled from 'styled-components'
 
 // Styles
-import { color, is, spacer } from '../styles/mixins'
+import { color, is, spacer } from '../styles/utils'
 
 // Page
 export default () => (
