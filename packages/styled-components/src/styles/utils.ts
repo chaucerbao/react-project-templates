@@ -6,7 +6,8 @@ export const color = (key: string) => (props: any) => props.theme.colors[key]
 export const spacer = (key: string) => (props: any) => props.theme.spacers[key]
 
 // Helper for boolean properties
-export const is = (key: string) => (
+export const has = (...properties: string[]) => (
   strings: TemplateStringsArray,
-  ...keys: any[]
-) => (props: any) => (Boolean(props[key]) ? css(strings, ...keys) : null)
+  ...values: any[]
+) => (props: any) =>
+  properties.every((prop) => Boolean(props[prop])) ? css(strings, ...values) : []

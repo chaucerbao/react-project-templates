@@ -3,7 +3,7 @@ import React from 'react'
 import styled from 'styled-components'
 
 // Styles
-import { color, is, spacer } from '../styles/utils'
+import { color, has, spacer } from '../styles/utils'
 
 // Page
 export default () => (
@@ -86,13 +86,13 @@ const Button = styled.button`
   padding: ${spacer('sm')} ${spacer('lg')};
 
   /* Primary */
-  ${is('primary')`
+  ${has('primary')`
     background: ${color('primary')};
     color: ${color('white')};
   `}
 
   /* Disabled */
-  ${is('disabled')`
+  ${has('disabled')`
     opacity: .5;
     cursor: not-allowed;
   `}
