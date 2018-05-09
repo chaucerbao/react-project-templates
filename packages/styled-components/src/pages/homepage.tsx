@@ -2,6 +2,8 @@
 import React from 'react'
 import styled from 'styled-components'
 
+import { color, is, spacer } from '../styles/mixins'
+
 // Page
 export default () => (
   <>
@@ -24,6 +26,12 @@ export default () => (
         occaecat cupidatat non proident, sunt in culpa qui officia deserunt
         mollit anim id est laborum.
       </p>
+
+      <Buttons>
+        <Button primary>Primary</Button>
+        <Button>Regular</Button>
+        <Button disabled>Disabled</Button>
+      </Buttons>
     </Body>
     <Footer>&copy; {new Date().getFullYear()} Copyright</Footer>
   </>
@@ -34,10 +42,10 @@ const Header = styled.header`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  border-bottom: 1px solid ${({ theme }) => theme.colors.grey};
-  background: ${({ theme }) => theme.colors.primary};
-  padding: ${({ theme }) => theme.spacer.md};
-  color: ${({ theme }) => theme.colors.white};
+  border-bottom: 1px solid ${color('grey')};
+  background: ${color('primary')};
+  padding: ${spacer('md')};
+  color: ${color('white')};
 `
 
 const Site = styled.h1`
@@ -45,30 +53,49 @@ const Site = styled.h1`
 `
 
 const Menu = styled.nav`
-  background: ${({ theme }) => theme.colors.primary};
+  background: ${color('primary')};
 `
 
 const Link = styled.a`
   text-decoration: none;
-  color: ${({ theme }) => theme.colors.white};
+  color: ${color('white')};
 
   &:hover {
     text-decoration: underline;
   }
 
   &:not(:first-child) {
-    margin-left: ${({ theme }) => theme.spacer.sm};
+    margin-left: ${spacer('sm')};
   }
 `
 
 const Body = styled.main`
-  background: ${({ theme }) => theme.colors.white};
-  padding: ${({ theme }) => theme.spacer.md};
+  background: ${color('white')};
+  padding: ${spacer('md')};
+`
+
+const Buttons = styled.section`
+  display: flex;
+  justify-content: space-around;
+`
+
+const Button = styled.button`
+  border-radius: 4px;
+  cursor: pointer;
+  padding: ${spacer('sm')} ${spacer('lg')};
+
+  ${is('primary')`
+    background: ${color('primary')};
+    color: ${color('white')};
+  `} ${is('disabled')`
+    opacity: .5;
+    cursor: not-allowed;
+  `};
 `
 
 const Footer = styled.footer`
-  border-top: 1px solid ${({ theme }) => theme.colors.grey};
-  background: ${({ theme }) => theme.colors.primary};
-  padding: ${({ theme }) => theme.spacer.md};
-  color: ${({ theme }) => theme.colors.white};
+  border-top: 1px solid ${color('grey')};
+  background: ${color('primary')};
+  padding: ${spacer('md')};
+  color: ${color('white')};
 `

@@ -12,7 +12,11 @@
       "stylelint-config-standard",
       "stylelint-config-concentric-order",
       "stylelint-config-styled-components"
-    ]
+    ],
+    "rules": {
+      "comment-empty-line-before": null,
+      "declaration-empty-line-before": null
+    }
   },
   "devDependencies": {
     "source-map-explorer": "^1.5.0",
