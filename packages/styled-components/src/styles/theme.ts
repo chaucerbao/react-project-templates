@@ -6,7 +6,7 @@ export default {
     grey: '#888',
     white: '#fafafa',
   },
-  spacer: {
+  spacers: {
     xs: '5px',
     sm: '10px',
     md: '20px',

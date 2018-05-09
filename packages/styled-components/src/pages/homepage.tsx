@@ -2,6 +2,7 @@
 import React from 'react'
 import styled from 'styled-components'
 
+// Styles
 import { color, is, spacer } from '../styles/mixins'
 
 // Page
@@ -37,7 +38,7 @@ export default () => (
   </>
 )
 
-// Styles
+// Styled Components
 const Header = styled.header`
   display: flex;
   align-items: center;
