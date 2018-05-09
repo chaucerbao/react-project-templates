@@ -85,17 +85,17 @@ const Button = styled.button`
   cursor: pointer;
   padding: ${spacer('sm')} ${spacer('lg')};
 
-  // Primary
+  /* Primary */
   ${is('primary')`
     background: ${color('primary')};
     color: ${color('white')};
   `}
 
-  // Disabled
+  /* Disabled */
   ${is('disabled')`
     opacity: .5;
     cursor: not-allowed;
-  `};
+  `}
 `
 
 const Footer = styled.footer`
