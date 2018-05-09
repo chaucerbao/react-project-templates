@@ -84,10 +84,14 @@ const Button = styled.button`
   cursor: pointer;
   padding: ${spacer('sm')} ${spacer('lg')};
 
+  // Primary
   ${is('primary')`
     background: ${color('primary')};
     color: ${color('white')};
-  `} ${is('disabled')`
+  `}
+
+  // Disabled
+  ${is('disabled')`
     opacity: .5;
     cursor: not-allowed;
   `};
