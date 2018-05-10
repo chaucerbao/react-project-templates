@@ -45,7 +45,7 @@ const Header = styled.header`
   justify-content: space-between;
   border-bottom: 1px solid ${color('grey')};
   background: ${color('primary')};
-  padding: ${spacer('md')};
+  padding: ${spacer(3)};
   color: ${color('white')};
 `
 
@@ -66,13 +66,13 @@ const Link = styled.a`
   }
 
   &:not(:first-child) {
-    margin-left: ${spacer('sm')};
+    margin-left: ${spacer(2)};
   }
 `
 
 const Body = styled.main`
   background: ${color('white')};
-  padding: ${spacer('md')};
+  padding: ${spacer(3)};
 `
 
 const Buttons = styled.section`
@@ -83,7 +83,7 @@ const Buttons = styled.section`
 const Button = styled.button`
   border-radius: 4px;
   cursor: pointer;
-  padding: ${spacer('sm')} ${spacer('lg')};
+  padding: ${spacer(2)} ${spacer(4)};
 
   /* Primary */
   ${has('primary')`
@@ -101,6 +101,6 @@ const Button = styled.button`
 const Footer = styled.footer`
   border-top: 1px solid ${color('grey')};
   background: ${color('primary')};
-  padding: ${spacer('md')};
+  padding: ${spacer(3)};
   color: ${color('white')};
 `

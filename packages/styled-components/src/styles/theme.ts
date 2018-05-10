@@ -1,23 +1,34 @@
 // tslint:disable object-literal-sort-keys
 
-const breakpoints = {
-  mobile: '320px',
-  tablet: '768px',
-  desktop: '1280px',
+// Type definitions
+export interface ITheme {
+  breakpoints: IScale
+  colors: IDictionary
+  spacers: IScale
+}
+export interface IDictionary {
+  [key: string]: string
+}
+export interface IScale {
+  scale: number[]
+  unit: string
 }
 
-const colors = {
+// Theme
+const breakpoints: IScale = {
+  scale: [0, 768, 1280],
+  unit: 'px',
+}
+
+const colors: IDictionary = {
   primary: '#444',
   grey: '#888',
   white: '#fafafa',
 }
 
-const spacers = {
-  xs: '4px',
-  sm: '8px',
-  md: '16px',
-  lg: '24px',
-  xl: '32px',
+const spacers: IScale = {
+  scale: [0, 4, 8, 16, 24, 32],
+  unit: 'px',
 }
 
 // Exports
