@@ -2,39 +2,61 @@
 
 // Type definitions
 export interface ITheme {
-  breakpoints: IScale
+  breakpoints: IDictionary
   colors: IDictionary
-  spacers: IScale
+  spacers: IDictionary
 }
-export interface IDictionary {
-  [key: string]: string
+interface IDictionary {
+  [key: string]: number | string
 }
-export interface IScale {
-  scale: IScaleValue[]
-  unit: string
-}
-type IScaleValue = [string, number]
 
 // Theme
-const breakpoints: IScale = {
-  scale: [['mobile', 0], ['tablet', 768], ['desktop', 1280]],
-  unit: 'px',
+const breakpoints = {
+  mobile: '0',
+  tablet: '768px',
+  desktop: '1280px',
 }
 
-const colors: IDictionary = {
+const colors = {
   primary: '#444',
   grey: '#888',
   white: '#fafafa',
 }
 
-const spacers: IScale = {
-  scale: [['0', 0], ['xs', 4], ['sm', 8], ['md', 16], ['lg', 24], ['xl', 32]],
-  unit: 'px',
+const spacers = {
+  xs: '4px',
+  sm: '8px',
+  md: '16px',
+  lg: '24px',
+  xl: '32px',
+}
+
+const sort = (dictionary: IDictionary) =>
+  Object.entries(dictionary)
+    .sort((a, b) => {
+      const aValue = parseFloat(a[1].toString())
+      const bValue = parseFloat(b[1].toString())
+
+      if (aValue < bValue) {
+        return -1
+      }
+      if (aValue > bValue) {
+        return 1
+      }
+
+      return 0
+    })
+    .reduce((sortedDictionary: IDictionary, definition) => {
+      sortedDictionary[definition[0]] = definition[1]
+
+      return sortedDictionary
+    }, {})
+
+const theme: ITheme = {
+  breakpoints: sort(breakpoints),
+  colors,
+  spacers: sort(spacers),
 }
 
 // Exports
-export default {
-  breakpoints,
-  colors,
-  spacers,
-}
+export default theme
