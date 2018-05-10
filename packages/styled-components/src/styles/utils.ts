@@ -8,15 +8,13 @@ interface IProps {
 }
 
 // Theme selectors
-const theme = (key: keyof ITheme) => (target: number | string) => (
-  props: IProps,
-) => {
+const theme = (key: keyof ITheme) => (target: string) => (props: IProps) => {
   const group = props.theme![key]
   const unit = (group as IScale).unit || ''
-  const value =
-    (group as IScale).scale && typeof target === 'number'
-      ? (group as IScale).scale[target]
-      : (group as IDictionary)[target]
+  const scaleTuple =
+    (group as IScale).scale &&
+    (group as IScale).scale.find((tuple) => tuple[0] === target)
+  const value = scaleTuple ? scaleTuple[1] : (group as IDictionary)[target]
 
   return `${value}${unit}`
 }
@@ -25,8 +23,8 @@ export const color = theme('colors')
 export const spacer = theme('spacers')
 
 // Media queries
-export const minWidth = (scale: number) => (props: IProps) =>
-  `(min-width: ${breakpoint(scale)(props)})`
+export const minWidth = (target: string) => (props: IProps) =>
+  `(min-width: ${breakpoint(target)(props)})`
 
 // Helper for boolean properties
 export const has = (...properties: string[]) => (
