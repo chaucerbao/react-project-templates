@@ -2,8 +2,11 @@
 import { css } from 'styled-components'
 
 // Theme selectors
-export const color = (key: string) => (props: any) => props.theme.colors[key]
-export const spacer = (key: string) => (props: any) => props.theme.spacers[key]
+const theme = (group: string) => (key: string) => (props: { theme: any }) =>
+  props.theme[group][key]
+export const breakpoint = theme('breakpoints')
+export const color = theme('colors')
+export const spacer = theme('spacers')
 
 // Helper for boolean properties
 export const has = (...properties: string[]) => (
