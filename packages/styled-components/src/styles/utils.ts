@@ -17,33 +17,31 @@ export const spacer = theme('spacers')
 // Media queries
 export const minWidth = (target: string) => (props: IProps) =>
   `(min-width: ${breakpoint(target)(props)})`
-export const maxWidth = (target: string) => (props: IProps) =>
-  `(max-width: ${breakpoint(target)(props)})`
+export const maxWidth = (target: string) => (props: IProps) => {
+  const targetBreakpoint = breakpoint(target)(props).toString()
+  const value = parseFloat(targetBreakpoint) - 0.001
+  const unit = targetBreakpoint.replace(/^[^a-z]+/, '')
+
+  return `(max-width: ${value}${unit})`
+}
 export const only = (target: string) => (props: IProps) => {
-  const breakpoints = props.theme!.breakpoints
-  const keys = Object.keys(breakpoints)
+  const keys = Object.keys(props.theme!.breakpoints)
   const i = keys.indexOf(target)
+  const nextTarget = keys[i + 1]
 
   if (i === -1) {
     throw new Error('Invalid breakpoint')
   }
 
-  const targetBreakpoint = breakpoint(target)(props)
-
-  if (i === keys.length) {
-    return `(min-width: ${targetBreakpoint})`
-  }
-
-  const nextBreakpoint = breakpoint(keys[i + 1])(props).toString()
-  const limit = parseFloat(nextBreakpoint) - 0.01
-  const unit = nextBreakpoint.replace(/^[\d\.]+/, '')
-  const upperLimit = `${limit}${unit}`
-
   if (i === 0) {
-    return `(max-width: ${upperLimit})`
+    return maxWidth(nextTarget)(props)
   }
 
-  return `(min-width: ${targetBreakpoint}) and (max-width: ${upperLimit})`
+  if (i === keys.length - 1) {
+    return minWidth(target)(props)
+  }
+
+  return `${minWidth(target)(props)} and ${maxWidth(nextTarget)(props)}`
 }
 
 // Helper for boolean properties
