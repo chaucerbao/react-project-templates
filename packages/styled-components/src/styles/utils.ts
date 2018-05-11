@@ -12,6 +12,8 @@ const theme = (key: keyof ITheme) => (target: string) => (props: IProps) =>
   props.theme![key][target]
 export const breakpoint = theme('breakpoints')
 export const color = theme('colors')
+export const fontFamily = theme('fontFamilies')
+export const fontSize = theme('fontSizes')
 export const spacer = theme('spacers')
 
 // Media queries

@@ -4,6 +4,8 @@
 export interface ITheme {
   breakpoints: IDictionary
   colors: IDictionary
+  fontFamilies: IDictionary
+  fontSizes: IDictionary
   spacers: IDictionary
 }
 interface IDictionary {
@@ -23,6 +25,20 @@ const colors = {
   white: '#fafafa',
 }
 
+const fontFamilies = {
+  heading: 'Georgia, Times, "Times New Roman", serif',
+  body: 'Verdana, Geneva, sans-serif',
+}
+
+const fontSizes = {
+  sm: '12px',
+  md: '16px',
+  lg: '20px',
+  h1: '36px',
+  h2: '30px',
+  h3: '24px',
+}
+
 const spacers = {
   xs: '4px',
   sm: '8px',
@@ -31,6 +47,7 @@ const spacers = {
   xl: '32px',
 }
 
+// Sort a dictionary by values
 const sort = (dictionary: IDictionary) =>
   Object.entries(dictionary)
     .sort((a, b) => {
@@ -46,15 +63,17 @@ const sort = (dictionary: IDictionary) =>
 
       return 0
     })
-    .reduce((sortedDictionary: IDictionary, definition) => {
-      sortedDictionary[definition[0]] = definition[1]
+    .reduce((sorted: IDictionary, definition) => {
+      sorted[definition[0]] = definition[1]
 
-      return sortedDictionary
+      return sorted
     }, {})
 
 const theme: ITheme = {
   breakpoints: sort(breakpoints),
   colors,
+  fontFamilies,
+  fontSizes: sort(fontSizes),
   spacers: sort(spacers),
 }
 

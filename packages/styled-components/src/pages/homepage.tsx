@@ -3,7 +3,7 @@ import React from 'react'
 import styled from 'styled-components'
 
 // Styles
-import { color, has, spacer } from '../styles/utils'
+import { color, fontFamily, fontSize, has, spacer } from '../styles/utils'
 
 // Page
 export default () => (
@@ -66,7 +66,7 @@ const Link = styled.a`
   }
 
   &:not(:first-child) {
-    margin-left: ${spacer('sm')};
+    margin-left: ${spacer('md')};
   }
 `
 
@@ -84,6 +84,7 @@ const Button = styled.button`
   border-radius: 4px;
   cursor: pointer;
   padding: ${spacer('sm')} ${spacer('lg')};
+  font: ${fontSize('md')} ${fontFamily('body')};
 
   /* Primary */
   ${has('primary')`
@@ -103,4 +104,5 @@ const Footer = styled.footer`
   background: ${color('primary')};
   padding: ${spacer('md')};
   color: ${color('white')};
+  font-size: ${fontSize('sm')};
 `
