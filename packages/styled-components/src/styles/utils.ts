@@ -5,6 +5,7 @@ import { css } from 'styled-components'
 import { ITheme } from './theme'
 interface IProps {
   theme?: ITheme
+  [key: string]: any
 }
 
 // Theme selectors
@@ -50,5 +51,5 @@ export const only = (target: string) => (props: IProps) => {
 export const has = (...properties: string[]) => (
   strings: TemplateStringsArray,
   ...values: any[]
-) => (props: any) =>
+) => (props: IProps) =>
   properties.every((prop) => Boolean(props[prop])) ? css(strings, ...values) : []
