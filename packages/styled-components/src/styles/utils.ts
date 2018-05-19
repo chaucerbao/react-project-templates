@@ -16,6 +16,7 @@ export const color = theme('colors')
 export const fontFamily = theme('fontFamilies')
 export const fontSize = theme('fontSizes')
 export const spacer = theme('spacers')
+export const zIndex = theme('zIndexes')
 
 // Media queries
 export const minWidth = (name: string) => (props: IProps) =>

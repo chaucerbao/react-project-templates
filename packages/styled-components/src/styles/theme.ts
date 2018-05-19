@@ -7,6 +7,7 @@ export interface ITheme {
   fontFamilies: IDictionary
   fontSizes: IDictionary
   spacers: IDictionary
+  zIndexes: IDictionary
 }
 interface IDictionary {
   [key: string]: number | string
@@ -47,6 +48,10 @@ const spacers = {
   xl: '32px',
 }
 
+const zIndexes = {
+  header: 100,
+}
+
 // Sort a dictionary by values
 const sort = (dictionary: IDictionary) =>
   Object.entries(dictionary)
@@ -75,6 +80,7 @@ const theme: ITheme = {
   fontFamilies,
   fontSizes: sort(fontSizes),
   spacers: sort(spacers),
+  zIndexes: sort(zIndexes),
 }
 
 // Exports
