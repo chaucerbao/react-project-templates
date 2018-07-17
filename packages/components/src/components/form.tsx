@@ -48,7 +48,7 @@ const FieldGroup = ({ children, error, label }: IFieldGroup) => (
 const Input = ({
   error,
   label,
-  ...props,
+  ...props
 }: IFormField & React.HTMLProps<HTMLInputElement>) => (
   <Field error={error} label={label} name={props.name}>
     <input {...props} id={props.name} type="text" />
@@ -58,7 +58,7 @@ const Input = ({
 const TextArea = ({
   error,
   label,
-  ...props,
+  ...props
 }: IFormField & React.HTMLProps<HTMLTextAreaElement>) => (
   <Field error={error} label={label} name={props.name}>
     <textarea {...props} id={props.name} />
@@ -69,7 +69,7 @@ const Select = ({
   error,
   label,
   options,
-  ...props,
+  ...props
 }: IFormField & React.HTMLProps<HTMLSelectElement> & IOptions) => (
   <Field error={error} label={label} name={props.name}>
     <select {...props} id={props.name}>
@@ -85,7 +85,7 @@ const Select = ({
 const Checkbox = ({
   error,
   label,
-  ...props,
+  ...props
 }: IFormField & React.HTMLProps<HTMLInputElement>) => (
   <Field error={error} label={label} name={props.name}>
     <input {...props} id={props.name} type="checkbox" />
@@ -97,7 +97,7 @@ const CheckboxGroup = ({
   label,
   name,
   options,
-  ...props,
+  ...props
 }: IFormFieldGroup & React.HTMLProps<HTMLInputElement> & IOptions) => (
   <FieldGroup error={error} label={label}>
     {options.map(({ label: optionLabel, value }) => (
@@ -124,7 +124,7 @@ const RadioGroup = ({
   label,
   name,
   options,
-  ...props,
+  ...props
 }: IFormFieldGroup & React.HTMLProps<HTMLInputElement> & IOptions) => (
   <FieldGroup error={error} label={label}>
     {options.map(({ label: optionLabel, value }) => (

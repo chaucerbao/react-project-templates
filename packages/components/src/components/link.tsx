@@ -18,7 +18,7 @@ type IAnchorLink = React.HTMLProps<HTMLAnchorElement>
 const Link = ({
   external,
   to,
-  ...props,
+  ...props
 }: IProps & (IAnchorLink | IRouterLink)) =>
   external && typeof to === 'string' ? (
     <a {...props as IAnchorLink} href={to} target="_blank" rel="noopener" />
