@@ -1,6 +1,7 @@
 {
-  "extends": ["tslint:recommended"],
+  "extends": ["tslint:recommended", "tslint-react"],
   "rules": {
+    "jsx-no-multiline-js": false,
     "quotemark": {
       "options": ["single", "jsx-double", "avoid-escape"]
     },

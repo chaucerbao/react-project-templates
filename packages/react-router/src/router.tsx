@@ -24,7 +24,7 @@ const Router = () => (
     <AuthProvider>
       <Layout>
         <Switch>
-          <Route exact path="/" component={Homepage} />
+          <Route exact={true} path="/" component={Homepage} />
           <Route path="/login" component={Login} />
           <Route path="/logout" component={Logout} />
           <ProtectedRoute path="/secret" component={Secret} />

@@ -29,9 +29,9 @@ export default () => (
       </p>
 
       <Buttons>
-        <Button primary>Primary</Button>
+        <Button primary={true}>Primary</Button>
         <Button>Regular</Button>
-        <Button disabled>Disabled</Button>
+        <Button disabled={true}>Disabled</Button>
       </Buttons>
     </Body>
     <Footer>&copy; {new Date().getFullYear()} Copyright</Footer>

@@ -14,7 +14,7 @@ type IFormFieldGroup = Pick<IFieldGroup, Exclude<keyof IFieldGroup, 'children'>>
 interface IOptions {
   options: Array<{ label: string; value: string }>
 }
-interface IFileUpload {
+export interface IFileUpload {
   render?: () => React.ReactNode
   renderPreview?: (
     key: string,
@@ -111,7 +111,7 @@ const CheckboxGroup = ({
           checked={
             Array.isArray(props.value) && props.value.indexOf(value) > -1
           }
-          data-checkbox-group
+          data-checkbox-group={true}
         />
         <span>{optionLabel}</span>
       </label>

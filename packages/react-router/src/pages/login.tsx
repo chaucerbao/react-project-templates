@@ -69,8 +69,7 @@ export default class Login extends React.Component<IProps, IState> {
                 <button type="submit">Submit</button>
               </form>
             </>
-          )
-        }
+          )}
       </AuthConsumer>
     )
   }

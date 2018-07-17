@@ -15,7 +15,6 @@ export default (props: RouteProps) => (
             props.location!.search,
           )}`}
         />
-      )
-    }
+      )}
   </AuthConsumer>
 )

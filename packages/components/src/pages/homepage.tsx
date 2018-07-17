@@ -9,6 +9,7 @@ import {
   fieldValue,
   FileUpload,
   IChangeEvent,
+  IFileUpload,
   Input,
   RadioGroup,
   Select,
@@ -63,11 +64,11 @@ export default class extends React.Component {
         <h1>Welcome home</h1>
 
         <nav>
-          <Link external to="https://google.com/">
+          <Link external={true} to="https://google.com/">
             External link
           </Link>
           &nbsp;
-          <Button external to="https://google.com/">
+          <Button external={true} to="https://google.com/">
             External button
           </Button>
         </nav>
@@ -129,38 +130,46 @@ export default class extends React.Component {
             label="Image"
             name="image"
             onChange={this.updateField}
-            render={() => !form.image && <div>Click to add an image</div>}
-            renderPreview={(key, Image, file) => (
-              <div key={key}>
-                <Image width={320} />
-                <br />
-                {file.name}
-              </div>
-            )}
+            render={this.singleUploadCta}
+            renderPreview={this.fileUploadPreview}
           />
           <FileUpload
             multiple={true}
             label="Attachments"
             name="attachments"
             onChange={this.updateField}
-            render={() =>
-              form.attachments.length === 0 && (
-                <div>Click to add an attachment</div>
-              )
-            }
-            renderPreview={(key, Image, file) => (
-              <div key={key}>
-                <Image width={320} />
-                <br />
-                {file.name}
-              </div>
-            )}
+            render={this.multipleUploadCta}
+            renderPreview={this.fileUploadPreview}
           />
 
           <Button type="submit">Submit</Button>
           <Link to="/">Cancel</Link>
         </form>
       </>
+    )
+  }
+
+  private singleUploadCta = () => {
+    return !this.state.form.image ? <div>Click to add an image</div> : null
+  }
+
+  private multipleUploadCta = () => {
+    return this.state.form.attachments.length === 0 ? (
+      <div>Click to add an attachment</div>
+    ) : null
+  }
+
+  private fileUploadPreview: IFileUpload['renderPreview'] = (
+    key,
+    Image,
+    file,
+  ) => {
+    return (
+      <div key={key}>
+        <Image width={320} />
+        <br />
+        {file.name}
+      </div>
     )
   }
 
