@@ -49,11 +49,10 @@ export const only = (name: string) => (props: IProps) => {
 }
 
 // Properties
-export const prop = (target: string) => (props: IProps) => props[target]
 export const has = (...properties: string[]) => (
   strings: TemplateStringsArray,
   ...values: any[]
 ) => (props: IProps) =>
-  properties.every((property) => Boolean(props[property]))
+  properties.every(property => Boolean(props[property]))
     ? css(strings, ...values)
     : []
