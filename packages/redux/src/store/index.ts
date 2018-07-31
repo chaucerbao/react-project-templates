@@ -3,7 +3,7 @@ import {
   applyMiddleware,
   combineReducers,
   createStore,
-  Middleware,
+  Middleware
 } from 'redux'
 import logger from 'redux-logger'
 import { persistReducer, persistStore } from 'redux-persist'
@@ -20,7 +20,7 @@ export interface IState {
 
 // Reducers
 const reducers = {
-  items,
+  items
 }
 
 // Middleware
@@ -31,8 +31,11 @@ if (process.env.NODE_ENV !== 'production') {
 
 // Store
 const store = createStore(
-  persistReducer({ key: 'persistStore', storage }, combineReducers(reducers)),
-  applyMiddleware(...middleware),
+  persistReducer(
+    { key: 'persistStore', storage },
+    combineReducers<any>(reducers)
+  ),
+  applyMiddleware(...middleware)
 )
 
 // Exports

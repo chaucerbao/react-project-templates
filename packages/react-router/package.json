@@ -5,16 +5,16 @@
   "author": "Alvin Chan <no@email.com>",
   "license": "ISC",
   "devDependencies": {
-    "@types/react-loadable": "^5.3.3",
-    "@types/react-router-dom": "^4.2.6",
+    "@types/react-loadable": "^5.4.0",
+    "@types/react-router-dom": "^4.3.0",
     "source-map-explorer": "^1.5.0",
-    "tslint": "^5.9.1",
-    "webpack-cli": "^2.0.13",
-    "webpack-dev-server": "^3.1.1"
+    "tslint": "^5.11.0",
+    "webpack-cli": "^3.1.0",
+    "webpack-dev-server": "^3.1.5"
   },
   "dependencies": {
-    "react-loadable": "^5.3.1",
-    "react-router-dom": "^4.2.2"
+    "react-loadable": "^5.4.0",
+    "react-router-dom": "^4.3.1"
   },
   "scripts": {
     "start": "webpack-dev-server --config ../../webpack.config.js -d",

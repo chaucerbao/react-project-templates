@@ -21,13 +21,13 @@ export interface IItem {
 // Default state
 const defaultState = {
   _cache: {},
-  isLoading: false,
+  isLoading: false
 }
 
 // Selectors
 export const selectItems = createSelector(
   (state: StoreState) => state.items._cache,
-  (items) => orderBy<IItem>('name')(Object.values(items)),
+  items => orderBy<IItem>('name')(Object.values(items))
 )
 export const selectItem = (state: StoreState, id: IItem['id']) =>
   state.items._cache[id]
@@ -39,8 +39,8 @@ export const cacheItems = createAction<IItem[]>('ITEMS/CACHE_ITEMS')
 
 // Thunk actions
 export const fetchItems = () => async (
-  dispatch: Dispatch<StoreState>,
-  getState: () => StoreState,
+  dispatch: Dispatch<Action<any>>,
+  getState: () => StoreState
 ) => {
   if (Object.keys(getState().items._cache).length > 0) {
     return
@@ -55,18 +55,18 @@ export const fetchItems = () => async (
 export default handleActions<IState, any>(
   {
     [setLoading.toString()]: (state, { payload }: Action<boolean>) =>
-      produce(state, (draft) => {
+      produce(state, draft => {
         draft.isLoading = !!payload
       }),
 
     [cacheItems.toString()]: (state, { payload }: Action<IItem[]>) =>
-      produce(state, (draft) => {
+      produce(state, draft => {
         if (payload) {
-          payload.forEach((item) => {
+          payload.forEach(item => {
             draft._cache[item.id] = { ...draft._cache[item.id], ...item }
           })
         }
-      }),
+      })
   },
-  defaultState,
+  defaultState
 )

@@ -2,6 +2,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators, Dispatch } from 'redux'
+import { Action } from 'redux-actions'
 import { IState as StoreState } from '../store'
 import { fetchItems, IItem, selectIsLoading, selectItems } from '../store/items'
 
@@ -9,10 +10,10 @@ import { fetchItems, IItem, selectIsLoading, selectItems } from '../store/items'
 interface IProps {
   state: {
     isLoading: boolean
-    items: IItem[],
+    items: IItem[]
   }
   dispatch: {
-    fetchItems: typeof fetchItems,
+    fetchItems: typeof fetchItems
   }
 }
 
@@ -28,7 +29,9 @@ class Homepage extends React.Component<IProps> {
         {!isLoading &&
           items.length > 0 && (
             <ul>
-              {items.map((item) => <li key={`item:${item.id}`}>{item.name}</li>)}
+              {items.map(item => (
+                <li key={`item:${item.id}`}>{item.name}</li>
+              ))}
             </ul>
           )}
         {!items.length && <button onClick={this.loadItems}>Load items</button>}
@@ -45,14 +48,17 @@ class Homepage extends React.Component<IProps> {
 const mapStateToProps = (state: StoreState) => ({
   state: {
     isLoading: selectIsLoading(state),
-    items: selectItems(state),
-  },
+    items: selectItems(state)
+  }
 })
 
 // Dispatch
-const mapDispatchToProps = (dispatch: Dispatch<StoreState>) => ({
-  dispatch: bindActionCreators({ fetchItems }, dispatch),
+const mapDispatchToProps = (dispatch: Dispatch<Action<any>>) => ({
+  dispatch: bindActionCreators({ fetchItems }, dispatch)
 })
 
 // Exports
-export default connect(mapStateToProps, mapDispatchToProps)(Homepage)
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Homepage)

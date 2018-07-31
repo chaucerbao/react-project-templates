@@ -19,7 +19,7 @@ export interface IFileUpload {
   renderPreview?: (
     key: string,
     Image: React.StatelessComponent<{ [key: string]: any }>,
-    file: File,
+    file: File
   ) => React.ReactNode
 }
 export type IChangeEvent = React.FormEvent<
@@ -154,8 +154,8 @@ class FileUpload extends React.Component<
 
     const imageFiles =
       input && input.files
-        ? Array.from(input.files).filter((file) =>
-            /\.(gif|jpg|png)$/.test(file.name),
+        ? Array.from(input.files).filter(file =>
+            /\.(gif|jpg|png)$/.test(file.name)
           )
         : []
 
@@ -165,7 +165,7 @@ class FileUpload extends React.Component<
 
         fileReader.addEventListener('load', () => {
           if (this.imagePreviews[i]) {
-            this.imagePreviews[i].src = fileReader.result
+            this.imagePreviews[i].src = fileReader.result as string
           }
         })
         fileReader.readAsDataURL(file)
@@ -186,20 +186,20 @@ class FileUpload extends React.Component<
           this.imageFiles.map((file, i) =>
             renderPreview(
               `${props.name}:${i}`,
-              (imageProps) => (
+              imageProps => (
                 <img
                   {...imageProps}
-                  ref={(img) => (this.imagePreviews[i] = img!)}
+                  ref={img => (this.imagePreviews[i] = img!)}
                 />
               ),
-              file,
-            ),
+              file
+            )
           )}
         <input
           {...props}
           id={props.name}
           type="file"
-          ref={(input) => (this.input = input!)}
+          ref={input => (this.input = input!)}
         />
       </Field>
     )
@@ -211,13 +211,13 @@ function fieldValue(e: IChangeEvent) {
 
   if (field instanceof HTMLSelectElement && field.multiple) {
     return Array.from(field.options)
-      .filter((option) => option.selected)
-      .map((option) => option.value)
+      .filter(option => option.selected)
+      .map(option => option.value)
   } else if (field instanceof HTMLInputElement && field.type === 'checkbox') {
     if (field.dataset.checkboxGroup) {
       return Array.from(
-        field.parentElement!.parentElement!.querySelectorAll('input:checked'),
-      ).map((input) => (input as HTMLInputElement).value)
+        field.parentElement!.parentElement!.querySelectorAll('input:checked')
+      ).map(input => (input as HTMLInputElement).value)
     } else {
       return field.checked
     }
@@ -241,5 +241,5 @@ export {
   CheckboxGroup,
   RadioGroup,
   FileUpload,
-  fieldValue,
+  fieldValue
 }
