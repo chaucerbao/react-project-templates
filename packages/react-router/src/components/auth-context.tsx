@@ -15,12 +15,20 @@ export interface IContext {
 }
 
 // Context
-const AuthContext = React.createContext()
+const AuthContext = React.createContext({
+  isLoggedIn: false,
+  logIn: () => {
+    return
+  },
+  logOut: () => {
+    return
+  }
+})
 
 // Provider
 export default class AuthProvider extends React.Component<IProps, IState> {
   public state = {
-    isLoggedIn: false,
+    isLoggedIn: false
   }
 
   public render() {
