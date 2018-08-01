@@ -1,6 +1,18 @@
 {
-  "extends": "../../tsconfig.json",
   "compilerOptions": {
-    "experimentalDecorators": true
+    "target": "es5",
+    "lib": ["dom", "es2015", "es2017.object"],
+    "jsx": "react",
+
+    "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "forceConsistentCasingInFileNames": true,
+
+    "experimentalDecorators": true,
+    "esModuleInterop": true,
+    "importHelpers": true
   }
 }

@@ -15,5 +15,5 @@ render(
   <ThemeProvider theme={theme}>
     <Homepage />
   </ThemeProvider>,
-  document.getElementById('application'),
+  document.getElementById('application')
 )

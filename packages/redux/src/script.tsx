@@ -17,5 +17,5 @@ render(
       <Homepage />
     </PersistGate>
   </Provider>,
-  document.getElementById('application'),
+  document.getElementById('application')
 )
