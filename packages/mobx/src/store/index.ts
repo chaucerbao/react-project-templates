@@ -8,7 +8,7 @@ export interface IStore {
 
 // Store collection
 const store: IStore = {
-  items: new ItemsStore(),
+  items: new ItemsStore()
 }
 
 // Exports

@@ -13,6 +13,6 @@ const Store = types.model('Store', { items: ItemsStore })
 // Exports
 export default Store.create({
   items: {
-    _cache: {},
-  },
+    _cache: {}
+  }
 })

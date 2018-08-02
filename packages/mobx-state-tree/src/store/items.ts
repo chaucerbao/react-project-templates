@@ -5,29 +5,29 @@ import * as api from './api'
 // Model
 const Item = types.model('Item', {
   id: types.number,
-  name: types.string,
+  name: types.string
 })
 
 // Store
 const ItemsStore = types
   .model('ItemsStore', {
-    _cache: types.map(Item),
+    _cache: types.map(Item)
   })
-  .actions((self) => {
+  .actions(self => {
     const fetchItems = flow(function*() {
       const items: Array<typeof Item.Type> = yield api.getItems()
 
-      items.forEach((item) => self._cache.set(item.id.toString(), item))
+      items.forEach(item => self._cache.set(item.id.toString(), item))
     })
 
     return {
-      fetchItems,
+      fetchItems
     }
   })
-  .views((self) => ({
+  .views(self => ({
     get all() {
       return Array.from(self._cache.values())
-    },
+    }
   }))
 
 // Exports

@@ -26,7 +26,7 @@ export const flex = (
   justify?: string,
   align?: string,
   direction?: string,
-  wrap?: string,
+  wrap?: string
 ) => css`
   display: flex;
   ${justify ? `justify-content: ${justify}` : ''};
@@ -38,7 +38,7 @@ export const flex = (
 
 export const flexColumns = (
   columns: number,
-  gutter: string = spacers.md.toString(),
+  gutter: string = spacers.md.toString()
 ) => css`
   > * {
     width: calc((100% - (${columns} - 1) * ${gutter}) / ${columns});
@@ -59,7 +59,7 @@ export const position = (
   right?: string | 0,
   bottom?: string | 0,
   left?: string | 0,
-  zIndex?: number,
+  zIndex?: number
 ) => css`
   position: ${type};
   ${top ? `top: ${top}` : ''};

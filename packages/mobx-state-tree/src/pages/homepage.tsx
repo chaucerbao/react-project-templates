@@ -29,7 +29,9 @@ export default class Homepage extends React.Component<IProps> {
 
         {items.length > 0 && (
           <ul>
-            {items.map((item) => <li key={`item:${item.id}`}>{item.name}</li>)}
+            {items.map(item => (
+              <li key={`item:${item.id}`}>{item.name}</li>
+            ))}
           </ul>
         )}
 

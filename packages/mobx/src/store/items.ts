@@ -15,7 +15,7 @@ export default class ItemsStore {
   public fetchItems = flow(function* fetchItems(this: ItemsStore) {
     const items: Item[] = yield api.getItems()
 
-    items.forEach((item) => this.stow.set(item.id, item))
+    items.forEach(item => this.stow.set(item.id, item))
   })
 
   private stow: Stow<Item>

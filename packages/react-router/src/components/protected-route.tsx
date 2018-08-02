@@ -12,9 +12,10 @@ export default (props: RouteProps) => (
       ) : (
         <Redirect
           to={`/login?${props.location!.pathname}${encodeURIComponent(
-            props.location!.search,
+            props.location!.search
           )}`}
         />
-      )}
+      )
+    }
   </AuthConsumer>
 )

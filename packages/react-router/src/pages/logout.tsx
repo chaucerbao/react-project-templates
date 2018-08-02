@@ -3,7 +3,7 @@ import React from 'react'
 import { Redirect } from 'react-router-dom'
 import {
   AuthConsumer,
-  IContext as AuthContext,
+  IContext as AuthContext
 } from '../components/auth-context'
 
 // Page

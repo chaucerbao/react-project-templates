@@ -13,7 +13,7 @@ import {
   Input,
   RadioGroup,
   Select,
-  TextArea,
+  TextArea
 } from '../components/form'
 import Link from '../components/link'
 
@@ -29,7 +29,7 @@ export default class extends React.Component {
       isPublished: '',
       related_category: '',
       tags: '',
-      title: '',
+      title: ''
     },
     form: {
       attachments: [],
@@ -40,20 +40,20 @@ export default class extends React.Component {
       isPublished: false,
       related_category: '',
       tags: [],
-      title: '',
-    },
+      title: ''
+    }
   }
 
   private categories = [
     { label: 'Category A', value: 'A' },
     { label: 'Category B', value: 'B' },
-    { label: 'Category C', value: 'C' },
+    { label: 'Category C', value: 'C' }
   ]
 
   private tags = [
     { label: 'Tag 1', value: '1' },
     { label: 'Tag 2', value: '2' },
-    { label: 'Tag 3', value: '3' },
+    { label: 'Tag 3', value: '3' }
   ]
 
   public render() {
@@ -162,7 +162,7 @@ export default class extends React.Component {
   private fileUploadPreview: IFileUpload['renderPreview'] = (
     key,
     Image,
-    file,
+    file
   ) => {
     return (
       <div key={key}>
@@ -175,7 +175,7 @@ export default class extends React.Component {
 
   private updateField = (e: IChangeEvent) => {
     this.setState({
-      form: { ...this.state.form, [e.currentTarget.name]: fieldValue(e) },
+      form: { ...this.state.form, [e.currentTarget.name]: fieldValue(e) }
     })
   }
 

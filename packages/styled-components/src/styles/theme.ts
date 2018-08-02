@@ -17,18 +17,18 @@ interface IDictionary {
 const breakpoints = {
   mobile: '0',
   tablet: '768px',
-  desktop: '1280px',
+  desktop: '1280px'
 }
 
 const colors = {
   primary: '#444',
   grey: '#888',
-  white: '#fafafa',
+  white: '#fafafa'
 }
 
 const fontFamilies = {
   heading: 'Georgia, Times, "Times New Roman", serif',
-  body: 'Verdana, Geneva, sans-serif',
+  body: 'Verdana, Geneva, sans-serif'
 }
 
 const fontSizes = {
@@ -37,7 +37,7 @@ const fontSizes = {
   lg: '20px',
   h1: '36px',
   h2: '30px',
-  h3: '24px',
+  h3: '24px'
 }
 
 const spacers = {
@@ -45,11 +45,11 @@ const spacers = {
   sm: '8px',
   md: '16px',
   lg: '24px',
-  xl: '32px',
+  xl: '32px'
 }
 
 const zIndexes = {
-  header: 100,
+  header: 100
 }
 
 // Sort a dictionary by values
@@ -80,7 +80,7 @@ const theme: ITheme = {
   fontFamilies,
   fontSizes: sort(fontSizes),
   spacers: sort(spacers),
-  zIndexes: sort(zIndexes),
+  zIndexes: sort(zIndexes)
 }
 
 // Exports
