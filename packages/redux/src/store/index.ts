@@ -5,6 +5,7 @@ import {
   createStore,
   Middleware
 } from 'redux'
+import { Action } from 'redux-actions'
 import logger from 'redux-logger'
 import { persistReducer, persistStore } from 'redux-persist'
 import storage from 'redux-persist/lib/storage'
@@ -31,9 +32,9 @@ if (process.env.NODE_ENV !== 'production') {
 
 // Store
 const store = createStore(
-  persistReducer(
+  persistReducer<IState, Action<any>>(
     { key: 'persistStore', storage },
-    combineReducers<any>(reducers)
+    combineReducers<any, Action<any>>(reducers)
   ),
   applyMiddleware(...middleware)
 )
