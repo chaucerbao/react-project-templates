@@ -3,7 +3,7 @@ import React from 'react'
 import { Redirect, RouteProps } from 'react-router-dom'
 import {
   AuthConsumer,
-  IContext as AuthContext,
+  IContext as AuthContext
 } from '../components/auth-context'
 
 // Type definitions
@@ -13,7 +13,7 @@ interface IProps {
 interface IState {
   form: {
     email: string
-    password: string,
+    password: string
   }
 }
 
@@ -22,8 +22,8 @@ export default class Login extends React.Component<IProps, IState> {
   public state = {
     form: {
       email: '',
-      password: '',
-    },
+      password: ''
+    }
   }
 
   public render() {
@@ -32,14 +32,19 @@ export default class Login extends React.Component<IProps, IState> {
 
     return (
       <AuthConsumer>
-        {({ isLoggedIn, logIn }: AuthContext) =>
-          isLoggedIn ? (
+        {({ isLoggedIn, logIn }: AuthContext) => {
+          const submitForm = (e: React.FormEvent) => {
+            e.preventDefault()
+            logIn()
+          }
+
+          return isLoggedIn ? (
             <Redirect to={path ? decodeURIComponent(path.substring(1)) : '/'} />
           ) : (
             <>
               <h1>Login</h1>
 
-              <form onSubmit={logIn}>
+              <form onSubmit={submitForm}>
                 <div>
                   <label htmlFor="email">
                     <span>E-mail address</span>
@@ -69,7 +74,8 @@ export default class Login extends React.Component<IProps, IState> {
                 <button type="submit">Submit</button>
               </form>
             </>
-          )}
+          )
+        }}
       </AuthConsumer>
     )
   }
@@ -78,7 +84,7 @@ export default class Login extends React.Component<IProps, IState> {
     const field = e.currentTarget
 
     this.setState({
-      form: Object.assign({}, this.state.form, { [field.name]: field.value }),
+      form: Object.assign({}, this.state.form, { [field.name]: field.value })
     })
   }
 }
