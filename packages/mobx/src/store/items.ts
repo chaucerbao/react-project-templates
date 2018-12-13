@@ -26,6 +26,6 @@ export default class ItemsStore {
 
   @computed
   get all() {
-    return Array.from(this.stow.dump())
+    return Array.from(this.stow.values())
   }
 }

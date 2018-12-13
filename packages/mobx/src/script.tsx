@@ -6,7 +6,7 @@ import React from 'react'
 import { render } from 'react-dom'
 
 // Configure MobX
-configure({ enforceActions: 'strict' })
+configure({ enforceActions: 'always' })
 if (process.env.NODE_ENV !== 'production') {
   enableLogging()
 }
