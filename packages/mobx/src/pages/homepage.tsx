@@ -1,18 +1,18 @@
 // Dependencies
 import { inject, observer } from 'mobx-react'
 import React from 'react'
-import { IStore } from '../store'
+import Store from '../store'
 
 // Type definitions
 interface IProps {
-  store?: IStore
+  store?: Store
 }
 
 // Page
 @inject('store')
 @observer
 export default class Homepage extends React.Component<IProps> {
-  private store: IStore
+  private store: Store
 
   constructor(props: IProps) {
     super(props)

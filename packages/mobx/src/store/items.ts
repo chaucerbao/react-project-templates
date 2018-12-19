@@ -1,6 +1,7 @@
 // Dependencies
 import Stow from '@chaucerbao/stow'
 import { computed, flow, observable } from 'mobx'
+import Store from '../store'
 import * as api from './api'
 
 // Model
@@ -18,9 +19,11 @@ export default class ItemsStore {
     items.forEach(item => this.stow.set(item.id, item))
   })
 
+  private store: Store
   private stow: Stow<Item>
 
-  constructor() {
+  constructor(store: Store) {
+    this.store = store
     this.stow = new Stow(() => new Item(), { observable })
   }
 

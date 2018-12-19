@@ -1,15 +1,7 @@
 // Stores
 import ItemsStore from './items'
 
-// Type definitions
-export interface IStore {
-  items: ItemsStore
-}
-
 // Store collection
-const store: IStore = {
-  items: new ItemsStore()
+export default class Store {
+  public items = new ItemsStore(this)
 }
-
-// Exports
-export default store

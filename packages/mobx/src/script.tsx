@@ -12,14 +12,14 @@ if (process.env.NODE_ENV !== 'production') {
 }
 
 // Store
-import store from './store'
+import Store from './store'
 
 // Page
 import Homepage from './pages/homepage'
 
 // Mount application
 render(
-  <Provider store={store}>
+  <Provider store={new Store()}>
     <Homepage />
   </Provider>,
   document.getElementById('application')
